@@ -13,7 +13,9 @@
     box-sizing: border-box;
     padding: 7px;
     transform: translateY(-50%);
+    transition: filter 0.2s ease;
 }
+
 .sign{
     width:100%;
     height:100%;
@@ -31,6 +33,7 @@
     padding-right:8px;
     border-radius:5px;
     box-shadow:0 0 5px #0000004a;
+    will-change: transform;
 }
 .sign .a1,.sign .a2{
     position:absolute;
@@ -52,6 +55,7 @@
     padding:3px;
     gap:3px;
     box-shadow:0 0 5px #0000004a;
+    will-change: transform;
 }
 .sign .a3{
     position:absolute;

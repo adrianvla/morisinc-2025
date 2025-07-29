@@ -1,6 +1,7 @@
 import gsap from "gsap";
 import yeast from "yeast";
 import $ from "jquery";
+import {makeSpark} from "../modules/neons";
 import {lenis} from "../modules/smoothScrolling";
 
 let hasLoadedImages = false;
@@ -95,8 +96,8 @@ function initAnimations(){
         tl.to('.loader', {
             top: '134px',
             left: '264px',
-            duration:2,
-            ease: "power3.inOut",
+            duration:1,
+            ease: "power1.inOut",
             onComplete: () => {
                 if(!hasLoadedImages)
                     tl.pause();
@@ -141,7 +142,7 @@ function initAnimations(){
         tl.set('.loader',{
             display: "none",
             onComplete: () => {resolve();document.querySelector('.loader').remove();}
-        });
+        },"<0.5");
 
 
         // tl.timeScale(5);
