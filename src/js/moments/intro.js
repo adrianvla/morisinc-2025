@@ -2,6 +2,7 @@ import gsap from "gsap";
 import yeast from "yeast";
 import $ from "jquery";
 import lenis from "../modules/smoothScrolling";
+import {turnOnNeon} from "../modules/neons";
 
 let hasLoadedImages = false;
 let tl = gsap.timeline({});
@@ -17,14 +18,10 @@ function logImageLoadingProgress() {
         },200);
         if(tl.paused()){
             tl.resume();
-            tl.seek(tl.time()+1);
         }
-        gsap.to('.loading-text',{
+        gsap.to('.loading-text,.loader h3',{
             opacity:0,
-            duration:0.5,
-            onComplete: () => {
-                $('.loading-text').remove();
-            }
+            duration:0.5
         });
         hasLoadedImages = true;
     }
@@ -63,6 +60,28 @@ function initAnimations(){
         tl.set('.nav4',{
             gap:0
         });
+        tl.fromTo('.loader h3.align-left',{
+            right:"50%"
+        },{
+            right:"75%",
+            duration:2,
+            scrambleText: {
+                text: (i, target) => target.dataset.text,
+                chars: (i, target) => target.dataset.scrambleChars || ",._&*;:'\"-+=~`|/\\",
+                speed: 0.5,
+            },
+        });
+        tl.fromTo('.loader h3.align-right',{
+            left:"50%"
+        },{
+            left:"75%",
+            duration:2,
+            scrambleText: {
+                text: (i, target) => target.dataset.text,
+                chars: (i, target) => target.dataset.scrambleChars || ",._&*;:'\"-+=~`|/\\",
+                speed: 0.5,
+            },
+        },"<");
         tl.to('.loader', {
             top: '12px',
             left: '12px',
@@ -70,7 +89,7 @@ function initAnimations(){
             right: '12px',
             duration:1,
             ease: "power3.inOut"
-        });
+        },"<");
 
 
 
@@ -78,28 +97,34 @@ function initAnimations(){
             top: '134px',
             left: '264px',
             duration:2,
-            ease: "power3.inOut"
+            ease: "power3.inOut",
+            onComplete: () => {
+                if(!hasLoadedImages)
+                    tl.pause();
+            }
         });
         tl.to('.nav4',{
             gap:"2px"
-        },"<1");
+        },"<");
         tl.to('.nav4 > div > *',{
             opacity:1
-        },"<1");
+        });
         tl.to('.loader', {
-            left: 'calc(100% - 12px)',
-            duration:1,
+            opacity:0,
+            duration:0.5,
             ease: "power3.inOut"
         },"<");
         tl.to('.grid-item',{
             "--grid-item-width": "0%",
             ease: "power3.inOut",
-            duration:2
+            duration:1,
+            stagger:0.02
         },"<");
         tl.to('.grid-item',{
             "--grid-item-width2": "0%",
             ease: "power3.inOut",
-            duration:2
+            duration:1,
+            stagger:0.02
         },"<0.05");
         tl.to('[data-scramble-on-enter]',{
             scrambleText: {
@@ -108,7 +133,7 @@ function initAnimations(){
                 speed: 0.5,
             },
             ease: "power3.inOut",
-            duration: 2,
+            duration: 1,
             stagger:0.1
         },"<0.75");
 
@@ -116,7 +141,7 @@ function initAnimations(){
 
         tl.set('.loader',{
             display: "none",
-            onComplete: () => {resolve();document.querySelector('.loader').remove();}
+            onComplete: () => {turnOnNeon(document.querySelector(".s1 .projects .project:nth-child(1)"));resolve();document.querySelector('.loader').remove();}
         });
 
 

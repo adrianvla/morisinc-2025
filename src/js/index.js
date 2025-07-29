@@ -13,6 +13,9 @@ import './modules/barcodes';
 import './modules/changeTheme';
 import initIntro from "./moments/intro";
 import {initTextEffects} from "./modules/textEffects";
+import './modules/languageSelector';
+import leave from "./transitions/leave";
+import './modules/neons';
 // Initialize BarbaJS with enhanced transitions
 barba.init({
     debug: false,
@@ -25,7 +28,7 @@ barba.init({
             leave(data) {
                 // Custom transition for leaving home
                 lenis.scrollTo(0);
-                return leaveHome(data.current.container);
+                return leave(data.current.container);
             },
             enter(data) {
                 lenis.scrollTo(0);
@@ -39,7 +42,7 @@ barba.init({
             leave(data) {
                 // Custom transition for leaving home
                 lenis.scrollTo(0);
-                return leaveHome(data.current.container);
+                return leave(data.current.container);
             },
             enter(data) {
                 lenis.scrollTo(0);
@@ -57,7 +60,7 @@ barba.init({
             // Additional cleanup and initialization after page enter
             console.log(`Entered ${data.next.namespace} page`);
             setTimeout(() => {
-                initPage();
+                // initPage();
             },100);
         }
     },

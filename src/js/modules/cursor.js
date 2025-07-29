@@ -1,4 +1,5 @@
 import gsap from "gsap";
+import {makeSpark} from "./neons";
 
 function initCursor(){
     const cursor = document.querySelector('.cursor');
@@ -47,6 +48,9 @@ function initCursor(){
             el = el.parentElement;
         }
         updateCursorImg();
+    });
+    document.addEventListener('mousedown', (e) => {
+        // makeSpark(e.clientX, e.clientY);
     });
 
     function animate() {

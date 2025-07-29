@@ -11,7 +11,7 @@ document.addEventListener('DOMContentLoaded', () => {
         tl.to(".color-change", {
             background: colors[(index+1) % colors.length],
         });
-        tl.to(".grid-item, .corner", {
+        tl.to(".grid-item:not(.nav0), .corner", {
             background: colors[index],
             duration: 0.5,
             stagger: 0.05,

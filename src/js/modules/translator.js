@@ -23,72 +23,39 @@ function getCurrentLanguage() {
 
 const translationStrings = {
     jp: {
-        "My": "私の",
-        "Featured": "おすすめ",
-        "Projects": "プロジェクト",
-        "Creative": "クリエイティブ",
-        "Software": "ソフトウェア",
-        "Developer": "開発者",
-        "Menu": "メニュー",
-        "MENU": "メニュー",
-        "Close": "閉じる",
-        "CLOSE": "閉じる",
-        "About Me": "私について",
+        "About": "私について",
         "Home": "ホーム",
         "Lang": "言語",
+        "Socials":"SNS",
+        "Language Selection":"言語選択",
+        "Projects":"プロジェクト",
+        "Your Experience":"体験が",
+        "Is Loading":"読み込んでいます"
     },
     de:{
-        "My": "&EMPTY&",
-        "Featured": "Ausgewählte",
-        "Projects": "Projekte",
-        "Creative": "Kreativer",
-        "Software": "Software",
-        "Developer": "Entwickler",
-        "Menu": "MENÜ",
-        "MENU": "MENÜ",
-        "Close": "Schließen",
-        "CLOSE": "SCHLIEßEN",
-        "About Me": "Uber Mich",
+        "About": "Uber Mich",
         "Home": "Startseite",
         "Lang": "Sprache",
+        "LANGUAGE SELECTION": "SPRACHAUSWAHL",
+        "Projects":"Projekte",
     },
     ru:{
-        "A": "A",
-        "D": "Д",
-        "R": "P",
-        "I": "И",
-        "N": "H",
-        "V": "B",
-        "L": "Л",
-        "S": "C",
-        "O": "O",
-        "Featured": "Избранные",
-        "Projects": "Проекты",
-        "Creative": "Креативный",
-        "Software": "Разработчик",
-        "Developer": "ПО",
-        "Menu": "МЕНЮ",
-        "MENU": "МЕНЮ",
-        "Close": "Закрыть",
-        "CLOSE": "ЗАКРЫТЬ",
-        "About Me": "Обо мне",
+        "About": "Обо мне",
         "Home": "На Главную",
         "Lang": "Язык",
+        "Socials":"Социальные сети",
+        "Adrian":"Адриан",
+        "Vlasov":"Власов",
+        "LANGUAGE SELECTION": "ВЫБОР ЯЗЫКА",
+        "Projects":"Проекты",
     },
     fr:{
-        "My": "Mes",
-        "Featured": "en Vedette",
-        "Projects": "Projets",
-        "Creative": "Développeur",
-        "Software": "Créatif",
-        "Developer": "de Logiciel",
-        "Menu": "MENU",
-        "MENU": "MENU",
-        "Close": "Fermer",
-        "CLOSE": "FERMER",
-        "About Me": "À Propos",
+        "About": "À Propos",
         "Home": "Accueil",
         "Lang": "Langue",
+        "Socials":"Contact",
+        "LANGUAGE SELECTION": "SÉLECTION DE LA LANGUE",
+        "Projects":"Projets",
     }
 }
 
@@ -135,7 +102,14 @@ function translateEverything(){
                 element.textContent = ''; // Set to empty if translation is marked as empty
                 return; // Skip if translation is marked as empty
             }
-            element.textContent = translationStrings[lang][key];
+            if(element.getAttribute('data-scramble-on-enter')){
+                element.setAttribute('data-scramble-on-enter', translationStrings[lang][key]);
+            }else{
+                if(element.getAttribute('data-text'))
+                    element.setAttribute('data-text', translationStrings[lang][key]);
+                else
+                    element.textContent = translationStrings[lang][key];
+            }
         } else {
             console.warn(`Translation for "${key}" not found in language "${lang}"`);
         }

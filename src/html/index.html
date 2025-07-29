@@ -20,12 +20,25 @@
         </div>
     </div>
 </div>
-<div class="loader grid-item"></div>
+<canvas id="sparks"></canvas>
+<div class="loader grid-item">
+    <div>
+        <h3 class="align-left" data-text="Your Experience" data-translation="Your Experience">&nbsp;</h3>
+        <div class="loading-text"></div>
+        <h3 class="align-right" data-text="Is Loading" data-translation="Is Loading">&nbsp;</h3>
+    </div>
+</div>
 <div class="container">
-    <div class="nav0 grid-item"></div>
-    <div class="nav1 grid-item nav-item"><a href="/" data-pointer data-scramble-on-enter="HOME" data-scramble-chars="X;:.,_"></a></div>
-    <div class="nav2 grid-item nav-item"><a href="/about" data-pointer data-scramble-on-enter="ABOUT" data-scramble-chars="X;:.,_"></a></div>
-    <div class="nav3 grid-item nav-item"><a href="" data-pointer data-scramble-on-enter="PLACEHOLDER" data-scramble-chars="X;:.,_"></a></div>
+    <div class="nav0 grid-item flex col">
+        <div data-barcode="AV" data-barcode-fill="var(--grey)"></div>
+        <div class="flex"><h1 data-scramble-on-enter="Adrian" data-translation="Adrian">&nbsp;</h1></div>
+        <h1 data-scramble-on-enter="Vlasov" data-translation="Vlasov">&nbsp;</h1>
+        <h4 data-scramble-on-enter="COPYRIGHT(C) 2025"></h4>
+        <div data-barcode="Adrian Vlasov" data-barcode-fill="var(--grey)"></div>
+    </div>
+    <div class="nav1 grid-item nav-item"><a href="/" data-pointer data-scramble-on-enter="HOME" data-scramble-chars="X;:.,_" data-translation="Home"></a></div>
+    <div class="nav2 grid-item nav-item"><a href="/about" data-pointer data-scramble-on-enter="ABOUT" data-scramble-chars="X;:.,_" data-translation="About"></a></div>
+    <div class="nav3 grid-item nav-item"><a href="" data-pointer data-scramble-on-enter="CONTACT" data-scramble-chars="X;:.,_" data-translation="Socials"></a></div>
     <div class="nav4 grid grid-row-2">
         <div class="flex col nav4-0 grid-item">
             <h1 data-scramble-on-enter="prtfl.">&nbsp;</h1>
@@ -39,20 +52,12 @@
                 <div class="nav4-1-0-0 grid-item">
                     <div class="marquee">
                         <div class="marquee-inner">
-                            <span class="word" data-scramble-on-enter="PORTFOLIO">&nbsp;</span>
-                            <span class="word" data-scramble-on-enter="PORTFOLIO">&nbsp;</span>
-                            <span class="word" data-scramble-on-enter="PORTFOLIO">&nbsp;</span>
-                            <span class="word" data-scramble-on-enter="PORTFOLIO">&nbsp;</span>
-                            <span class="word" data-scramble-on-enter="PORTFOLIO">&nbsp;</span>
-                            <span class="word" data-scramble-on-enter="PORTFOLIO">&nbsp;</span>
-                            <span class="word" data-scramble-on-enter="PORTFOLIO">&nbsp;</span>
-                            <span class="word" data-scramble-on-enter="PORTFOLIO">&nbsp;</span>
-                            <span class="word" data-scramble-on-enter="PORTFOLIO">&nbsp;</span>
-                            <span class="word" data-scramble-on-enter="PORTFOLIO">&nbsp;</span>
-                            <span class="word" data-scramble-on-enter="PORTFOLIO">&nbsp;</span>
-                            <span class="word" data-scramble-on-enter="PORTFOLIO">&nbsp;</span>
-                            <span class="word" data-scramble-on-enter="PORTFOLIO">&nbsp;</span>
-                            <span class="word" data-scramble-on-enter="PORTFOLIO">&nbsp;</span>
+                            <span class="word">PORTFOLIO</span><span class="word">PORTFOLIO</span>
+                            <span class="word">PORTFOLIO</span><span class="word">PORTFOLIO</span>
+                            <span class="word">PORTFOLIO</span><span class="word">PORTFOLIO</span><span class="word">PORTFOLIO</span><span
+                                class="word">PORTFOLIO</span><span class="word">PORTFOLIO</span><span class="word">PORTFOLIO</span><span
+                                class="word">PORTFOLIO</span><span class="word">PORTFOLIO</span><span class="word">PORTFOLIO</span><span
+                                class="word">PORTFOLIO</span>
                         </div>
                     </div>
                 </div>
@@ -68,9 +73,44 @@
             </div>
         </div>
     </div>
-    <div class="sidebar grid-item"></div>
+    <div class="sidebar">
+        <div class="s0 grid-item">
+            <h4 data-translation="LANGUAGE SELECTION">LANGUAGE SELECTION</h4>
+            <div class="list language-selector">
+                <div class="crosshair"><div class="c1"></div><div class="c2"></div><div class="c3"></div><div class="c4"></div><div class="c5"></div><div class="c6"></div><div class="c7"></div><div class="c8"></div></div>
+                <div class="list-item"><a data-change-language="en" data-pointer>English</a></div>
+                <div class="list-item"><a data-change-language="fr" data-pointer>Français</a></div>
+                <div class="list-item"><a data-change-language="ru" data-pointer>Русский</a></div>
+                <div class="list-item"><a data-change-language="de" data-pointer>Deutsch</a></div>
+                <div class="list-item"><a data-change-language="jp" data-pointer>日本語</a></div>
+            </div>
+        </div>
+        <div class="s1 grid-item">
+            <h4 data-translation="PROJECTS">PROJECTS</h4>
+            <div class="projects">
+                <div class="project neon">sjkdghlkjadsfg</div>
+                <div class="project neon">TUEUHI</div>
+                <div class="project neon">AFHJHFADJ</div>
+            </div>
+        </div>
+        <div class="s2 grid-item">
+
+        </div>
+        <div class="s3 grid-item">
+
+        </div>
+    </div>
     <div class="main grid-item" data-barba="container" data-barba-namespace="home">
         <main class="main-content">
+            <div class="text-block">
+                <p scramble-text-effect style="font-family:monospace">TEST
+                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+                </p>
+            </div>
+            <img src="https://picsum.photos/1920/1080" alt="">
+            <img src="https://picsum.photos/1919/1080" alt="">
+            <img src="https://picsum.photos/1918/1080" alt="">
+            <img src="https://picsum.photos/1917/1080" alt="">
             <div class="text-block">
                 <p scramble-text-effect style="font-family:monospace">TEST
                     Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
