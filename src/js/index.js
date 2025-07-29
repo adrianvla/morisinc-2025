@@ -11,6 +11,8 @@ import initCursor from "./modules/cursor";
 import {translateEverything} from "./modules/translator";
 import './modules/barcodes';
 import './modules/changeTheme';
+import initIntro from "./moments/intro";
+import {initTextEffects} from "./modules/textEffects";
 // Initialize BarbaJS with enhanced transitions
 barba.init({
     debug: false,
@@ -76,8 +78,11 @@ document.addEventListener('DOMContentLoaded', () => {
     // Hide loading screen initially
     translateEverything();
     inject();
+    initCursor();
+    initTextEffects();
+    initIntro().then(r => {
+    });
     setTimeout(() => {
-        initCursor();
         // initPage();
         lenis.scrollTo(0, {duration:0, immediate:true});
     }, 100); // Small delay to ensure fonts are loaded

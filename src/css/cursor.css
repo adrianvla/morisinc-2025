@@ -20,7 +20,7 @@ body{
     transform-origin: center center;
 }
 .cursor .plus-sign div{
-    backdrop-filter: invert(1) grayscale(1);
+    backdrop-filter: invert(1);
 }
 .cursor .plus-sign div:nth-child(1){
     width: var(--cursor-width);

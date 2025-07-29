@@ -1,3 +1,5 @@
+import gsap from "gsap";
+
 function initCursor(){
     const cursor = document.querySelector('.cursor');
     const c = cursor.querySelector('.c');
@@ -9,10 +11,26 @@ function initCursor(){
     let mouseY = lastY;
 
     // Track which image is currently set
-    let currentCursorImg = 'cur1';
+    let currentIsPointer = false;
     let isPointer = false;
 
     function updateCursorImg() {
+        if(currentIsPointer === isPointer) return;
+        currentIsPointer = isPointer;
+        if(isPointer){
+            gsap.to(cursor, {
+                "--cursor-branch-offset": "20px",
+                duration: 0.3,
+                ease: "power1.inOut",
+            });
+        }else{
+            gsap.to(cursor, {
+                "--cursor-branch-offset": "0px",
+                duration: 0.3,
+                ease: "power1.inOut",
+            });
+        }
+
     }
 
     document.addEventListener('mousemove', (e) => {
@@ -28,7 +46,7 @@ function initCursor(){
             }
             el = el.parentElement;
         }
-        // updateCursorImg();
+        updateCursorImg();
     });
 
     function animate() {

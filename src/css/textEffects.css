@@ -1,0 +1,34 @@
+.text-effect{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+
+.text-effect-container{
+    display:flex;
+    flex-direction: column;
+    align-items: stretch;
+    justify-content: stretch;
+    height:1em;
+}
+
+.text-effect-space{
+    width: 0.3em;
+}
+.text-effect-pop-in{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.text-effect-container-pop-in{
+    overflow: hidden;
+}
+
+.char{
+    will-change: transform;
+}
+
+[data-scramble-on-enter]{
+    height:1em;
+}

@@ -4,3 +4,5 @@ import './cursor.css';
 import './main.css';
 import './barcode.css';
 import './utils.css';
+import './intro.css';
+import './textEffects.css';
