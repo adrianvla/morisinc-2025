@@ -1,0 +1,362 @@
+@font-face {
+  font-family: 'Fit';
+  src: url('../assets/fonts/fit-variable/Fit_Variable_Normal.otf') format('opentype');
+  font-weight: normal;
+  font-style: normal;
+}
+@font-face {
+  font-family: 'Sterion';
+  src: url('../assets/fonts/sterion-font/Sterion-BLLld.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
+@font-face {
+  font-family: 'Sterion';
+  src: url('../assets/fonts/sterion-font/SterionItalic-R99PA.ttf') format('truetype');
+  font-weight: normal;
+  font-style: italic;
+}
+@font-face {
+  font-family: 'Teknaf';
+  src: url('../assets/fonts/teknaf-regular-font/TeknafRegular-rv0aB.otf') format('opentype');
+  font-weight: normal;
+  font-style: normal;
+}
+/* Dirtyline 36 Days of Type 2022 */
+@font-face {
+  font-family: 'Dirtyline';
+  src: url('../assets/fonts/Dirtyline36Daysoftype2022/woff/Dirtyline 36daysoftype 2022.woff2') format('woff2'),
+  url('../assets/fonts/Dirtyline36Daysoftype2022/woff/Dirtyline 36daysoftype 2022.woff') format('woff'),
+  url('../assets/fonts/Dirtyline36Daysoftype2022/woff/Dirtyline 36daysoftype 2022.ttf') format('truetype'),
+  url('../assets/fonts/Dirtyline36Daysoftype2022/Dirtyline 36daysoftype 2022.otf') format('opentype');
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* PP Editorial New - Regular */
+@font-face {
+  font-family: 'PP Editorial New';
+  src: url('../assets/fonts/PPEditorialNew/PPEditorialNew-Regular.otf') format('opentype');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* PP Editorial New - Italic */
+@font-face {
+  font-family: 'PP Editorial New';
+  src: url('../assets/fonts/PPEditorialNew/PPEditorialNew-Italic.otf') format('opentype');
+  font-weight: 400;
+  font-style: italic;
+  font-display: swap;
+}
+
+/* PP Editorial New - Ultralight */
+@font-face {
+  font-family: 'PP Editorial New';
+  src: url('../assets/fonts/PPEditorialNew/PPEditorialNew-Ultralight.otf') format('opentype');
+  font-weight: 200;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* PP Editorial New - Ultralight Italic */
+@font-face {
+  font-family: 'PP Editorial New';
+  src: url('../assets/fonts/PPEditorialNew/PPEditorialNew-UltralightItalic.otf') format('opentype');
+  font-weight: 200;
+  font-style: italic;
+  font-display: swap;
+}
+
+/* PP Editorial New - Ultrabold */
+@font-face {
+  font-family: 'PP Editorial New';
+  src: url('../assets/fonts/PPEditorialNew/PPEditorialNew-Ultrabold.otf') format('opentype');
+  font-weight: 800;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* PP Editorial New - Ultrabold Italic */
+@font-face {
+  font-family: 'PP Editorial New';
+  src: url('../assets/fonts/PPEditorialNew/PPEditorialNew-UltraboldItalic.otf') format('opentype');
+  font-weight: 800;
+  font-style: italic;
+  font-display: swap;
+}
+
+/* PP Rader - Regular */
+@font-face {
+  font-family: 'PP Rader';
+  src: url('../assets/fonts/PPRader/PPRader-Regular.otf') format('opentype');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* PP Rader - Italic */
+@font-face {
+  font-family: 'PP Rader';
+  src: url('../assets/fonts/PPRader/PPRader-Italic.otf') format('opentype');
+  font-weight: 400;
+  font-style: italic;
+  font-display: swap;
+}
+
+/* PP Rader - Thin */
+@font-face {
+  font-family: 'PP Rader';
+  src: url('../assets/fonts/PPRader/PPRader-Thin.otf') format('opentype');
+  font-weight: 100;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* PP Rader - Thin Italic */
+@font-face {
+  font-family: 'PP Rader';
+  src: url('../assets/fonts/PPRader/PPRader-ThinItalic.otf') format('opentype');
+  font-weight: 100;
+  font-style: italic;
+  font-display: swap;
+}
+
+/* PP Rader - Bold */
+@font-face {
+  font-family: 'PP Rader';
+  src: url('../assets/fonts/PPRader/PPRader-Bold.otf') format('opentype');
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* PP Rader - Bold Italic */
+@font-face {
+  font-family: 'PP Rader';
+  src: url('../assets/fonts/PPRader/PPRader-BoldItalic.otf') format('opentype');
+  font-weight: 700;
+  font-style: italic;
+  font-display: swap;
+}
+
+/* PTF OffBit - 101 */
+@font-face {
+  font-family: 'OffBit Trial 101';
+  src: url('../assets/fonts/PTF-OffBit/TTF/OffBit-101.ttf') format('truetype');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* PTF OffBit - 101 Bold */
+@font-face {
+  font-family: 'OffBit Trial 101 Bold';
+  src: url('../assets/fonts/PTF-OffBit/TTF/OffBit-101Bold.ttf') format('truetype');
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* PTF OffBit - Bold */
+@font-face {
+  font-family: 'OffBit Trial Bold';
+  src: url('../assets/fonts/PTF-OffBit/TTF/OffBit-Bold.ttf') format('truetype');
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* PTF OffBit - Dot */
+@font-face {
+  font-family: 'OffBit Trial Dot';
+  src: url('../assets/fonts/PTF-OffBit/TTF/OffBit-Dot.ttf') format('truetype');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* PTF OffBit - Dot Bold */
+@font-face {
+  font-family: 'OffBit Trial Dot Bold';
+  src: url('../assets/fonts/PTF-OffBit/TTF/OffBit-DotBold.ttf') format('truetype');
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* PTF OffBit - Regular */
+@font-face {
+  font-family: 'OffBit Trial Regular';
+  src: url('../assets/fonts/PTF-OffBit/TTF/OffBit-Regular.ttf') format('truetype');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* Aver Regular */
+@font-face {
+  font-family: 'Aver';
+  src: url('../assets/fonts/aver-font/Aver-opKo.ttf') format('truetype');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* Aver Bold */
+@font-face {
+  font-family: 'Aver Bold';
+  src: url('../assets/fonts/aver-font/AverBold-4YlW.ttf') format('truetype');
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* Aver Italic */
+@font-face {
+  font-family: 'Aver Italic';
+  src: url('../assets/fonts/aver-font/AverItalic-e4Wn.ttf') format('truetype');
+  font-weight: 400;
+  font-style: italic;
+  font-display: swap;
+}
+
+/* Aver Bold Italic */
+@font-face {
+  font-family: 'Aver Bold Italic';
+  src: url('../assets/fonts/aver-font/AverBoldItalic-01yG.ttf') format('truetype');
+  font-weight: 700;
+  font-style: italic;
+  font-display: swap;
+}
+
+/* Noto Serif JP - Variable */
+@font-face {
+  font-family: 'Noto Serif JP';
+  src: url('../assets/fonts/Noto_Serif_JP/NotoSerifJP-VariableFont_wght.ttf') format('truetype');
+  font-weight: 100 900;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* Noto Serif JP - Regular */
+@font-face {
+  font-family: 'Noto Serif JP';
+  src: url('../assets/fonts/Noto_Serif_JP/static/NotoSerifJP-Regular.ttf') format('truetype');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* Noto Serif JP - Bold */
+@font-face {
+  font-family: 'Noto Serif JP';
+  src: url('../assets/fonts/Noto_Serif_JP/static/NotoSerifJP-Bold.ttf') format('truetype');
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* DotGothic16 - Regular */
+@font-face {
+  font-family: 'DotGothic16';
+  src: url('../assets/fonts/DotGothic16,Noto_Serif_JP/DotGothic16/DotGothic16-Regular.ttf') format('truetype');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+
+/* Felidae - Regular */
+@font-face {
+  font-family: 'Felidae';
+  src: url('../assets/fonts/Felidae/Felidae.ttf') format('truetype');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+body {
+  font-family: 'PP Editorial New', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  font-weight: 400;
+}
+
+/* Utility classes for easy font usage */
+.font-dirtyline {
+  font-family: 'Dirtyline', serif;
+}
+
+.font-editorial {
+  font-family: 'PP Editorial New', serif;
+}
+
+.font-rader {
+  font-family: 'PP Rader', sans-serif;
+}
+
+/* Utility classes for OffBit fonts */
+.font-offbit-101 {
+  font-family: 'OffBit Trial 101', monospace;
+}
+.font-offbit-101-bold {
+  font-family: 'OffBit Trial 101 Bold', monospace;
+}
+.font-offbit-bold {
+  font-family: 'OffBit Trial Bold', monospace;
+}
+.font-offbit-dot {
+  font-family: 'OffBit Trial Dot', monospace;
+}
+.font-offbit-dot-bold {
+  font-family: 'OffBit Trial Dot Bold', monospace;
+}
+.font-offbit-regular {
+  font-family: 'OffBit Trial Regular', monospace;
+}
+
+.font-serif{
+  font-family: 'Noto Serif JP', serif;
+}
+.font-sans-serif{
+  font-family: sans-serif;
+}
+
+/* Utility classes for Aver fonts */
+.font-aver {
+  font-family: 'Aver', sans-serif;
+}
+.font-aver-bold {
+  font-family: 'Aver Bold', sans-serif;
+}
+.font-aver-italic {
+  font-family: 'Aver Italic', sans-serif;
+}
+.font-aver-bold-italic {
+  font-family: 'Aver Bold Italic', sans-serif;
+}
+
+/* Utility classes for Noto Serif JP */
+.font-noto-serif-jp {
+  font-family: 'Noto Serif JP', serif;
+}
+
+/* Utility classes for DotGothic16 */
+.font-dotgothic16 {
+  font-family: 'DotGothic16', monospace;
+}
+/* Utility classes for Felidae */
+.font-felidae {
+  font-family: 'Felidae', serif;
+  letter-spacing: 0.1em;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  font-smooth: always;
+  /* Crisp bold effect for retina and standard displays */
+  text-shadow:
+          0.4px 0 0 currentColor,
+          -0.4px 0 0 currentColor,
+          0 0.4px 0 currentColor,
+          0 -0.4px 0 currentColor;
+}

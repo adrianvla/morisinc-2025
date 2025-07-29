@@ -1,0 +1,98 @@
+body{
+    cursor:none;
+}
+.cursor{
+    position:fixed;
+    z-index:9999;
+    --cursor-width: 5px;
+    --cursor-branch-offset:0px;
+}
+.cursor .c{
+    height:0;
+    width:0;
+    position:relative;
+}
+.cursor .plus-sign{
+    width:50px;
+    height:50px;
+    position:absolute;
+    pointer-events:none;
+    transform-origin: center center;
+}
+.cursor .plus-sign div{
+    backdrop-filter: invert(1) grayscale(1);
+}
+.cursor .plus-sign div:nth-child(1){
+    width: var(--cursor-width);
+    position: absolute;
+    top: calc(-1 * var(--cursor-branch-offset));
+    bottom: calc(75% + var(--cursor-branch-offset));
+    left: 50%;
+    transform: translateX(-50%);
+}
+.cursor .plus-sign div:nth-child(2){
+    width: var(--cursor-width);
+    position: absolute;
+    top: 25%;
+    bottom: calc(50% + calc(var(--cursor-width) / 2));
+    left: 50%;
+    transform: translateX(-50%);
+    border-bottom-left-radius: 100%;
+}
+
+
+.cursor .plus-sign div:nth-child(3){
+    width: var(--cursor-width);
+    position: absolute;
+    top: calc(75% + var(--cursor-branch-offset));
+    bottom: calc(-1 * var(--cursor-branch-offset));
+    left: 50%;
+    transform: translateX(-50%);
+}
+.cursor .plus-sign div:nth-child(4){
+    width: var(--cursor-width);
+    position: absolute;
+    top: calc(50% + calc(var(--cursor-width) / 2));
+    bottom: 25%;
+    left: 50%;
+    transform: translateX(-50%);
+    border-top-right-radius: 100%;
+}
+
+
+.cursor .plus-sign div:nth-child(5){
+    height: var(--cursor-width);
+    position: absolute;
+    top: 50%;
+    left: calc(-1 * var(--cursor-branch-offset));
+    right: calc(75% + var(--cursor-branch-offset));
+    transform: translateY(-50%);
+}
+.cursor .plus-sign div:nth-child(6){
+    height: var(--cursor-width);
+    position: absolute;
+    top: 50%;
+    left: 25%;
+    right: calc(50% + calc(var(--cursor-width) / 2));
+    border-top-right-radius: 100%;
+    transform: translateY(-50%);
+}
+
+
+.cursor .plus-sign div:nth-child(7){
+    height: var(--cursor-width);
+    position: absolute;
+    top: 50%;
+    left: calc(75% + var(--cursor-branch-offset));
+    right: calc(-1 * var(--cursor-branch-offset));
+    transform: translateY(-50%);
+}
+.cursor .plus-sign div:nth-child(8){
+    height: var(--cursor-width);
+    position: absolute;
+    top: 50%;
+    left: calc(50% + calc(var(--cursor-width) / 2));
+    right: 25%;
+    border-bottom-left-radius: 100%;
+    transform: translateY(-50%);
+}
