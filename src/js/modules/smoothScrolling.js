@@ -27,7 +27,6 @@ gsap.ticker.add((time) => {
 gsap.ticker.lagSmoothing(0);
 
 
-
 function snapToSections(){
     //set css var
     try{
@@ -48,8 +47,8 @@ function snapToSections(){
     }
 }
 
-window.addEventListener('resize', snapToSections);
-snapToSections();
+// window.addEventListener('resize', snapToSections);
+// snapToSections();
 
 
 export {lenis, snap};

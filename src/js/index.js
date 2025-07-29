@@ -18,6 +18,7 @@ import leave from "./transitions/leave";
 import './modules/neons';
 import {turnOnNeon} from "./modules/neons";
 import initSign from "./modules/sign";
+import initScrollZoom from "./modules/scrollZoom";
 // Initialize BarbaJS with enhanced transitions
 barba.init({
     debug: false,
@@ -99,6 +100,7 @@ document.addEventListener('DOMContentLoaded', () => {
     inject();
     initCursor();
     initTextEffects();
+    initScrollZoom();
     initIntro().then(r => {
         turnOnNeon(document.querySelector(".s1 .projects .project:nth-child(1)"));
         initSign();
