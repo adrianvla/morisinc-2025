@@ -6,7 +6,7 @@ import '../css/imports.js';
 import yeast from 'yeast';
 import inject from "./modules/inject";
 import './modules/signature'
-import lenis from "./modules/smoothScrolling";
+import {lenis} from "./modules/smoothScrolling";
 import initCursor from "./modules/cursor";
 import {translateEverything} from "./modules/translator";
 import './modules/barcodes';
@@ -16,6 +16,7 @@ import {initTextEffects} from "./modules/textEffects";
 import './modules/languageSelector';
 import leave from "./transitions/leave";
 import './modules/neons';
+import {turnOnNeon} from "./modules/neons";
 // Initialize BarbaJS with enhanced transitions
 barba.init({
     debug: false,
@@ -76,6 +77,20 @@ barba.init({
     ]
 });
 
+
+function setHeightValueOfMain(){
+    //set css var
+    const mainElement = document.querySelector('.main');
+    if (mainElement) {
+        const height = mainElement.getBoundingClientRect().height;
+        document.documentElement.style.setProperty('--main-height', `${height}px`);
+    } else {
+        console.warn('Main element not found');
+    }
+}
+
+window.addEventListener('resize', setHeightValueOfMain);
+
 // Initialize on first load
 document.addEventListener('DOMContentLoaded', () => {
     // Hide loading screen initially
@@ -84,10 +99,12 @@ document.addEventListener('DOMContentLoaded', () => {
     initCursor();
     initTextEffects();
     initIntro().then(r => {
+        turnOnNeon(document.querySelector(".s1 .projects .project:nth-child(1)"));
+        turnOnNeon(document.querySelector(".sign-c .sign > span"));
     });
     setTimeout(() => {
         // initPage();
         lenis.scrollTo(0, {duration:0, immediate:true});
     }, 100); // Small delay to ensure fonts are loaded
-
+    setHeightValueOfMain();
 });

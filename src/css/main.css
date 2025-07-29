@@ -335,11 +335,12 @@ h6{
     overflow-x: hidden;
 }
 
-.main-content {
-    padding: 20px;
+main.main-content {
     box-sizing: border-box;
+    display:flex;
+    flex-direction: column;
+    position:relative;
 }
-
 
 .main-content img {
     width: 100%;
@@ -376,4 +377,36 @@ h6{
     display: flex;
     align-items: center;
     justify-content: center;
+}
+
+
+
+
+section.project{
+    width:100%;
+    height:var(--main-height);
+    position:relative;
+}
+section.project img{
+    width:100%;
+    height:100%;
+    object-fit: cover;
+    position:absolute;
+    top:0;
+    left:0;
+    margin: 0;
+    z-index:0
+}
+section.project h1{
+    font-family: 'Sterion', sans-serif;
+    position:absolute;
+    margin: 0;
+    z-index:1;
+    bottom:0;
+    left:50%;
+    transform: translateX(-50%);
+    font-size:min(5em, 7vw);
+    white-space: nowrap;
+    color:var(--primary);
+    text-shadow: -1px -1px 0 var(--black), 1px -1px 0 var(--black), -1px 1px 0 var(--black), 1px 1px 0 var(--black);
 }

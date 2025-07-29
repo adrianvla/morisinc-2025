@@ -1,4 +1,5 @@
-import Lenis from '@studio-freight/lenis';
+import Lenis from 'lenis';
+import Snap from 'lenis/snap';
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import gsap from "gsap";
 
@@ -15,6 +16,7 @@ const lenis = new Lenis({
     touchMultiplier: 2,
     wheelMultiplier: 1,
 });
+let snap = null;
 
 lenis.on('scroll', ScrollTrigger.update);
 
@@ -24,4 +26,30 @@ gsap.ticker.add((time) => {
 
 gsap.ticker.lagSmoothing(0);
 
-export default lenis;
+
+
+function snapToSections(){
+    //set css var
+    try{
+        snap.destroy();
+    }catch(e){}
+
+    snap = new Snap(lenis, {
+        type: 'mandatory',
+        duration:2,
+        distanceThreshold: '100%',
+    });
+    const mainElement = document.querySelector('.main');
+    const height = mainElement.getBoundingClientRect().height;
+    //count sections
+    const count = document.querySelectorAll('section.project').length;
+    for(let i = 0; i < count; i++) {
+        snap.add(i*height);
+    }
+}
+
+window.addEventListener('resize', snapToSections);
+snapToSections();
+
+
+export {lenis, snap};

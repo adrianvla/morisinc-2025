@@ -7,3 +7,4 @@ import './utils.css';
 import './intro.css';
 import './textEffects.css';
 import './neons.css';
+import './sign.css';

@@ -1,8 +1,7 @@
 import gsap from "gsap";
 import yeast from "yeast";
 import $ from "jquery";
-import lenis from "../modules/smoothScrolling";
-import {turnOnNeon} from "../modules/neons";
+import {lenis} from "../modules/smoothScrolling";
 
 let hasLoadedImages = false;
 let tl = gsap.timeline({});
@@ -141,7 +140,7 @@ function initAnimations(){
 
         tl.set('.loader',{
             display: "none",
-            onComplete: () => {turnOnNeon(document.querySelector(".s1 .projects .project:nth-child(1)"));resolve();document.querySelector('.loader').remove();}
+            onComplete: () => {resolve();document.querySelector('.loader').remove();}
         });
 
 

@@ -39,7 +39,7 @@ class Particle {
         this.vx = (Math.random() - 0.5) * 4; // Random horizontal velocity
         this.vy = Math.random() * 2 + 1; // Downward velocity
         this.life = 1.0; // Life from 1 to 0
-        this.decay = Math.random() * 0.005 + 0.002; // How fast it dies
+        this.decay = (Math.random() * 0.02 + 0.01)*0.3; // How fast it dies
         this.size = Math.random() * 3 + 1; // Size of the particle
         this.gravity = 0.1;
         this.brightness = Math.random() * 0.5 + 0.5; // Random brightness
@@ -91,6 +91,8 @@ class Particle {
     }
 }
 
+const maxParticles = 50;
+
 function updateParticles() {
     if (!ctx || !canvas) return;
     
@@ -107,6 +109,9 @@ function updateParticles() {
         } else {
             particle.draw();
         }
+    }
+    if (particles.length > maxParticles) {
+        particles.splice(0, particles.length - maxParticles);
     }
     
     requestAnimationFrame(updateParticles);
@@ -282,7 +287,7 @@ function startFlickering(state) {
     state.letterSpans.forEach((span, index) => {
         const intervalId = setInterval(() => {
             if (!state.isOn) return;
-            if (Math.random() < 0.005) {
+            if (Math.random() < 0.002) {
                 flickerLetter(span, state);
             }
         }, 100);
