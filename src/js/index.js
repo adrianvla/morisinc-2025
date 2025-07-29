@@ -17,6 +17,7 @@ import './modules/languageSelector';
 import leave from "./transitions/leave";
 import './modules/neons';
 import {turnOnNeon} from "./modules/neons";
+import initSign from "./modules/sign";
 // Initialize BarbaJS with enhanced transitions
 barba.init({
     debug: false,
@@ -100,7 +101,7 @@ document.addEventListener('DOMContentLoaded', () => {
     initTextEffects();
     initIntro().then(r => {
         turnOnNeon(document.querySelector(".s1 .projects .project:nth-child(1)"));
-        turnOnNeon(document.querySelector(".sign-c .sign > span"));
+        initSign();
     });
     setTimeout(() => {
         // initPage();

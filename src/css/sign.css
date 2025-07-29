@@ -51,6 +51,7 @@
     justify-content: center;
     padding:3px;
     gap:3px;
+    box-shadow:0 0 5px #0000004a;
 }
 .sign .a3{
     position:absolute;
