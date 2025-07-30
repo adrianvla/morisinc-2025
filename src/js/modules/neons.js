@@ -178,6 +178,7 @@ function splitTextIntoSpans(element) {
             const span = document.createElement('span');
             span.textContent = char;
             span.style.display = 'inline-block';
+            if(char === '-') span.style.fontFamily = '"Teknaf", sans-serif';
             element.appendChild(span);
         }
     }

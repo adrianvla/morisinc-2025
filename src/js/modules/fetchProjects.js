@@ -1,8 +1,15 @@
 import $ from 'jquery';
+import yeast from "yeast";
+import {turnOffNeon, turnOnNeon} from "./neons";
 
 function addProject(name, img_src){
-    let clickable = $(`<div class="project neon">${name}</div>`);
+    const myId = yeast().replaceAll('-', '_').replaceAll(".", "_");
+    let clickable = $(`<div class="project neon" id="${myId}">${name}</div>`);
     $(".s1 .projects").append(clickable);
+    if(name.includes('-')){
+        turnOnNeon(document.querySelector(`#${myId}`));
+        turnOffNeon(document.querySelector(`#${myId}`));
+    }
 
     let section = $(`<section class="project">
                 <h1>${name}</h1>

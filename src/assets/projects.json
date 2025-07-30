@@ -1,8 +1,21 @@
 [
   {"category": "Software", "items": [
-    {"name":"mLearn","url": "mlearn.html", "image": "/assets/img/mlearn.webp"}
+    {"name":"mLearn","url": "mlearn.html", "image": "/assets/img/mlearn.webp", "directURL": false}
+  ]},
+  {"category": "Research", "items": [
+    {"name":"TM2024","url": "tm2024.html", "image": "/assets/img/tm2024.jpg", "directURL": false}
+
   ]},
   {"category": "Hardware", "items": [
-    {"name":"TM2024","url": "tm2024.html", "image": "/assets/img/tm2024.jpg"}
+    {"name":"M5 Geiger Counter","url": "m5geiger.html", "image": "/assets/img/tm2024.jpg", "directURL": false}
+
+  ]},
+  {"category": "Design", "items": [
+    {"name": "morisinc.net", "url": "https://morisinc.net", "image": "/assets/img/morisinc-net.png", "directURL": true},
+    {"name": "meteor m", "url": "https://meteor-m.com", "image": "/assets/img/meteor-m-com.png", "directURL": true}
+  ]},
+  {"category": "Archive", "items": [
+    {"name": "old website", "url": "https://old.morisinc.net", "image": "/assets/img/old-morisinc-net.png", "directURL": true},
+    {"name": "mc website", "url": "https://keke.morisinc.net", "image": "/assets/img/keke-morisinc-net.png", "directURL": true}
   ]}
 ]
