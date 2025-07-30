@@ -206,28 +206,33 @@ function turnOnNeon(el) {
         state.currentTimeline.kill();
     }
 
+    // Calculate current hue-rotated colors
+    const rotatedHue = (120 + currentHueRotation) % 360;
+    const shadowColor = `hsl(${rotatedHue}, 100%, 50%)`;
+    const offColor = `hsl(${rotatedHue}, 100%, 19%)`;
+
     const tl = gsap.timeline();
     state.currentTimeline = tl;
 
     // Initial glow animation for all letters
     tl.fromTo(el, {
-        textShadow: "0 0 0 rgba(0, 255, 0,0)"
+        textShadow: `0 0 0 ${shadowColor.replace('50%', '0%')}`
     }, {
-        textShadow: "0 0 7px #0f0, 0 0 21px #0f0, 0 0 42px #0f0",
-        filter: `hue-rotate(${currentHueRotation}deg) drop-shadow(0 0 10px #0f0)`,
+        textShadow: `0 0 7px ${shadowColor}, 0 0 21px ${shadowColor}, 0 0 42px ${shadowColor}`,
+        filter: `drop-shadow(0 0 10px ${shadowColor})`,
         ease: RoughEase.ease.config({ points: 5, randomize: true, clamp: false })
     });
 
     tl.fromTo(state.letterSpans, {
-        color: "rgb(0, 97, 0)",
+        color: offColor,
     }, {
-        color: "rgb(0, 255, 0)",
+        color: shadowColor,
         ease: RoughEase.ease.config({ points: 5, randomize: true, clamp: false })
     }, "<");
 
     // Stabilize to white
     tl.fromTo(state.letterSpans, {
-        color: "rgb(0, 255, 0)"
+        color: shadowColor
     }, {
         color: "#fff",
         ease: RoughEase.ease.config({ points: 40, randomize: true, clamp: false }),
@@ -255,12 +260,16 @@ function turnOffNeon(el) {
         state.currentTimeline.kill();
     }
 
+    // Calculate the current hue-rotated off color
+    const rotatedHue = (120 + currentHueRotation) % 360;
+    const currentOffColor = `hsl(${rotatedHue}, 100%, 19%)`;
+
     // Animate to off state
     const tl = gsap.timeline();
     state.currentTimeline = tl;
 
     tl.to(state.letterSpans, {
-        color: "rgb(0, 97, 0)",
+        color: currentOffColor,
         duration: 0.5,
         ease: RoughEase.ease.config({ points: 10, randomize: true, clamp: false }),
         stagger: 0.02
@@ -356,27 +365,40 @@ function changeNeonColor(hueValue = null) {
         currentHueRotation = hueValue;
     }
 
-    // Find all neon elements that are currently on
+    // Calculate the hue-rotated colors
+    const rotatedHue = (120 + hueValue) % 360;
+    const shadowColor = `hsl(${rotatedHue}, 100%, 50%)`;
+    const offColor = `hsl(${rotatedHue}, 100%, 19%)`; // Darker version for off state
+
+    // Update CSS custom properties for off-state neons
+    gsap.to(":root", {
+        "--neon-green-off": offColor,
+        "--neon-green": shadowColor,
+        duration: 0.5,
+        ease: "power2.out"
+    });
+
+    // Find all neon elements and update them based on their state
     const neonElements = document.querySelectorAll('.neon');
 
     neonElements.forEach(el => {
         const state = neonStates.get(el);
+
         if (state && state.isOn) {
-            // Calculate the hue-rotated green color for text shadows
-            // Start with green (120 degrees in HSL) and add the rotation
-            const rotatedHue = (120 + hueValue) % 360;
-            const shadowColor = `hsl(${rotatedHue}, 100%, 50%)`;
-
-            // Keep the original drop-shadow filter without hue-rotate
+            // Update elements that are currently on with full glow effects
             const newFilter = `drop-shadow(0 0 10px ${shadowColor})`;
-
-            // Update text shadow with rotated color
             const newTextShadow = `0 0 7px ${shadowColor}, 0 0 21px ${shadowColor}, 0 0 42px ${shadowColor}`;
 
-            // Apply the filter and text shadow changes with GSAP for smooth transition
             gsap.to(el, {
                 filter: newFilter,
                 textShadow: newTextShadow,
+                duration: 0.5,
+                ease: "power2.out"
+            });
+        } else if (state && state.letterSpans) {
+            // Update elements that are initialized but off - update their letter spans directly
+            gsap.to(state.letterSpans, {
+                color: offColor,
                 duration: 0.5,
                 ease: "power2.out"
             });

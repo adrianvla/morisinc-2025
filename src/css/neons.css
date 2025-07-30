@@ -1,3 +1,7 @@
+:root{
+    --neon-green-off: rgb(0, 97, 0);
+    --neon-green: rgb(0, 255, 0);
+}
 .neon:not(.on){
     color: var(--neon-green-off);
 }

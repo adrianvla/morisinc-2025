@@ -115,4 +115,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }
     renderBarcodes();
     window.addEventListener('resize', renderBarcodes);
+
+    // Listen for theme changes and regenerate barcodes
+    window.addEventListener('themeChanged', renderBarcodes);
 });

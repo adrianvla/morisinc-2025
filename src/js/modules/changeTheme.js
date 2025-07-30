@@ -20,5 +20,9 @@ document.addEventListener('DOMContentLoaded', () => {
 
         // Change neon color to match theme
         changeNeonColor();
+
+        // Regenerate barcodes to update colors
+        // Dispatch a custom event that the barcodes module can listen to
+        window.dispatchEvent(new CustomEvent('themeChanged'));
     });
 });
