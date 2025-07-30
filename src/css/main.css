@@ -423,7 +423,7 @@ main.main-content {
 }
 
 .color-change{
-    background:var(--primary);
+    background:var(--green);
 }
 .nav-item{
     display: flex;
@@ -472,6 +472,6 @@ section.project h1{
     transform: translateX(-50%);
     font-size:min(5em, 7vw);
     white-space: nowrap;
-    color:var(--quaternary);
+    color:var(--primary);
     text-shadow: -1px -1px 0 var(--black), 1px -1px 0 var(--black), -1px 1px 0 var(--black), 1px 1px 0 var(--black);
 }

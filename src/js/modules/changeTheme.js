@@ -10,10 +10,11 @@ document.addEventListener('DOMContentLoaded', () => {
         index = (index + 1) % colors.length;
         let tl = gsap.timeline();
         tl.to(".color-change", {
-            background: colors[(index+1) % colors.length],
+            background: colors[(index + 1) % colors.length],
         });
         tl.to(":root", {
             "--background": colors[index],
+            "--primary": colors[(index + 4) % colors.length],
             duration: 0.5,
             ease: "power1.inOut"
         }, "<");
