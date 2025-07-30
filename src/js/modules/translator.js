@@ -136,4 +136,4 @@ function translateEverything(){
 
 }
 
-export {translateEverything,getTranslation};
+export {translateEverything, getTranslation, getCurrentLanguage};

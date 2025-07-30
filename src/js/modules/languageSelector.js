@@ -50,6 +50,7 @@ document.addEventListener('DOMContentLoaded', () => {
             e.preventDefault();
             //get attribute data-change-language
             const langChange = el.getAttribute('data-change-language');
+
             //replace current url's lang parameter with the new one
             const url = new URL(window.location.href);
             url.searchParams.set('lang', langChange);

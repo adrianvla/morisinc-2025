@@ -28,7 +28,7 @@ function applyZoomEffect() {
     v = accumulator;
     accumulator*=0.9;
     const minScale = 0.5; // Minimum zoom scale
-    const zoomFactor = 0.00003; // How much each velocity unit affects zoom
+    const zoomFactor = 0.00007; // How much each velocity unit affects zoom
     const a = (Math.atan(Math.abs(v * zoomFactor))*2/Math.PI);
     const scale = Math.max(minScale, 1 - a);
 

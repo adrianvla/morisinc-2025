@@ -1,0 +1,8 @@
+[
+  {"category": "Software", "items": [
+    {"name":"mLearn","url": "mlearn.html", "image": "/assets/img/mlearn.webp"}
+  ]},
+  {"category": "Hardware", "items": [
+    {"name":"TM2024","url": "tm2024.html", "image": "/assets/img/tm2024.jpg"}
+  ]}
+]

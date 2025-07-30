@@ -199,6 +199,7 @@ function turnOnNeon(el) {
     if (state.isOn) return;
 
     state.isOn = true;
+    el.classList.add('on'); // Add the 'on' class
 
     // Kill any existing timeline
     if (state.currentTimeline) {
@@ -213,7 +214,7 @@ function turnOnNeon(el) {
         textShadow: "0 0 0 rgba(0, 255, 0,0)"
     }, {
         textShadow: "0 0 7px #0f0, 0 0 21px #0f0, 0 0 42px #0f0",
-        filter: "drop-shadow(0 0 10px #0f0)",
+        filter: `hue-rotate(${currentHueRotation}deg) drop-shadow(0 0 10px #0f0)`,
         ease: RoughEase.ease.config({ points: 5, randomize: true, clamp: false })
     });
 
@@ -244,6 +245,7 @@ function turnOffNeon(el) {
     if (!state || !state.isOn) return;
 
     state.isOn = false;
+    el.classList.remove('on'); // Remove the 'on' class
 
     // Clear flickering intervals
     state.clearFlickerIntervals();
@@ -306,11 +308,15 @@ function flickerLetter(span, state) {
     // Call makeSpark at the letter's position
     makeSpark(x, y);
 
+    // Calculate the current hue-rotated color for flickering
+    const rotatedHue = (120 + currentHueRotation) % 360;
+    const flickerColor = `hsl(${rotatedHue}, 100%, 50%)`;
+
     // Flicker animation
     const flickerTl = gsap.timeline();
 
     flickerTl.to(span, {
-        color: "rgb(0, 255, 0)",
+        color: flickerColor,
         duration: 0.05,
         ease: "none"
     });
@@ -322,7 +328,7 @@ function flickerLetter(span, state) {
     });
 
     flickerTl.to(span, {
-        color: "rgb(0, 255, 0)",
+        color: flickerColor,
         duration: 0.03,
         ease: "none"
     });
@@ -334,4 +340,64 @@ function flickerLetter(span, state) {
     });
 }
 
-export { turnOnNeon, turnOffNeon, toggleNeon, makeSpark };
+// Global variable to track current hue rotation
+let currentHueRotation = 0;
+
+/**
+ * Changes the color of all neon lights using hue-rotate filter
+ * @param {number} hueValue - Hue rotation in degrees (0-360)
+ */
+function changeNeonColor(hueValue = null) {
+    // If no hue value provided, cycle through colors
+    if (hueValue === null) {
+        currentHueRotation = (currentHueRotation + 72) % 360; // Cycle every 72 degrees
+        hueValue = currentHueRotation;
+    } else {
+        currentHueRotation = hueValue;
+    }
+
+    // Find all neon elements that are currently on
+    const neonElements = document.querySelectorAll('.neon');
+
+    neonElements.forEach(el => {
+        const state = neonStates.get(el);
+        if (state && state.isOn) {
+            // Calculate the hue-rotated green color for text shadows
+            // Start with green (120 degrees in HSL) and add the rotation
+            const rotatedHue = (120 + hueValue) % 360;
+            const shadowColor = `hsl(${rotatedHue}, 100%, 50%)`;
+
+            // Keep the original drop-shadow filter without hue-rotate
+            const newFilter = `drop-shadow(0 0 10px ${shadowColor})`;
+
+            // Update text shadow with rotated color
+            const newTextShadow = `0 0 7px ${shadowColor}, 0 0 21px ${shadowColor}, 0 0 42px ${shadowColor}`;
+
+            // Apply the filter and text shadow changes with GSAP for smooth transition
+            gsap.to(el, {
+                filter: newFilter,
+                textShadow: newTextShadow,
+                duration: 0.5,
+                ease: "power2.out"
+            });
+        }
+    });
+
+    return hueValue;
+}
+
+/**
+ * Helper function to convert HSL to hex color
+ */
+function hslToHex(h, s, l) {
+    l /= 100;
+    const a = s * Math.min(l, 1 - l) / 100;
+    const f = n => {
+        const k = (n + h / 30) % 12;
+        const color = l - a * Math.max(Math.min(k - 3, 9 - k, 1), -1);
+        return Math.round(255 * color).toString(16).padStart(2, '0');
+    };
+    return `#${f(0)}${f(8)}${f(4)}`;
+}
+
+export { turnOnNeon, turnOffNeon, toggleNeon, makeSpark, changeNeonColor };

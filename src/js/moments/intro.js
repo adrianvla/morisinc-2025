@@ -3,14 +3,12 @@ import yeast from "yeast";
 import $ from "jquery";
 import {makeSpark} from "../modules/neons";
 import {lenis} from "../modules/smoothScrolling";
+import {fetchProjects} from "../modules/fetchProjects";
 
 let hasLoadedImages = false;
 let tl = gsap.timeline({});
 
 function logImageLoadingProgress() {
-    const images = Array.from(document.images);
-    const total = images.length;
-    let loaded = 0;
     function loadedEverything(){
         setTimeout(()=>{
             console.log("scrolling");
@@ -25,35 +23,34 @@ function logImageLoadingProgress() {
         });
         hasLoadedImages = true;
     }
-    function update() {
-        loaded++;
-        const percent = Math.round((loaded / total) * 100);
-        if( percent === 100) loadedEverything();
-        console.log(percent + '% images loaded');
-        $(".loading-text").text(percent);
+    function load(){
+        return new Promise(resolve => {
+            let loaded = 0;
+            const images = Array.from(document.images);
+            const total = images.length;
+            function update() {
+                loaded++;
+                const percent = Math.round((loaded / total) * 100);
+                if( percent === 100) resolve();
+                console.log(percent + '% images loaded');
+                $(".loading-text").text(percent);
+            }
+            images.forEach(img => {
+                if (img.complete && img.naturalWidth !== 0) {
+                    update();
+                } else {
+                    img.addEventListener('load', update, { once: true });
+                    img.addEventListener('error', update, { once: true });
+                }
+            });
+        });
     }
-    images.forEach(img => {
-        if (img.complete && img.naturalWidth !== 0) {
-            update();
-        } else {
-            img.addEventListener('load', update, { once: true });
-            img.addEventListener('error', update, { once: true });
-        }
-    });
+    load().then(loadedEverything);
 }
 
 function initAnimations(){
-    logImageLoadingProgress();
+    fetchProjects().then(logImageLoadingProgress);
     return new Promise(resolve => {
-
-        // tl.to('', {
-        //     onStart: () => {
-        //         if(!hasLoadedImages)
-        //             tl.pause();
-        //         else
-        //             tl.seek(tl.time()+1);
-        //     }
-        // },"<");
         tl.set('.nav4 > div > *',{
             opacity:0
         });

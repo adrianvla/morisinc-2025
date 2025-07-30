@@ -1,6 +1,7 @@
 :root{
     --primary: rgb(109, 136, 103);
-    --secondary: rgb(19, 49, 81);
+    --secondary: rgb(103, 110, 136);
+    --dark-blue: rgb(19, 49, 81);
     --tertiary: rgb(159, 85, 76);
     --quaternary: rgb(215, 164, 105);
     --black: rgb(26, 26, 26);

@@ -6,7 +6,7 @@ import '../css/imports.js';
 import yeast from 'yeast';
 import inject from "./modules/inject";
 import './modules/signature'
-import {lenis} from "./modules/smoothScrolling";
+import {initProjects, lenis} from "./modules/smoothScrolling";
 import initCursor from "./modules/cursor";
 import {translateEverything} from "./modules/translator";
 import './modules/barcodes';
@@ -19,6 +19,7 @@ import './modules/neons';
 import {turnOnNeon} from "./modules/neons";
 import initSign from "./modules/sign";
 import initScrollZoom from "./modules/scrollZoom";
+import './modules/clock';
 // Initialize BarbaJS with enhanced transitions
 barba.init({
     debug: false,
@@ -101,9 +102,12 @@ document.addEventListener('DOMContentLoaded', () => {
     initCursor();
     initTextEffects();
     initScrollZoom();
+    window.$ = $;
+    $(".s1").css("height",`${$(".s1").height()}px`);
     initIntro().then(r => {
-        turnOnNeon(document.querySelector(".s1 .projects .project:nth-child(1)"));
+        turnOnNeon(document.querySelector(".s1 .projects .project.neon"));
         initSign();
+        initProjects();
     });
     setTimeout(() => {
         // initPage();
