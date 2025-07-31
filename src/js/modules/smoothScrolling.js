@@ -7,24 +7,46 @@ import { turnOnNeon, turnOffNeon } from './neons.js';
 gsap.registerPlugin(ScrollTrigger);
 
 // Initialize smooth scrolling with Lenis
-const lenis = new Lenis({
-    duration: 1.2,
-    easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
-    smooth: true,
-    wrapper: document.querySelector('.main'),
-    content: document.querySelector('.main-content'),
-    touchMultiplier: 2,
-    wheelMultiplier: 1,
-});
-const lenis2 = new Lenis({
-    duration: 1.2,
-    easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
-    smooth: true,
-    wrapper:document.querySelector('.s1'),
-    touchMultiplier: 2,
-    wheelMultiplier: 1,
-    autoRaf:true,
-});
+let lenis = null;
+let lenis2 = null;
+let alreadyInited = false;
+function initLenises(){
+    try{
+        lenis.destroy();
+        lenis2.destroy();
+    }catch(e){}
+    lenis = new Lenis({
+        duration: 1.2,
+        easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
+        smooth: true,
+        wrapper: document.querySelector('.main'),
+        content: document.querySelector('.main-content'),
+        touchMultiplier: 2,
+        wheelMultiplier: 1,
+    });
+    lenis2 = new Lenis({
+        duration: 1.2,
+        easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
+        smooth: true,
+        wrapper:document.querySelector('.s1'),
+        touchMultiplier: 2,
+        wheelMultiplier: 1,
+        autoRaf:true,
+    });
+    if(!alreadyInited){
+        alreadyInited = true;
+        gsap.ticker.add((time) => {
+            lenis.raf(time * 1000);
+        });
+    }
+    lenis.on('scroll', () => {
+        ScrollTrigger.update();
+
+        // Update active neon based on current section
+        const sectionIndex = getCurrentSectionIndex();
+        updateActiveNeon(sectionIndex);
+    });
+}
 let snap = null;
 let currentActiveSection = -1;
 let isInitialized = false;
@@ -35,9 +57,6 @@ function getSectionAndNeonElements() {
     const sidebarNeons = document.querySelectorAll('.s1 .projects .project.neon');
     return { sections, sidebarNeons };
 }
-gsap.ticker.add((time) => {
-    lenis.raf(time * 1000);
-});
 // Function to update active neon based on current section
 function updateActiveNeon(sectionIndex) {
     if(!isInitialized) return;
@@ -68,13 +87,6 @@ function getCurrentSectionIndex() {
     return Math.round(scrollProgress);
 }
 gsap.ticker.lagSmoothing(0);
-lenis.on('scroll', () => {
-    ScrollTrigger.update();
-
-    // Update active neon based on current section
-    const sectionIndex = getCurrentSectionIndex();
-    updateActiveNeon(sectionIndex);
-});
 
 // Function to scroll to a specific section
 function scrollToSection(sectionIndex) {
@@ -134,4 +146,4 @@ function initProjects(){
 }
 
 
-export {lenis, snap, initProjects};
+export {lenis, lenis2, snap, initProjects, initLenises};

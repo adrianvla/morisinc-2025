@@ -168,6 +168,8 @@ if (document.readyState === 'loading') {
 
 function splitTextIntoSpans(element) {
     const text = element.textContent;
+    // Store original text before modifying
+    element.setAttribute('data-original-text', text);
     element.innerHTML = '';
 
     for (let i = 0; i < text.length; i++) {
@@ -423,4 +425,68 @@ function hslToHex(h, s, l) {
     return `#${f(0)}${f(8)}${f(4)}`;
 }
 
-export { turnOnNeon, turnOffNeon, toggleNeon, makeSpark, changeNeonColor };
+/**
+ * Destroys a neon element and cleans up all associated resources
+ * @param {HTMLElement} element - The neon element to destroy
+ */
+function destroyNeon(element) {
+    const state = neonStates.get(element);
+
+    if (state) {
+        // Clean up the state (timelines, intervals, etc.)
+        state.destroy();
+
+        // Remove from WeakMap
+        neonStates.delete(element);
+
+        // Reset element styles to remove neon effects
+        gsap.set(element, {
+            clearProps: "all"
+        });
+
+        // If the element has letter spans, clean those up too
+        if (state.letterSpans) {
+            gsap.set(state.letterSpans, {
+                clearProps: "all"
+            });
+
+            // Remove the letter spans and restore original text
+            const originalText = element.getAttribute('data-original-text');
+            if (originalText) {
+                element.textContent = originalText;
+                element.removeAttribute('data-original-text');
+            }
+        }
+
+        // Remove any neon-related classes
+        element.classList.remove('neon-on', 'neon-off', 'neon-initialized');
+
+        console.log('Neon destroyed for element:', element);
+    } else {
+        console.warn('No neon state found for element:', element);
+    }
+}
+
+/**
+ * Destroys all neon elements and cleans up all associated resources
+ */
+function destroyAllNeons() {
+    const neonElements = document.querySelectorAll('.neon');
+    let destroyedCount = 0;
+
+    neonElements.forEach(element => {
+        const state = neonStates.get(element);
+        if (state) {
+            destroyNeon(element);
+            destroyedCount++;
+        }
+    });
+
+    // Also clear any orphaned states (shouldn't happen, but good safety measure)
+    // Note: WeakMap doesn't have a clear() method, but destroying individual elements should handle this
+
+    console.log(`Destroyed ${destroyedCount} neon elements`);
+    return destroyedCount;
+}
+
+export { turnOnNeon, turnOffNeon, toggleNeon, makeSpark, changeNeonColor, destroyNeon, destroyAllNeons };

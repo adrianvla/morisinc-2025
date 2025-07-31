@@ -447,20 +447,52 @@ main.main-content {
 
 
 section.project{
+    --border: var(--black);
     width:100%;
     height:var(--main-height);
     position:relative;
-    background:var(--background);
+    background:var(--border);
+    overflow:hidden;
+    box-sizing: border-box;
+    border:5px solid var(--border);
+    padding: 12px;
+    box-shadow: inset 0 0 0 2px var(--black);
+}
+/*section.project:after{*/
+/*    content:"";*/
+/*    position:absolute;*/
+/*    bottom:0;*/
+/*    left:0;*/
+/*    width:100%;*/
+/*    height:100px;*/
+/*    background:var(--border);*/
+/*    z-index:1;*/
+/*}*/
+section.project > h2{
+    font-family: 'OffBit Trial 101', sans-serif;
+    position:absolute;
+    margin: 10px 0 0 10px;
+    z-index:2;
+    bottom:0;
+    left:0;
+    width:calc(100% - 20px);
+    font-size:2em;
+    color:var(--background);
+    /*background:var(--border);*/
+    text-shadow: -1px -1px 0 var(--black), 1px -1px 0 var(--black), -1px 1px 0 var(--black), 1px 1px 0 var(--black);
+    /*border-bottom: 2px solid var(--black);*/
+    /*border-right: 2px solid var(--black);*/
+    text-align: center;
 }
 section.project img{
-    width:100%;
-    height:100%;
+    width:calc(100% - 4px);
     object-fit: cover;
     position:absolute;
     top:0;
     left:0;
-    margin: 0;
-    z-index:0
+    z-index:0;
+    box-sizing: border-box;
+    margin:2px;
 }
 section.project h1{
     font-family: 'Sterion', sans-serif;

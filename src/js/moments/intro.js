@@ -4,6 +4,8 @@ import $ from "jquery";
 import {makeSpark} from "../modules/neons";
 import {lenis} from "../modules/smoothScrolling";
 import {fetchProjects} from "../modules/fetchProjects";
+import {isProjectPage} from "../modules/pathDetector";
+import {generateProject} from "../modules/projects";
 
 let hasLoadedImages = false;
 let tl = gsap.timeline({});
@@ -48,8 +50,8 @@ function logImageLoadingProgress() {
     load().then(loadedEverything);
 }
 
-function initAnimations(){
-    fetchProjects().then(logImageLoadingProgress);
+function initAnimations(p){
+    p.then(logImageLoadingProgress);
     return new Promise(resolve => {
         tl.set('.nav4 > div > *',{
             opacity:0
@@ -85,7 +87,11 @@ function initAnimations(){
             bottom: '12px',
             right: '12px',
             duration:1,
-            ease: "power3.inOut"
+            ease: "power3.inOut",
+            onStart: () => {
+                if(hasLoadedImages)
+                    tl.timeScale(1);
+            }
         },"<");
 
 
@@ -98,8 +104,12 @@ function initAnimations(){
             onComplete: () => {
                 if(!hasLoadedImages)
                     tl.pause();
+            },
+            onStart: () => {
+                if(hasLoadedImages)
+                    tl.timeScale(1);
             }
-        });
+        },"<1");
         tl.to('.nav4',{
             gap:"2px"
         },"<");
@@ -115,7 +125,10 @@ function initAnimations(){
             "--grid-item-width": "0%",
             ease: "power3.inOut",
             duration:1,
-            stagger:0.02
+            stagger:0.02,
+            onStart: () => {
+                tl.timeScale(1);
+            }
         },"<");
         tl.to('.grid-item',{
             "--grid-item-width2": "0%",
@@ -138,17 +151,15 @@ function initAnimations(){
 
         tl.set('.loader',{
             display: "none",
-            onComplete: () => {resolve();document.querySelector('.loader').remove();}
+            onComplete: () => {resolve();}
         },"<0.5");
 
-
-        // tl.timeScale(5);
     });
 }
 
 
-function initIntro(){
-    return initAnimations();
+function initIntro(p){
+    return initAnimations(p);
 }
 
 export default initIntro;

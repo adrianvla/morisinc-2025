@@ -6,7 +6,7 @@ import '../css/imports.js';
 import yeast from 'yeast';
 import inject from "./modules/inject";
 import './modules/signature'
-import {initProjects, lenis} from "./modules/smoothScrolling";
+import {initLenises, initProjects, lenis} from "./modules/smoothScrolling";
 import initCursor from "./modules/cursor";
 import {translateEverything} from "./modules/translator";
 import './modules/barcodes';
@@ -15,6 +15,7 @@ import initIntro from "./moments/intro";
 import {initTextEffects} from "./modules/textEffects";
 import './modules/languageSelector';
 import leave from "./transitions/leave";
+import enter from "./transitions/enter";
 import './modules/neons';
 import {turnOnNeon} from "./modules/neons";
 import initSign from "./modules/sign";
@@ -22,6 +23,9 @@ import initScrollZoom from "./modules/scrollZoom";
 import './modules/clock';
 import { initAutoFitText } from './modules/autoFitText.js';
 import { initSterionHyphenFix } from './modules/sterionHyphenFix.js';
+import {getProjectName, isProjectPage} from "./modules/pathDetector";
+import {fetchProjects} from "./modules/fetchProjects";
+import {generateProject} from "./modules/projects";
 
 // Initialize BarbaJS with enhanced transitions
 barba.init({
@@ -39,7 +43,7 @@ barba.init({
             },
             enter(data) {
                 lenis.scrollTo(0);
-                return enterHome(data.next.container);
+                return enter();
             }
         },
         {
@@ -48,12 +52,27 @@ barba.init({
             to: { namespace: 'project' },
             leave(data) {
                 // Custom transition for leaving home
+                return leave(data.current.container);
+            },
+            enter(data) {
+                lenis.scrollTo(0);
+                $(".projects").html("");
+
+                return enter(generateProject());
+            }
+        },
+        {
+            name: 'from-project-to-home',
+            from: { namespace: 'project' },
+            to: { namespace: 'home' },
+            leave(data) {
+                // Custom transition for leaving home
                 lenis.scrollTo(0);
                 return leave(data.current.container);
             },
             enter(data) {
                 lenis.scrollTo(0);
-                return enterHome(data.next.container);
+                return enter(fetchProjects());
             }
         },
     ],
@@ -100,17 +119,20 @@ window.addEventListener('resize', setHeightValueOfMain);
 // Initialize on first load
 document.addEventListener('DOMContentLoaded', () => {
     // Hide loading screen initially
+    initLenises();
     translateEverything();
     inject();
     initCursor();
     initTextEffects();
     initScrollZoom();
-    window.$ = $;
     $(".s1").css("height",`${$(".s1").height()}px`);
-    initIntro().then(r => {
-        turnOnNeon(document.querySelector(".s1 .projects .project.neon"));
+    console.log(`%cIdentified as ${isProjectPage() ? 'Project' : 'home'} page, of project "${getProjectName()}"`, `color: #0f0`);
+    initIntro(isProjectPage() ? generateProject() : fetchProjects()).then(r => {
         initSign();
-        initProjects();
+        if(!isProjectPage()){
+            turnOnNeon(document.querySelector(".s1 .projects .project.neon"));
+            initProjects();
+        }
     });
     setTimeout(() => {
         // initPage();

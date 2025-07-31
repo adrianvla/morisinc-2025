@@ -27,3 +27,5 @@ document.addEventListener('DOMContentLoaded', () => {
         window.dispatchEvent(new CustomEvent('themeChanged'));
     });
 });
+
+export {colors};

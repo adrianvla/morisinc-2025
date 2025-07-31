@@ -1,8 +1,12 @@
 import $ from 'jquery';
 import yeast from "yeast";
 import {turnOffNeon, turnOnNeon} from "./neons";
-
-function addProject(name, img_src){
+import barba from "@barba/core";
+import {getProjectName} from "./pathDetector";
+import {getTranslation} from "./translator";
+import {colors} from "./changeTheme";
+let index = 0;
+function addProject(name, desc, img_src){
     const myId = yeast().replaceAll('-', '_').replaceAll(".", "_");
     let clickable = $(`<div class="project neon" id="${myId}">${name}</div>`);
     $(".s1 .projects").append(clickable);
@@ -11,14 +15,22 @@ function addProject(name, img_src){
         turnOffNeon(document.querySelector(`#${myId}`));
     }
 
-    let section = $(`<section class="project">
+    let section = $(`<section class="project" id="section-${myId}" style="--border:${colors[index]}">
                 <h1>${name}</h1>
+                <h2>${desc}</h2>
                 <img src="${img_src}" alt="${name}">
             </section>`);
     $("main.main-content").append(section);
+    $(section).on("click", ()=>{
+        window.redirectType = "home-to-project";
+        window.projectSectionID = `section-${myId}`;
+        barba.go(`/project?${name.replaceAll(' ', '-').replaceAll('.', '_')}`);
+    });
+    index = (index + 1) % colors.length;
 }
 
 function fetchProjects() {
+    $(".s1 h4 span").text(getTranslation("PROJECTS"));
     return new Promise((resolve, reject) => {
         $.ajax({
             url: '/assets/projects.json',
@@ -35,7 +47,7 @@ function fetchProjects() {
 
                         // Add projects for this category
                         category.items.forEach(project => {
-                            addProject(project.name, project.image);
+                            addProject(project.name, project.desc, project.image);
                         });
                     });
 
