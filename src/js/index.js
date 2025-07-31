@@ -20,6 +20,9 @@ import {turnOnNeon} from "./modules/neons";
 import initSign from "./modules/sign";
 import initScrollZoom from "./modules/scrollZoom";
 import './modules/clock';
+import { initAutoFitText } from './modules/autoFitText.js';
+import { initSterionHyphenFix } from './modules/sterionHyphenFix.js';
+
 // Initialize BarbaJS with enhanced transitions
 barba.init({
     debug: false,
@@ -114,4 +117,6 @@ document.addEventListener('DOMContentLoaded', () => {
         lenis.scrollTo(0, {duration:0, immediate:true});
     }, 100); // Small delay to ensure fonts are loaded
     setHeightValueOfMain();
+    initAutoFitText();
+    initSterionHyphenFix();
 });

@@ -7,12 +7,13 @@
 
   ]},
   {"category": "Hardware", "items": [
-    {"name":"M5 Geiger Counter","url": "m5geiger.html", "image": "/assets/img/tm2024.jpg", "directURL": false}
+    {"name":"M5 Geiger Counter","url": "m5geiger.html", "image": "/assets/img/m5gs.webp", "directURL": false}
 
   ]},
   {"category": "Design", "items": [
+    {"name": "mlearn.morisinc.net", "url": "https://mlearn.morisinc.net", "image": "/assets/img/mlearn-morisinc-net.png", "directURL": true},
     {"name": "morisinc.net", "url": "https://morisinc.net", "image": "/assets/img/morisinc-net.png", "directURL": true},
-    {"name": "meteor m", "url": "https://meteor-m.com", "image": "/assets/img/meteor-m-com.png", "directURL": true}
+    {"name": "meteor-m.com", "url": "https://meteor-m.com", "image": "/assets/img/meteor-m-com.png", "directURL": true}
   ]},
   {"category": "Archive", "items": [
     {"name": "old website", "url": "https://old.morisinc.net", "image": "/assets/img/old-morisinc-net.png", "directURL": true},

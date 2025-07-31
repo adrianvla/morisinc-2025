@@ -1,7 +1,7 @@
 .sign-c{
-    position: absolute;
-    top: 25%;
-    left: 10px;
+    position: fixed;
+    top: calc(25% + 130px);
+    left: 272px;
     width:75px;
     height:275px;
     border: 1px solid var(--black);
