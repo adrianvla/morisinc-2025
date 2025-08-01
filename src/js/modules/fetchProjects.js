@@ -15,7 +15,7 @@ function addProject(name, desc, img_src){
         turnOffNeon(document.querySelector(`#${myId}`));
     }
 
-    let section = $(`<section class="project" id="section-${myId}" style="--border:${colors[index]}">
+    let section = $(`<section class="project" id="section-${myId}" style="--border:${colors[index]}" data-change-color-index="${index}">
                 <h1>${name}</h1>
                 <h2>${desc}</h2>
                 <img src="${img_src}" alt="${name}">
@@ -31,6 +31,7 @@ function addProject(name, desc, img_src){
 
 function fetchProjects() {
     $(".s1 h4 span").text(getTranslation("PROJECTS"));
+    $("[data-barba-namespace='project']").remove();
     return new Promise((resolve, reject) => {
         $.ajax({
             url: '/assets/projects.json',

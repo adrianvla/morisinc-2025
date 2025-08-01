@@ -4,8 +4,12 @@ import defaultLeave from "./leave/default";
 import {lenis, lenis2} from "../modules/smoothScrolling";
 
 export default function leave(){
-    lenis.destroy();
-    lenis2.destroy();
+    try{
+        lenis.destroy();
+    }catch(e){}
+    try{
+        lenis2.destroy();
+    }catch(e){}
     if(window.redirectType === 'lang-button') {
         return leaveBecauseOfLang();
     }

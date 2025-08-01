@@ -18,6 +18,17 @@ document.addEventListener('DOMContentLoaded', () => {
             duration: 0.5,
             ease: "power1.inOut"
         }, "<");
+        document.querySelectorAll("[data-change-color-index]").forEach(el=>{
+            const colorIndex = parseInt(el.dataset.changeColorIndex);
+            if (colorIndex >= 0 && colorIndex < colors.length) {
+                gsap.to(el, {
+                    background: colors[(index + colorIndex) % colors.length],
+                    borderColor: colors[(index + colorIndex) % colors.length],
+                    duration: 0.5,
+                    ease: "power1.inOut"
+                });
+            }
+        });
 
         // Change neon color to match theme
         changeNeonColor();

@@ -458,16 +458,13 @@ section.project{
     padding: 12px;
     box-shadow: inset 0 0 0 2px var(--black);
 }
-/*section.project:after{*/
-/*    content:"";*/
-/*    position:absolute;*/
-/*    bottom:0;*/
-/*    left:0;*/
-/*    width:100%;*/
-/*    height:100px;*/
-/*    background:var(--border);*/
-/*    z-index:1;*/
-/*}*/
+section.project.hero{
+    height:calc(var(--main-height) / 2);
+    border:0px solid var(--border);
+    padding: 0px;
+    box-shadow: inset 0 0 0 0px var(--black);
+    background:var(--background);
+}
 section.project > h2{
     font-family: 'OffBit Trial 101', sans-serif;
     position:absolute;
@@ -485,14 +482,26 @@ section.project > h2{
     text-align: center;
 }
 section.project img{
-    width:calc(100% - 4px);
+    width: calc(100% - 4px);
     object-fit: cover;
-    position:absolute;
-    top:0;
-    left:0;
-    z-index:0;
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 0;
     box-sizing: border-box;
-    margin:2px;
+    margin: 2px;
+    mask: linear-gradient(to bottom,
+        rgba(0, 0, 0, 1) 0%,
+        rgba(0, 0, 0, 1) 80%,
+        rgba(0, 0, 0, 0) 100%);
+    -webkit-mask: linear-gradient(to bottom,
+        rgba(0, 0, 0, 1) 0%,
+        rgba(0, 0, 0, 1) 80%,
+        rgba(0, 0, 0, 0) 100%);
+}
+section.project.hero img{
+    width: calc(100% - 0px);
+    margin: 0px;
 }
 section.project h1{
     font-family: 'Sterion', sans-serif;
@@ -507,4 +516,12 @@ section.project h1{
     color:var(--primary);
     text-shadow: -1px -1px 0 var(--black), 1px -1px 0 var(--black), -1px 1px 0 var(--black), 1px 1px 0 var(--black);
     text-align: center;
+}
+
+section.content{
+    background:var(--background);
+    margin-top:2px;
+    min-height:calc(calc(var(--main-height) / 2) - 2px);
+    padding:10px;
+    box-sizing: border-box;
 }

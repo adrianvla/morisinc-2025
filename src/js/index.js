@@ -26,6 +26,7 @@ import { initSterionHyphenFix } from './modules/sterionHyphenFix.js';
 import {getProjectName, isProjectPage} from "./modules/pathDetector";
 import {fetchProjects} from "./modules/fetchProjects";
 import {generateProject} from "./modules/projects";
+import homeToProject from "./transitions/leave/homeToProject";
 
 // Initialize BarbaJS with enhanced transitions
 barba.init({
@@ -34,12 +35,12 @@ barba.init({
 
     transitions: [
         {
-            name: 'leave-home',
-            from: { namespace: 'home' },
+            name: 'default',
             leave(data) {
                 // Custom transition for leaving home
                 lenis.scrollTo(0);
-                return leave(data.current.container);
+                console.error("Default transition");
+                return leave();
             },
             enter(data) {
                 lenis.scrollTo(0);
@@ -67,12 +68,19 @@ barba.init({
             to: { namespace: 'home' },
             leave(data) {
                 // Custom transition for leaving home
-                lenis.scrollTo(0);
-                return leave(data.current.container);
+                return homeToProject(data.current.container);
             },
             enter(data) {
                 lenis.scrollTo(0);
-                return enter(fetchProjects());
+
+                return enter(new Promise(r=>{fetchProjects().then(()=>{
+                    initProjects();
+                    turnOnNeon(document.querySelector(".s1 .projects .project.neon"));
+                    initAutoFitText();
+                    initSterionHyphenFix();
+                    initScrollZoom();
+                    r();
+                })}));
             }
         },
     ],

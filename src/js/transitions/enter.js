@@ -1,5 +1,5 @@
 import gsap from "gsap";
-import {initLenises} from "../modules/smoothScrolling";
+import {initLenises, lenis} from "../modules/smoothScrolling";
 
 export default function enter(p) {
     return new Promise((resolve, reject) => {

@@ -1,4 +1,5 @@
 import gsap from "gsap";
+import {lenis, lenis2, snap} from "../../modules/smoothScrolling";
 
 export default function leave() {
     const s = document.querySelector(`#${window.projectSectionID}`);
@@ -8,18 +9,34 @@ export default function leave() {
             duration: 1
         }
     });
-    tl.to('.s1',{
+    try{
+        lenis.destroy();
+    }catch(e){}
+    try{
+        lenis2.destroy();
+    }catch(e){}
+    try{
+        snap.destroy();
+    }catch(e){}
+    //scroll to top instantly
+    // setTimeout(()=>{document.querySelector(".main").scrollTo(0,0);},100);
+    // tl.set(s,{
+    //     position:"fixed",
+    //     zIndex:1
+    // });
+    tl.to('.s1,main',{
         "--grid-item-width2": "100%",
         ease: "power3.inOut",
         duration:1,
         stagger: 0.02
     });
-    tl.to('.s1',{
+    tl.to('.s1,main',{
         "--grid-item-width": "100%",
         ease: "power3.inOut",
         duration:1,
         stagger: 0.02
     },"<0.05");
+    /*
     tl.fromTo(s, {
         height: "calc(var(--main-height) / 1)",
         marginBottom: "0px"
@@ -28,6 +45,9 @@ export default function leave() {
         marginBottom: "calc(var(--main-height) / 2)",
         duration:2,
         ease: "power3.out"
+    },"<");
+    tl.set(`section.project:nth-child(1):not(#${window.projectSectionID})`,{
+        marginTop: "var(--main-height)",
     },"<");
     tl.to(s.querySelector('h2'),{
         opacity:0,
@@ -52,7 +72,7 @@ export default function leave() {
         boxShadow:"inset 0 0 0 0px var(--black)",
         ease: "power3.inOut"
     },"<");
-
+    */
 
 
 
