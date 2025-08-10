@@ -9,6 +9,7 @@ import {getTranslation} from "./translator";
 import yeast from "yeast";
 import {turnOnNeon, turnOffNeon, destroyAllNeonsExceptSign} from "./neons";
 import {initTextEffects} from "./textEffects";
+import initLazyLoad from "./lazyLoad";
 
 gsap.registerPlugin(ScrollTrigger, ScrambleTextPlugin);
 
@@ -275,7 +276,7 @@ function generateProject(){
         $("main").append(`
             <section class="project hero">
                 <h1>${name}</h1>
-                <img src="${img_src}" alt="${name}">
+                <img data-src="${img_src}" src="${img_src.replace('img','img-low-res')}" alt="${name}">
             </section>
         `);
         $("main").append(`
@@ -312,6 +313,7 @@ function generateProject(){
         });
         initAutoFitText();
         makeAllHeaders();
+        initLazyLoad();
 
         const els = document.querySelectorAll("section.content h2, section.content h3, section.content h4, section.content h5, section.content h6");
         els.forEach(p => {

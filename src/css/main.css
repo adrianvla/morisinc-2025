@@ -554,7 +554,7 @@ section.project > h2{
     /*border-right: 2px solid var(--black);*/
     text-align: center;
 }
-section.project img{
+section.project img, section.project canvas{
     width: calc(100% - 4px);
     object-fit: cover;
     position: absolute;
@@ -597,4 +597,8 @@ section.content{
     min-height:calc(calc(var(--main-height) / 2) - 2px);
     padding:10px;
     box-sizing: border-box;
+}
+
+.pixelation-wrapper{
+    width:100%;
 }

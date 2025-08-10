@@ -28,6 +28,7 @@ function logImageLoadingProgress() {
     }
     function load(){
         return new Promise(resolve => {
+            resolve();
             let loaded = 0;
             const images = Array.from(document.images);
             const total = images.length;

@@ -5,6 +5,7 @@ import barba from "@barba/core";
 import {getProjectName} from "./pathDetector";
 import {getTranslation} from "./translator";
 import {colors} from "./changeTheme";
+import initLazyLoad from "./lazyLoad";
 let index = 0;
 function addProject(name, desc, img_src, directURL, url){
     const myId = yeast().replaceAll('-', '_').replaceAll(".", "_");
@@ -18,7 +19,7 @@ function addProject(name, desc, img_src, directURL, url){
     let section = $(`<section class="project" id="section-${myId}" style="--border:${colors[index]}" data-change-color-index="${index}">
                 <h1>${name}</h1>
                 <h2>${desc}</h2>
-                <img src="${img_src}" alt="${name}">
+                <img data-src="${img_src}" src="${img_src.replace('img','img-low-res')}" alt="${name}">
             </section>`);
     $("main.main-content").append(section);
     $(section).on("click", ()=>{
@@ -58,6 +59,7 @@ function fetchProjects() {
                             addProject(project.name, project.desc, project.image, project.directURL, project.url);
                         });
                     });
+                    initLazyLoad();
 
                     resolve(data);
                 } catch (error) {

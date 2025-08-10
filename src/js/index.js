@@ -28,6 +28,7 @@ import {fetchProjects} from "./modules/fetchProjects";
 import {generateProject, setupTextRevealEffects} from "./modules/projects";
 import homeToProject from "./transitions/leave/homeToProject";
 import {testForMobile} from "./utils/isMobileDevice";
+import initLazyLoad from "./modules/lazyLoad";
 
 // Initialize BarbaJS with enhanced transitions
 barba.init({
