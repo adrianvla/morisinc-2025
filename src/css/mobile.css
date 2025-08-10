@@ -115,7 +115,7 @@
     main.main-content{
         background:var(--background) !important;
     }
-    section.project:not(.hero) img{
+    section.project:not(.hero) img, section.project:not(.hero) canvas{
         width: calc(100% - 40px);
         max-height:calc(100% - 40px);
         left:20px;
