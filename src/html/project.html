@@ -3,10 +3,32 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title></title>
+    <title>Loading...</title>
+    <style>
+        .wait-for-data{
+            position: fixed;
+            left:0;
+            top:0;
+            width:100vw;
+            height:100vh;
+            background:rgb(150, 150, 150);
+            z-index:10000000;
+            display: flex;
+            align-items: start;
+            justify-content: end;
+            flex-direction: column;
+            gap:10px;
+            font-family: 'PP Neue Montreal Mono', monospace;
+            font-size:0.75em;
+        }
+        .wait-for-data span{
+            margin:20px;
+        }
+    </style>
 </head>
 <body data-barba="wrapper">
-<noscript>YOU NEED TO ENABLE JAVASCRIPT TO VIEW THIS WEBSITE</noscript>
+
+<div class="wait-for-data"><noscript>YOU NEED TO ENABLE JAVASCRIPT TO VIEW THIS WEBSITE</noscript><span>Downloading Data...</span></div>
 <div class="cursor">
     <div class="c">
         <div class="inner plus-sign">
@@ -23,6 +45,16 @@
     </div>
 </div>
 <div class="container">
+    <div class="top-nav mobile">
+        <div class="open-nav">
+            <div></div>
+            <div></div>
+            <div></div>
+        </div>
+    </div>
+    <div class="big-nav mobile">
+
+    </div>
     <div class="nav0 grid-item flex col">
         <div data-barcode="AV" data-barcode-fill="var(--background)"></div>
         <div class="flex"><h1 data-scramble-on-enter="Adrian" data-translation="Adrian">&nbsp;</h1></div>
@@ -32,7 +64,7 @@
     </div>
     <div class="nav1 grid-item nav-item"><a href="/" data-pointer data-scramble-on-enter="HOME" data-scramble-chars="X;:.,_" data-translation="Home"></a></div>
     <div class="nav2 grid-item nav-item"><a href="/about" data-pointer data-scramble-on-enter="ABOUT" data-scramble-chars="X;:.,_" data-translation="About"></a></div>
-    <div class="nav3 grid-item nav-item"><a href="" data-pointer data-scramble-on-enter="CONTACT" data-scramble-chars="X;:.,_" data-translation="Socials"></a></div>
+    <div class="nav3 grid-item nav-item"><a href="/cv" data-pointer data-scramble-on-enter="My CV" data-scramble-chars="X;:.,_" data-translation="CV"></a></div>
     <div class="nav4 grid grid-row-2">
         <div class="flex col nav4-0 grid-item">
             <h1 data-scramble-on-enter="prtfl.">&nbsp;</h1>
@@ -55,6 +87,8 @@
                     <h3 data-scramble-on-enter="2025" data-scramble-chars="0123456789.,_">&nbsp;</h3>
                 </div>
                 <div class="nav4-1-0-2 cell color-change" data-pointer>
+                    <h5 data-scramble-on-enter="CHANGE" data-scramble-chars=":._">&nbsp;</h5>
+                    <h3 data-scramble-on-enter="THEME" data-scramble-chars=":._|/">&nbsp;</h3>
                 </div>
             </div>
             <div class="nav4-1-1 grid-item">
@@ -75,15 +109,15 @@
             </div>
         </div>
         <div class="s1 grid-item">
-            <h4 data-translation="PROJECTS"><span>PROJECTS</span></h4>
+            <h4><span data-translation="PROJECTS">PROJECTS</span></h4>
             <div class="projects"></div>
         </div>
         <div class="s2 grid-item">
             <span></span>
         </div>
         <div class="s3 grid-item">
-            <div data-pointer><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"> <path fill="currentColor" d="M5 2h4v2H7v2H5V2Zm0 10H3V6h2v6Zm2 2H5v-2h2v2Zm2 2v-2H7v2H3v-2H1v2h2v2h4v4h2v-4h2v-2H9Zm0 0v2H7v-2h2Zm6-12v2H9V4h6Zm4 2h-2V4h-2V2h4v4Zm0 6V6h2v6h-2Zm-2 2v-2h2v2h-2Zm-2 2v-2h2v2h-2Zm0 2h-2v-2h2v2Zm0 0h2v4h-2v-4Z"/> </svg></div>
-            <div data-pointer><svg fill="none" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"> <path d="M22 4H2v16h20V4zM4 18V6h16v12H4zM8 8H6v2h2v2h2v2h4v-2h2v-2h2V8h-2v2h-2v2h-4v-2H8V8z" fill="currentColor"/> </svg></div>
+            <div data-pointer><a target="_blank" href="https://github.com/adrianvla"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"> <path fill="currentColor" d="M5 2h4v2H7v2H5V2Zm0 10H3V6h2v6Zm2 2H5v-2h2v2Zm2 2v-2H7v2H3v-2H1v2h2v2h4v4h2v-4h2v-2H9Zm0 0v2H7v-2h2Zm6-12v2H9V4h6Zm4 2h-2V4h-2V2h4v4Zm0 6V6h2v6h-2Zm-2 2v-2h2v2h-2Zm-2 2v-2h2v2h-2Zm0 2h-2v-2h2v2Zm0 0h2v4h-2v-4Z"/> </svg></a></div>
+            <div data-pointer><a target="_blank" href="mailto:admin@morisinc.net"><svg fill="none" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"> <path d="M22 4H2v16h20V4zM4 18V6h16v12H4zM8 8H6v2h2v2h2v2h4v-2h2v-2h2V8h-2v2h-2v2h-4v-2H8V8z" fill="currentColor"/> </svg></a></div>
         </div>
     </div>
     <div class="main grid-item">

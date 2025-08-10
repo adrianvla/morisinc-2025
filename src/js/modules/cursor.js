@@ -1,8 +1,14 @@
 import gsap from "gsap";
 import {makeSpark} from "./neons";
+import hasMouse from "../utils/hasMouse";
+import {isMobileDevice} from "../utils/isMobileDevice";
 
 function initCursor(){
     const cursor = document.querySelector('.cursor');
+    if(isMobileDevice()) {
+        cursor.remove();
+        return;
+    }
     const c = cursor.querySelector('.c');
     const inner = cursor.querySelector('.inner');
     let lastX = window.innerWidth/2;
@@ -40,7 +46,8 @@ function initCursor(){
         // Check if the element under the cursor or any of its parents has data-pointer
         let el = document.elementFromPoint(mouseX, mouseY);
         isPointer = false;
-        while (el) {
+        let maxDepth = 5;
+        while (el && maxDepth-- > 0) {
             if (el.hasAttribute && el.hasAttribute('data-pointer')) {
                 isPointer = true;
                 break;

@@ -1,7 +1,13 @@
 import gsap from "gsap";
 import { RoughEase } from "gsap/EasePack";
+import isSafari from "../utils/isSafari";
 
 gsap.registerPlugin(RoughEase);
+
+// Add safari class to body if Safari is detected
+if (isSafari()) {
+    document.body.classList.add('safari');
+}
 
 let canvas = document.querySelector('#sparks');
 let ctx = canvas ? canvas.getContext('2d') : null;
@@ -217,12 +223,21 @@ function turnOnNeon(el) {
     const tl = gsap.timeline();
     state.currentTimeline = tl;
 
+    // Use simple text shadow for Safari, complex for others
+    const textShadow = isSafari()
+        ? `0 0 10px ${shadowColor}`
+        : `0 0 7px ${shadowColor}, 0 0 21px ${shadowColor}, 0 0 42px ${shadowColor}`;
+
+    const filter = isSafari()
+        ? "none"
+        : `drop-shadow(0 0 10px ${shadowColor})`;
+
     // Initial glow animation for all letters
     tl.fromTo(el, {
         textShadow: `0 0 0 ${shadowColor.replace('50%', '0%')}`
     }, {
-        textShadow: `0 0 7px ${shadowColor}, 0 0 21px ${shadowColor}, 0 0 42px ${shadowColor}`,
-        filter: `drop-shadow(0 0 10px ${shadowColor})`,
+        textShadow: textShadow,
+        filter: filter,
         ease: RoughEase.ease.config({ points: 5, randomize: true, clamp: false })
     });
 
@@ -388,9 +403,11 @@ function changeNeonColor(hueValue = null) {
         const state = neonStates.get(el);
 
         if (state && state.isOn) {
-            // Update elements that are currently on with full glow effects
-            const newFilter = `drop-shadow(0 0 10px ${shadowColor})`;
-            const newTextShadow = `0 0 7px ${shadowColor}, 0 0 21px ${shadowColor}, 0 0 42px ${shadowColor}`;
+            // Update elements that are currently on with Safari-aware glow effects
+            const newFilter = isSafari() ? "none" : `drop-shadow(0 0 10px ${shadowColor})`;
+            const newTextShadow = isSafari()
+                ? `0 0 10px ${shadowColor}`
+                : `0 0 7px ${shadowColor}, 0 0 21px ${shadowColor}, 0 0 42px ${shadowColor}`;
 
             gsap.to(el, {
                 filter: newFilter,
@@ -451,11 +468,11 @@ function destroyNeon(element) {
             });
 
             // Remove the letter spans and restore original text
-            const originalText = element.getAttribute('data-original-text');
-            if (originalText) {
-                element.textContent = originalText;
-                element.removeAttribute('data-original-text');
-            }
+            // const originalText = element.getAttribute('data-original-text');
+            // if (originalText) {
+            //     element.textContent = originalText;
+            //     element.removeAttribute('data-original-text');
+            // }
         }
 
         // Remove any neon-related classes
@@ -489,4 +506,26 @@ function destroyAllNeons() {
     return destroyedCount;
 }
 
-export { turnOnNeon, turnOffNeon, toggleNeon, makeSpark, changeNeonColor, destroyNeon, destroyAllNeons };
+/**
+ * Destroys all neon elements except for sign and cleans up all associated resources
+ */
+function destroyAllNeonsExceptSign() {
+    const neonElements = document.querySelectorAll('.neon:not(.sign-c .sign > span)');
+    let destroyedCount = 0;
+
+    neonElements.forEach(element => {
+        const state = neonStates.get(element);
+        if (state) {
+            destroyNeon(element);
+            destroyedCount++;
+        }
+    });
+
+    // Also clear any orphaned states (shouldn't happen, but good safety measure)
+    // Note: WeakMap doesn't have a clear() method, but destroying individual elements should handle this
+
+    console.log(`Destroyed ${destroyedCount} neon elements`);
+    return destroyedCount;
+}
+
+export { turnOnNeon, turnOffNeon, toggleNeon, makeSpark, changeNeonColor, destroyNeon, destroyAllNeons, destroyAllNeonsExceptSign };

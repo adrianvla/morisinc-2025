@@ -10,21 +10,21 @@
   </div>
 </div>
 <div class="txt-sec" data-scroll>
-  <h2>Installation</h2>
+    <h2>Installation</h2>
   <ul>
     <li>Download the repo</li>
     <li>Replace M5.BtnA.isPressed() at line 112 of src/main.cpp to match your 'tube tick' for radiation counting.</li>
   </ul>
   <pre style="margin: 0; line-height: 125%"><span style="color: #66d9ef">if</span> <span style="color: #f8f8f2">(M5.BtnA.isPressed())</span> <span style="color: #f8f8f2">{</span>
-						<span style="color: #66d9ef">if</span> <span style="color: #f8f8f2">(flag_tick)</span> <span style="color: #f8f8f2">{</span>
-						  <span style="color: #f8f8f2">signalHandler();</span>
+    <span style="color: #66d9ef">if</span> <span style="color: #f8f8f2">(flag_tick)</span> <span style="color: #f8f8f2">{</span>
+      <span style="color: #f8f8f2">signalHandler();</span>
 
-						  <span style="color: #f8f8f2">flag_tick</span> <span style="color: #f92672">=</span> <span style="color: #f8f8f2">false;</span>
-						<span style="color: #f8f8f2">}</span>
-					  <span style="color: #f8f8f2">}</span> <span style="color: #66d9ef">else</span> <span style="color: #f8f8f2">{</span>
-						<span style="color: #f8f8f2">flag_tick</span> <span style="color: #f92672">=</span> <span style="color: #f8f8f2">true;</span>
-					  <span style="color: #f8f8f2">}</span>
-					  </pre>
+      <span style="color: #f8f8f2">flag_tick</span> <span style="color: #f92672">=</span> <span style="color: #f8f8f2">false;</span>
+    <span style="color: #f8f8f2">}</span>
+    <span style="color: #f8f8f2">}</span> <span style="color: #66d9ef">else</span> <span style="color: #f8f8f2">{</span>
+    <span style="color: #f8f8f2">flag_tick</span> <span style="color: #f92672">=</span> <span style="color: #f8f8f2">true;</span>
+    <span style="color: #f8f8f2">}</span>
+</pre>
   <ul>
     <li>The 2nd button (button B) resets the counter</li>
     <li>Compile the project for M5Stack core, I've used PlatformIO on Visual Studio Code instead of Arduino.</li>

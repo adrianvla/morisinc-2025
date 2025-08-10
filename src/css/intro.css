@@ -38,7 +38,7 @@
 .grid-item:not(.loader){
     position:relative;
 }
-.grid-item:not(.loader):before{
+.grid-item:not(.loader)::before{
     content:"";
     position:absolute;
     top:0;
@@ -48,7 +48,7 @@
     background:var(--background);
     z-index:10;
 }
-.grid-item:not(.loader):after{
+.grid-item:not(.loader)::after{
     content:"";
     position:absolute;
     top:0;

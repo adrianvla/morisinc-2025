@@ -15,6 +15,7 @@ document.addEventListener('DOMContentLoaded', () => {
         tl.to(":root", {
             "--background": colors[index],
             "--primary": colors[(index + 4) % colors.length],
+            "--secondary": colors[(index + 1) % colors.length],
             duration: 0.5,
             ease: "power1.inOut"
         }, "<");

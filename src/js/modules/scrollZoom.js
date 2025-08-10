@@ -1,4 +1,5 @@
 import { lenis } from './smoothScrolling';
+import {isMobileDevice} from "../utils/isMobileDevice";
 
 let lastScrollY = 0;
 let v = 0;
@@ -6,6 +7,7 @@ let mainContent = null;
 let accumulator = 0;
 
 function initScrollZoom() {
+    if(isMobileDevice()) return;
     mainContent = document.querySelector('.main-content');
 
     if (!mainContent) {
@@ -30,7 +32,8 @@ function applyZoomEffect() {
     const minScale = 0.5; // Minimum zoom scale
     const zoomFactor = 0.00007; // How much each velocity unit affects zoom
     const a = (Math.atan(Math.abs(v * zoomFactor))*2/Math.PI);
-    const scale = Math.max(minScale, 1 - a);
+    let scale = Math.max(minScale, 1 - a);
+    if(scale > 0.99) scale = 1; // Reset to 1 if close enough to avoid jitter
 
     // Apply transform with smooth transition
     mainContent.style.transform = `scale(${scale})`;

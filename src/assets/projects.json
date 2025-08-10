@@ -18,5 +18,9 @@
   {"category": "Archive", "items": [
     {"name": "old website", "url": "https://old.morisinc.net", "image": "/assets/img/old-morisinc-net.png", "directURL": true, "desc": "The older version of this website"},
     {"name": "mc website", "url": "https://keke.morisinc.net", "image": "/assets/img/keke-morisinc-net.png", "directURL": true, "desc": "A website dedicated to my Minecraft creations when I was youger"}
+  ]},
+  {"category": "HIDDEN", "items": [
+    {"name": "about", "url": "about.html", "image": "/assets/img/img.png", "directURL": false, "desc": "about"},
+    {"name": "cv", "url": "cv.html", "image": "", "directURL": false, "desc": "cv"}
   ]}
 ]

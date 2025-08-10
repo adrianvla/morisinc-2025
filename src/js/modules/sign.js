@@ -6,8 +6,14 @@ function initSign(){
     turnOnNeon(document.querySelector(".sign-c .sign > span"));
 
     // Add click event to trigger the falling animation
-    const signContainer = document.querySelector(".sign-c");
     //on scroll make sign fall off
+    initSignFalloff();
+}
+
+function initSignFalloff(){
+    const signContainer = document.querySelector(".sign-c");
+    if(!signContainer) return;
+
     let once = true;
     lenis.on('scroll', () => {
         if(!once) return;
@@ -20,7 +26,6 @@ function initSign(){
         once = false;
         fallOffSign();
     });
-
 }
 
 function fallOffSign() {
@@ -28,6 +33,7 @@ function fallOffSign() {
     const sign = document.querySelector(".sign");
     const hinge1 = document.querySelector(".sign .a1");
     const hinge2 = document.querySelector(".sign .a2");
+    if(!signContainer || !sign || !hinge1 || !hinge2) return;
     turnOffNeon(document.querySelector(".sign-c .sign > span"));
 
     // Create timeline for the falling animation
@@ -168,4 +174,4 @@ function createBreakParticles(element) {
     }
 }
 
-export default initSign;
+export {initSign, initSignFalloff};

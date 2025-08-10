@@ -10,6 +10,13 @@
     text-shadow: 0 0 7px var(--neon-green), 0 0 21px var(--neon-green), 0 0 42px var(--neon-green);
     filter: drop-shadow(0 0 10px var(--neon-green));
 }
+
+/* Safari-specific simple neon effect */
+.safari .neon.on{
+    text-shadow: 0 0 10px var(--neon-green);
+    filter: none;
+}
+
 #sparks{
     position: fixed;
     top: 0;

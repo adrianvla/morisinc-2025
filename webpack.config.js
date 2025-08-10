@@ -60,13 +60,13 @@ module.exports = {
             template: './src/html/project.html',
             filename: 'project',
         }),
-        // new HtmlWebpackPlugin({
-        //     template: './src/about/index.html',
-        //     filename: 'about',
-        // }),
-        // new HtmlWebpackPlugin({
-        //     template: './src/project.html',
-        //     filename: 'project',
-        // }),
+        new HtmlWebpackPlugin({
+            template: './src/html/project.html',
+            filename: 'about',
+        }),
+        new HtmlWebpackPlugin({
+            template: './src/html/project.html',
+            filename: 'cv',
+        }),
     ],
 };

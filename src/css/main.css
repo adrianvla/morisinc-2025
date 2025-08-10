@@ -3,8 +3,8 @@
 }
 body{
     color:var(--black);
+    background:var(--background);
 }
-
 .container {
     display: grid;
     grid-template-columns: 10px 250px 1fr 1fr 1fr 1fr 10px;
@@ -293,7 +293,9 @@ h5 + h3{
 .sidebar .s0 .list .list-item a{
     color: var(--black);
     text-decoration: none;
-    font-family: monospace;
+    font-family: 'PP Neue Montreal Mono',monospace;
+    font-weight:300;
+    font-size:0.75rem;
     cursor:none;
     width:100%;
     padding:5px;
@@ -330,6 +332,9 @@ h5 + h3{
     height:1em;
     text-shadow:  0 0 20px var(--black);
 }
+.safari .sidebar .s1 h4:nth-child(1) span{
+    text-shadow:  0 0 15px rgba(0,0,0,0.1);
+}
 .sidebar .s1 .projects{
     display: flex;
     flex-direction: column;
@@ -339,6 +344,49 @@ h5 + h3{
 .sidebar .s1 .projects .project{
     font-family: 'Sterion', sans-serif;
     white-space: nowrap;
+}
+
+/* Table of Contents indentation styles */
+.sidebar .s1 .projects .toc-item {
+    cursor: pointer;
+    transition: all 0.2s ease;
+    padding: 2px 0;
+    font-size: 0.9em;
+}
+
+.sidebar .s1 .projects .toc-item:hover {
+    transform: translateX(2px);
+}
+
+/* Indentation based on header level */
+.sidebar .s1 .projects .toc-item[data-indent="0"] {
+    margin-left: 0;
+    font-weight: bold;
+}
+
+.sidebar .s1 .projects .toc-item[data-indent="1"] {
+    margin-left: 15px;
+    font-size: 0.85em;
+}
+
+.sidebar .s1 .projects .toc-item[data-indent="2"] {
+    margin-left: 30px;
+    font-size: 0.8em;
+}
+
+.sidebar .s1 .projects .toc-item[data-indent="3"] {
+    margin-left: 45px;
+    font-size: 0.75em;
+}
+
+.sidebar .s1 .projects .toc-item[data-indent="4"] {
+    margin-left: 60px;
+    font-size: 0.7em;
+}
+
+.sidebar .s1 .projects .toc-item[data-indent="5"] {
+    margin-left: 75px;
+    font-size: 0.65em;
 }
 .sidebar .s2{
     flex: 1;
@@ -367,6 +415,16 @@ h5 + h3{
 .sidebar .s3 svg{
     width:100%;
     height:100%;
+}
+.sidebar .s3 a{
+    color:inherit;
+    text-decoration: none;
+    width:100%;
+    height:100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor:none;
 }
 h6{
     background:var(--black);
@@ -460,10 +518,25 @@ section.project{
 }
 section.project.hero{
     height:calc(var(--main-height) / 2);
-    border:0px solid var(--border);
-    padding: 0px;
-    box-shadow: inset 0 0 0 0px var(--black);
+    border:0 solid var(--border);
+    padding: 0;
+    box-shadow: inset 0 0 0 0 var(--black);
     background:var(--background);
+    position: relative;
+}
+section.project.hero::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(to bottom,
+        transparent 0%,
+        transparent 80%,
+        var(--background) 100%);
+    pointer-events: none;
+    z-index: 1;
 }
 section.project > h2{
     font-family: 'OffBit Trial 101', sans-serif;

@@ -30,6 +30,8 @@ function addProject(name, desc, img_src){
 }
 
 function fetchProjects() {
+    index = 0;
+    $(".s1 .projects").html("");
     $(".s1 h4 span").text(getTranslation("PROJECTS"));
     $("[data-barba-namespace='project']").remove();
     return new Promise((resolve, reject) => {
@@ -42,6 +44,7 @@ function fetchProjects() {
                 try {
                     // Process each category
                     data.forEach(category => {
+                        if(category.category === "HIDDEN") return;
                         // Add category header
                         const categoryHeader = $(`<h4 class="pill"><span>${category.category}</span></h4>`);
                         $(".s1 .projects").append(categoryHeader);

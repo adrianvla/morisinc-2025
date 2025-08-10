@@ -3,6 +3,7 @@ import Snap from 'lenis/snap';
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import gsap from "gsap";
 import { turnOnNeon, turnOffNeon } from './neons.js';
+import {isMobileDevice} from "../utils/isMobileDevice";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -127,9 +128,14 @@ function snapToSections(){
     const height = mainElement.getBoundingClientRect().height;
     //count sections
     const count = document.querySelectorAll('section.project').length;
-    for(let i = 0; i < count; i++) {
+    if(!isMobileDevice())
+        /*for(let i = 0; i < count; i++) {
+            snap.add(i*height/3);
+        }
+    else*/ for(let i = 0; i < count; i++) {
         snap.add(i*height);
     }
+
 
     // Initialize with first section active
     setTimeout(() => {

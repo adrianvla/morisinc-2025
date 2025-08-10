@@ -1,0 +1,71 @@
+section.content{
+    font-family: 'PP Neue Montreal Mono', monospace;
+}
+section.content p, section.content li{
+    font-size: 1.2em;
+    line-height: 1.5;
+    margin: 0.5em 0;
+    font-family: 'PP Neue Montreal Mono', monospace;
+    font-weight: 400;
+}
+section.content h1{
+    font-family: 'Sterion', monospace;
+    font-size: 2.5em;
+    color:var(--primary);
+    text-shadow: -1px -1px 0 var(--black), 1px -1px 0 var(--black), -1px 1px 0 var(--black), 1px 1px 0 var(--black);
+}
+section.content h2{
+    font-size:2em;
+}
+section.content h3{
+    font-size:1.5em;
+}
+section.content h4{
+    font-size:1.2em;
+}
+section.content h5 {
+    font-size: 1em;
+}
+section.content h2,
+section.content h3,
+section.content h4,
+section.content h5,
+section.content h6 {
+    font-family: 'OffBit Trial 101 Bold', monospace;
+    color:var(--secondary);
+    text-shadow: -1px -1px 0 var(--black), 1px -1px 0 var(--black), -1px 1px 0 var(--black), 1px 1px 0 var(--black);
+}
+
+span.btn{
+    color:var(--background);
+    background:var(--black);
+    display:inline-flex;
+    padding: 0px 25px;
+    font-family: 'Sterion', sans-serif;
+    align-items: center;
+    justify-content: center;
+    margin-top:5px;
+    margin-bottom:5px;
+}
+span.btn span{
+    height:1em;
+}
+.pre-parent{
+    background:var(--background);
+    border:1px solid var(--black);
+    padding: 10px;
+    box-sizing: border-box;
+    /*width:max-content;*/
+    margin:auto;
+}
+pre{
+    background: var(--black);
+    box-sizing: border-box;
+    border: 1px solid var(--black);
+    font-family: "OffBit Trial 101", monospace;
+    padding:10px;
+    border-radius: 10px;
+    /*width:max-content;*/
+    position: relative;
+    box-shadow:0 0 5px #0000004a;
+}

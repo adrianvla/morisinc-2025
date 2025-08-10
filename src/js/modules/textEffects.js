@@ -182,10 +182,10 @@ function initTextEffects() {
 
 
 
-    const textBlocks = document.querySelectorAll(".text-block");
+    const textBlocks = document.querySelectorAll(".txt-sec");
 
     textBlocks.forEach((textBlock) => {
-        const st = SplitText.create(textBlock.querySelector("p[scramble-text-effect]"), { type: "chars", charsClass: "char" });
+        const st = SplitText.create(textBlock.querySelectorAll("p, li"), { type: "chars", charsClass: "char" });
 
         st.chars.forEach((char) => {
             gsap.set(char, { attr: { "data-content": char.innerHTML } });

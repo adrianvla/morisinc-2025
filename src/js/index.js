@@ -11,22 +11,23 @@ import initCursor from "./modules/cursor";
 import {translateEverything} from "./modules/translator";
 import './modules/barcodes';
 import './modules/changeTheme';
-import initIntro from "./moments/intro";
+import {initIntro} from "./moments/intro";
 import {initTextEffects} from "./modules/textEffects";
 import './modules/languageSelector';
 import leave from "./transitions/leave";
 import enter from "./transitions/enter";
 import './modules/neons';
-import {turnOnNeon} from "./modules/neons";
-import initSign from "./modules/sign";
+import {destroyAllNeons, destroyAllNeonsExceptSign, turnOnNeon} from "./modules/neons";
+import {initSign, initSignFalloff} from "./modules/sign";
 import initScrollZoom from "./modules/scrollZoom";
 import './modules/clock';
 import { initAutoFitText } from './modules/autoFitText.js';
 import { initSterionHyphenFix } from './modules/sterionHyphenFix.js';
-import {getProjectName, isProjectPage} from "./modules/pathDetector";
+import {getProjectName, isOtherPage, isProjectPage} from "./modules/pathDetector";
 import {fetchProjects} from "./modules/fetchProjects";
-import {generateProject} from "./modules/projects";
+import {generateProject, setupTextRevealEffects} from "./modules/projects";
 import homeToProject from "./transitions/leave/homeToProject";
+import {testForMobile} from "./utils/isMobileDevice";
 
 // Initialize BarbaJS with enhanced transitions
 barba.init({
@@ -35,31 +36,24 @@ barba.init({
 
     transitions: [
         {
-            name: 'default',
-            leave(data) {
-                // Custom transition for leaving home
-                lenis.scrollTo(0);
-                console.error("Default transition");
-                return leave();
-            },
-            enter(data) {
-                lenis.scrollTo(0);
-                return enter();
-            }
-        },
-        {
             name: 'from-home-to-project',
             from: { namespace: 'home' },
             to: { namespace: 'project' },
             leave(data) {
                 // Custom transition for leaving home
+                destroyAllNeonsExceptSign();
                 return leave(data.current.container);
             },
             enter(data) {
                 lenis.scrollTo(0);
                 $(".projects").html("");
 
-                return enter(generateProject());
+                return enter(new Promise(r=>{generateProject().then(()=> {
+                    setupTextRevealEffects();
+                    initSignFalloff();
+                    r();
+                })}));
+
             }
         },
         {
@@ -68,6 +62,7 @@ barba.init({
             to: { namespace: 'home' },
             leave(data) {
                 // Custom transition for leaving home
+                destroyAllNeonsExceptSign();
                 return homeToProject(data.current.container);
             },
             enter(data) {
@@ -79,6 +74,27 @@ barba.init({
                     initAutoFitText();
                     initSterionHyphenFix();
                     initScrollZoom();
+                    initSignFalloff();
+                    r();
+                })}));
+            }
+        },
+        {
+            name: 'from-project-to-project',
+            from: { namespace: 'project' },
+            to: { namespace: 'project' },
+            leave(data) {
+                // Custom transition for leaving home
+                destroyAllNeonsExceptSign();
+                return homeToProject(data.current.container);
+            },
+            enter(data) {
+                lenis.scrollTo(0);
+                $(".projects").html("");
+
+                return enter(new Promise(r=>{generateProject().then(()=> {
+                    setupTextRevealEffects();
+                    initSignFalloff();
                     r();
                 })}));
             }
@@ -126,6 +142,8 @@ window.addEventListener('resize', setHeightValueOfMain);
 
 // Initialize on first load
 document.addEventListener('DOMContentLoaded', () => {
+    $(".wait-for-data").remove();
+    testForMobile();
     // Hide loading screen initially
     initLenises();
     translateEverything();
@@ -135,11 +153,13 @@ document.addEventListener('DOMContentLoaded', () => {
     initScrollZoom();
     $(".s1").css("height",`${$(".s1").height()}px`);
     console.log(`%cIdentified as ${isProjectPage() ? 'Project' : 'home'} page, of project "${getProjectName()}"`, `color: #0f0`);
-    initIntro(isProjectPage() ? generateProject() : fetchProjects()).then(r => {
+    initIntro((isProjectPage() || isOtherPage()) ? generateProject() : fetchProjects()).then(r => {
         initSign();
-        if(!isProjectPage()){
+        if(!(isProjectPage() || isOtherPage())){
             turnOnNeon(document.querySelector(".s1 .projects .project.neon"));
             initProjects();
+        }else{
+            setupTextRevealEffects();
         }
     });
     setTimeout(() => {

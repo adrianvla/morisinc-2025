@@ -9,7 +9,13 @@
  */
 function isProjectPage() {
     const path = window.location.pathname;
-    return path === '/project' || path === '/project.html';
+    return path === '/project';
+}
+
+
+function isOtherPage(){
+    const path = window.location.pathname;
+    return ["/cv","/CV","/about","/ABOUT"].includes(path);
 }
 
 /**
@@ -18,7 +24,10 @@ function isProjectPage() {
  */
 function getProjectName() {
     if (!isProjectPage()) {
-        return null;
+        if(isOtherPage()){
+            return window.location.pathname.replace("/","");
+        }else
+            return null;
     }
 
     const urlParams = new URLSearchParams(window.location.search);
@@ -43,4 +52,4 @@ function getProjectQuery() {
     return search.startsWith('?') ? search.substring(1) : null;
 }
 
-export { isProjectPage, getProjectName, getProjectQuery };
+export { isProjectPage, getProjectName, getProjectQuery, isOtherPage};

@@ -34,7 +34,8 @@ const translationStrings = {
         "Language Selection":"言語選択",
         "Projects":"プロジェクト",
         "Your Experience":"体験が",
-        "Is Loading":"読み込んでいます"
+        "Is Loading":"読み込んでいます",
+        "CV": "略歴",
     },
     de:{
         "About": "Uber Mich",
@@ -42,6 +43,7 @@ const translationStrings = {
         "Lang": "Sprache",
         "LANGUAGE SELECTION": "SPRACHAUSWAHL",
         "Projects":"Projekte",
+        "CV": "Lebenslauf",
     },
     ru:{
         "About": "Обо мне",
@@ -52,6 +54,7 @@ const translationStrings = {
         "Vlasov":"Власов",
         "LANGUAGE SELECTION": "ВЫБОР ЯЗЫКА",
         "Projects":"Проекты",
+        "CV": "Резюме",
     },
     fr:{
         "About": "À Propos",

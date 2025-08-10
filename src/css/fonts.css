@@ -77,100 +77,66 @@
   font-display: swap;
 }
 
-/* Aver Regular */
-@font-face {
-  font-family: 'Aver';
-  src: url('../assets/fonts/aver-font/Aver-opKo.ttf') format('truetype');
-  font-weight: 400;
-  font-style: normal;
-  font-display: swap;
-}
-
-/* Aver Bold */
-@font-face {
-  font-family: 'Aver Bold';
-  src: url('../assets/fonts/aver-font/AverBold-4YlW.ttf') format('truetype');
-  font-weight: 700;
-  font-style: normal;
-  font-display: swap;
-}
-
-/* Aver Italic */
-@font-face {
-  font-family: 'Aver Italic';
-  src: url('../assets/fonts/aver-font/AverItalic-e4Wn.ttf') format('truetype');
-  font-weight: 400;
-  font-style: italic;
-  font-display: swap;
-}
-
-/* Aver Bold Italic */
-@font-face {
-  font-family: 'Aver Bold Italic';
-  src: url('../assets/fonts/aver-font/AverBoldItalic-01yG.ttf') format('truetype');
-  font-weight: 700;
-  font-style: italic;
-  font-display: swap;
-}
-
-/* Noto Serif JP - Variable */
-@font-face {
-  font-family: 'Noto Serif JP';
-  src: url('../assets/fonts/Noto_Serif_JP/NotoSerifJP-VariableFont_wght.ttf') format('truetype');
-  font-weight: 100 900;
-  font-style: normal;
-  font-display: swap;
-}
-
-/* Noto Serif JP - Regular */
-@font-face {
-  font-family: 'Noto Serif JP';
-  src: url('../assets/fonts/Noto_Serif_JP/static/NotoSerifJP-Regular.ttf') format('truetype');
-  font-weight: 400;
-  font-style: normal;
-  font-display: swap;
-}
-
-/* Noto Serif JP - Bold */
-@font-face {
-  font-family: 'Noto Serif JP';
-  src: url('../assets/fonts/Noto_Serif_JP/static/NotoSerifJP-Bold.ttf') format('truetype');
-  font-weight: 700;
-  font-style: normal;
-  font-display: swap;
-}
-
-/* DotGothic16 - Regular */
 @font-face {
   font-family: 'DotGothic16';
-  src: url('../assets/fonts/DotGothic16,Noto_Serif_JP/DotGothic16/DotGothic16-Regular.ttf') format('truetype');
+  src: url('../assets/fonts/DotGothic16/DotGothic16/DotGothic16-Regular.ttf') format('truetype');
   font-weight: 400;
   font-style: normal;
   font-display: swap;
 }
 
-
-/* Felidae - Regular */
+/* PP Neue Montreal Mono - Thin */
 @font-face {
-  font-family: 'Felidae';
-  src: url('../assets/fonts/Felidae/Felidae.ttf') format('truetype');
-  font-weight: 400;
+  font-family: 'PP Neue Montreal Mono';
+  src: url('../assets/fonts/PP Neue Montreal Mono/otf/PPNeueMontrealMono-Thin.otf') format('opentype');
+  font-weight: 100;
   font-style: normal;
   font-display: swap;
 }
 
-
-/* Utility classes for easy font usage */
-.font-dirtyline {
-  font-family: 'Dirtyline', serif;
+/* PP Neue Montreal Mono - Book */
+@font-face {
+  font-family: 'PP Neue Montreal Mono';
+  src: url('../assets/fonts/PP Neue Montreal Mono/otf/PPNeueMontrealMono-Book.otf') format('opentype');
+  font-weight: 300;
+  font-style: normal;
+  font-display: swap;
 }
 
-.font-editorial {
-  font-family: 'PP Editorial New', serif;
+/* PP Neue Montreal Mono - Medium */
+@font-face {
+  font-family: 'PP Neue Montreal Mono';
+  src: url('../assets/fonts/PP Neue Montreal Mono/otf/PPNeueMontrealMono-Medium.otf') format('opentype');
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
 }
 
-.font-rader {
-  font-family: 'PP Rader', sans-serif;
+/* PP Neue Montreal Mono - Bold */
+@font-face {
+  font-family: 'PP Neue Montreal Mono';
+  src: url('../assets/fonts/PP Neue Montreal Mono/otf/PPNeueMontrealMono-Bold.otf') format('opentype');
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* PP Neue Montreal Mono - Regular Italic */
+@font-face {
+  font-family: 'PP Neue Montreal Mono';
+  src: url('../assets/fonts/PP Neue Montreal Mono/otf/PPNeueMontrealMono-RegularItalic.otf') format('opentype');
+  font-weight: 400;
+  font-style: italic;
+  font-display: swap;
+}
+
+/* PP Neue Montreal Mono - Bold Italic */
+@font-face {
+  font-family: 'PP Neue Montreal Mono';
+  src: url('../assets/fonts/PP Neue Montreal Mono/otf/PPNeueMontrealMono-BoldItalic.otf') format('opentype');
+  font-weight: 700;
+  font-style: italic;
+  font-display: swap;
 }
 
 /* Utility classes for OffBit fonts */
@@ -193,47 +159,41 @@
   font-family: 'OffBit Trial Regular', monospace;
 }
 
-.font-serif{
-  font-family: 'Noto Serif JP', serif;
-}
 .font-sans-serif{
   font-family: sans-serif;
-}
-
-/* Utility classes for Aver fonts */
-.font-aver {
-  font-family: 'Aver', sans-serif;
-}
-.font-aver-bold {
-  font-family: 'Aver Bold', sans-serif;
-}
-.font-aver-italic {
-  font-family: 'Aver Italic', sans-serif;
-}
-.font-aver-bold-italic {
-  font-family: 'Aver Bold Italic', sans-serif;
-}
-
-/* Utility classes for Noto Serif JP */
-.font-noto-serif-jp {
-  font-family: 'Noto Serif JP', serif;
 }
 
 /* Utility classes for DotGothic16 */
 .font-dotgothic16 {
   font-family: 'DotGothic16', monospace;
 }
-/* Utility classes for Felidae */
-.font-felidae {
-  font-family: 'Felidae', serif;
-  letter-spacing: 0.1em;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  font-smooth: always;
-  /* Crisp bold effect for retina and standard displays */
-  text-shadow:
-          0.4px 0 0 currentColor,
-          -0.4px 0 0 currentColor,
-          0 0.4px 0 currentColor,
-          0 -0.4px 0 currentColor;
+
+/* Utility classes for PP Neue Montreal Mono */
+.font-pp-neue-montreal-mono {
+  font-family: 'PP Neue Montreal Mono', monospace;
+}
+.font-pp-neue-montreal-mono-thin {
+  font-family: 'PP Neue Montreal Mono', monospace;
+  font-weight: 100;
+}
+.font-pp-neue-montreal-mono-book {
+  font-family: 'PP Neue Montreal Mono', monospace;
+  font-weight: 300;
+}
+.font-pp-neue-montreal-mono-medium {
+  font-family: 'PP Neue Montreal Mono', monospace;
+  font-weight: 500;
+}
+.font-pp-neue-montreal-mono-bold {
+  font-family: 'PP Neue Montreal Mono', monospace;
+  font-weight: 700;
+}
+.font-pp-neue-montreal-mono-italic {
+  font-family: 'PP Neue Montreal Mono', monospace;
+  font-style: italic;
+}
+.font-pp-neue-montreal-mono-bold-italic {
+  font-family: 'PP Neue Montreal Mono', monospace;
+  font-weight: 700;
+  font-style: italic;
 }

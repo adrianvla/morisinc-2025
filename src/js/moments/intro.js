@@ -6,6 +6,7 @@ import {lenis} from "../modules/smoothScrolling";
 import {fetchProjects} from "../modules/fetchProjects";
 import {isProjectPage} from "../modules/pathDetector";
 import {generateProject} from "../modules/projects";
+import {isMobileDevice} from "../utils/isMobileDevice";
 
 let hasLoadedImages = false;
 let tl = gsap.timeline({});
@@ -49,7 +50,7 @@ function logImageLoadingProgress() {
     }
     load().then(loadedEverything);
 }
-
+let fns = [];
 function initAnimations(p){
     p.then(logImageLoadingProgress);
     return new Promise(resolve => {
@@ -63,7 +64,7 @@ function initAnimations(p){
             right:"50%"
         },{
             right:"75%",
-            duration:2,
+            duration:1,
             scrambleText: {
                 text: (i, target) => target.dataset.text,
                 chars: (i, target) => target.dataset.scrambleChars || ",._&*;:'\"-+=~`|/\\",
@@ -74,7 +75,7 @@ function initAnimations(p){
             left:"50%"
         },{
             left:"75%",
-            duration:2,
+            duration:1,
             scrambleText: {
                 text: (i, target) => target.dataset.text,
                 chars: (i, target) => target.dataset.scrambleChars || ",._&*;:'\"-+=~`|/\\",
@@ -102,12 +103,16 @@ function initAnimations(p){
             duration:1,
             ease: "power1.inOut",
             onComplete: () => {
-                if(!hasLoadedImages)
-                    tl.pause();
+                if(!isMobileDevice())
+                    if(!hasLoadedImages)
+                        tl.pause();
             },
             onStart: () => {
                 if(hasLoadedImages)
                     tl.timeScale(1);
+                if(isMobileDevice())
+                    if(!hasLoadedImages)
+                        tl.pause();
             }
         },"<1");
         tl.to('.nav4',{
@@ -151,15 +156,21 @@ function initAnimations(p){
 
         tl.set('.loader',{
             display: "none",
-            onComplete: () => {resolve();}
+            onComplete: () => {
+                resolve();
+                fns.forEach(fn => fn());
+            }
         },"<0.5");
 
     });
 }
 
+function subscribeToEndOfIntro(fn){
+    fns.push(fn);
+}
 
 function initIntro(p){
     return initAnimations(p);
 }
 
-export default initIntro;
+export {initIntro, subscribeToEndOfIntro};
