@@ -247,6 +247,8 @@ function generateProject(){
         if(!name){
             console.error("Project name not found in URL");
             reject(new Error("Project name not found"));
+            //move to /
+            window.location.href = "/";
             return;
         }
         const nameOfTitle = name.charAt(0).toUpperCase() + name.slice(1);

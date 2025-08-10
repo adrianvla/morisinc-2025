@@ -6,7 +6,7 @@ import {getProjectName} from "./pathDetector";
 import {getTranslation} from "./translator";
 import {colors} from "./changeTheme";
 let index = 0;
-function addProject(name, desc, img_src){
+function addProject(name, desc, img_src, directURL, url){
     const myId = yeast().replaceAll('-', '_').replaceAll(".", "_");
     let clickable = $(`<div class="project neon" id="${myId}">${name}</div>`);
     $(".s1 .projects").append(clickable);
@@ -22,6 +22,10 @@ function addProject(name, desc, img_src){
             </section>`);
     $("main.main-content").append(section);
     $(section).on("click", ()=>{
+        if(directURL) {
+            window.open(url, "_blank");
+            return;
+        }
         window.redirectType = "home-to-project";
         window.projectSectionID = `section-${myId}`;
         barba.go(`/project?${name.replaceAll(' ', '-').replaceAll('.', '_')}`);
@@ -51,7 +55,7 @@ function fetchProjects() {
 
                         // Add projects for this category
                         category.items.forEach(project => {
-                            addProject(project.name, project.desc, project.image);
+                            addProject(project.name, project.desc, project.image, project.directURL, project.url);
                         });
                     });
 
