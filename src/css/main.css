@@ -814,3 +814,16 @@ section b::after{
     left: 0;
     background: var(--black);
 }
+
+section.page404{
+    margin-top:0;
+    height:var(--main-height);
+}
+section.page404 > div{
+    display:flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height:100%;
+    width:100%;
+}

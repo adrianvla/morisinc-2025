@@ -8,8 +8,8 @@ import { ScrambleTextPlugin } from "gsap/ScrambleTextPlugin";
 import {getTranslation} from "./translator";
 import yeast from "yeast";
 import {turnOnNeon, turnOffNeon, destroyAllNeonsExceptSign} from "./neons";
-import {initTextEffects} from "./textEffects";
 import initLazyLoad from "./lazyLoad";
+import Matter from "matter-js";
 
 gsap.registerPlugin(ScrollTrigger, ScrambleTextPlugin);
 
@@ -420,7 +420,188 @@ function parseContent(content) {
     });
     return parsed;
 }
+function init404(){
+    const section = document.querySelector("section.content.page404");
+    if (!section) return;
 
+    // Ensure section can host an absolutely positioned overlay
+    section.style.position = section.style.position || "relative";
+    if (!section.style.minHeight) section.style.minHeight = "60vh";
+
+    // Create overlay container for DOM-synced bodies
+    const overlay = document.createElement("div");
+    overlay.className = "page404-physics";
+    Object.assign(overlay.style, {
+        position: "absolute",
+        inset: "0",
+        width: "100%",
+        height: "100%",
+        overflow: "hidden",
+        pointerEvents: "none",
+        zIndex: "1"
+    });
+    section.appendChild(overlay);
+
+    // Matter.js engine setup
+    const engine = Matter.Engine.create();
+    const world = engine.world;
+    world.gravity.y = 1.1; // slightly heavier to stack quicker
+
+    // Track created letter bodies for DOM sync and clean up
+    const letterBodies = new Set();
+
+    // Offscreen canvas for accurate text measurement
+    const measureCanvas = document.createElement("canvas");
+    const measureCtx = measureCanvas.getContext("2d");
+    function computeFont(basePx) {
+        const cs = getComputedStyle(section);
+        const fontStyle = cs.fontStyle || "normal";
+        const fontVariant = cs.fontVariant || "normal";
+        const fontWeight = cs.fontWeight || "normal";
+        const fontFamily = cs.fontFamily || "sans-serif";
+        return `${fontStyle} ${fontVariant} ${fontWeight} ${basePx}px ${fontFamily}`;
+    }
+    function measureTextSize(text, basePx) {
+        measureCtx.font = computeFont(basePx);
+        const m = measureCtx.measureText(text);
+        const width = Math.max(1, Math.ceil(m.width));
+        const ascent = m.actualBoundingBoxAscent || basePx * 0.8;
+        const descent = m.actualBoundingBoxDescent || basePx * 0.2;
+        const height = Math.max(1, Math.ceil(ascent + descent));
+        return { width, height };
+    }
+
+    // Utility to get current bounds of the overlay
+    function bounds() {
+        const r = overlay.getBoundingClientRect();
+        return { w: r.width, h: r.height };
+    }
+
+    // Static boundaries (floor + side walls)
+    let floor, wallL, wallR;
+    function buildBounds() {
+        const { w, h } = bounds();
+        const thickness = Math.max(20, Math.min(60, Math.floor(w * 0.02)));
+        if (floor) Matter.World.remove(world, [floor, wallL, wallR]);
+        floor = Matter.Bodies.rectangle(w / 2, h + thickness / 2, w, thickness, { isStatic: true });
+        wallL = Matter.Bodies.rectangle(-thickness / 2, h / 2, thickness, h * 2, { isStatic: true });
+        wallR = Matter.Bodies.rectangle(w + thickness / 2, h / 2, thickness, h * 2, { isStatic: true });
+        Matter.World.add(world, [floor, wallL, wallR]);
+    }
+    buildBounds();
+
+    // Create a DOM letter + Matter body
+    function spawnLetter(text) {
+        const { w } = bounds();
+
+        // Size proportional to container width
+        const basePx = 24 + Math.floor(Math.random() * 40); // 24-40px base size
+        const { width: bw, height: bh } = measureTextSize(text, basePx);
+
+        // Create DOM element for visual representation
+        const el = document.createElement("div");
+        el.className = "falling-404";
+        el.textContent = text;
+        Object.assign(el.style, {
+            position: "absolute",
+            left: "0",
+            top: "0",
+            fontFamily: "inherit",
+            fontWeight: "800",
+            lineHeight: "1",
+            whiteSpace: "pre",
+            color: "var(--black)",
+            willChange: "transform",
+            userSelect: "none",
+            fontSize: basePx + "px"
+        });
+        overlay.appendChild(el);
+
+        // Random X across width, start slightly above the view
+        const x = Math.max(bw / 2 + 10, Math.min(w - bw / 2 - 10, Math.random() * w));
+        const y = -Math.random() * 150 - bh; // above the top
+
+        const body = Matter.Bodies.rectangle(x, y, bw, bh, {
+            restitution: 0.05,
+            friction: 0.8,
+            frictionStatic: 0.9,
+            density: 0.002,
+            chamfer: { radius: Math.min(bw, bh) * 0.08 }
+        });
+        body.plugin = { el, w: bw, h: bh };
+        letterBodies.add(body);
+        Matter.World.add(world, body);
+    }
+
+    // Sync DOM elements to physics bodies each frame
+    function sync() {
+        letterBodies.forEach(b => {
+            const el = b.plugin && b.plugin.el;
+            if (!el) return;
+            const w = (b.plugin && b.plugin.w) || (b.bounds.max.x - b.bounds.min.x);
+            const h = (b.plugin && b.plugin.h) || (b.bounds.max.y - b.bounds.min.y);
+            el.style.transform = `translate(${b.position.x - w / 2}px, ${b.position.y - h / 2}px) rotate(${b.angle}rad)`;
+        });
+    }
+
+    let spawnTimer = null;
+
+    function isFilled() {
+        const { h } = bounds();
+        if (letterBodies.size < 100) return false; // need some bodies first
+        let minTop = Infinity;
+        letterBodies.forEach(b => {
+            minTop = Math.min(minTop, b.bounds.min.y);
+        });
+        // Consider filled when the pile reaches within ~10% from the top
+        return minTop <= Math.max(20, h * 0.1);
+    }
+
+    function rndText(){
+        let o = ["404","Oops","Inexistent","Missing","Lost"];
+        return o[Math.floor(Math.random() * o.length)];
+    }
+
+    function startSpawning() {
+        if (spawnTimer) return;
+        spawnTimer = setInterval(() => {
+            if (isFilled() || letterBodies.size > 240) {
+                clearInterval(spawnTimer);
+                spawnTimer = null;
+                return;
+            }
+            spawnLetter(rndText());
+        }, 50);
+    }
+
+    // Engine runner
+    const runner = Matter.Runner.create();
+    Matter.Runner.run(runner, engine);
+
+    // After-update hook to sync DOM
+    Matter.Events.on(engine, "afterUpdate", sync);
+
+    // Rebuild bounds on resize
+    const resizeObserver = new ResizeObserver(() => {
+        buildBounds();
+    });
+    resizeObserver.observe(overlay);
+
+    // Kick off spawning
+    startSpawning();
+
+    // Cleanup on section removal or navigation
+    const cleanup = () => {
+        try { resizeObserver.disconnect(); } catch {}
+        if (spawnTimer) clearInterval(spawnTimer);
+        Matter.Runner.stop(runner);
+        Matter.World.clear(world, false);
+        Matter.Engine.clear(engine);
+        overlay.remove();
+    };
+    // Store cleanup to section dataset for external calls if needed
+    section._cleanup404 = cleanup;
+}
 
 
 function generateProject(){
@@ -436,7 +617,7 @@ function generateProject(){
             }
         });
 
-        const name = getProjectName();
+        let name = getProjectName();
         if(!name){
             console.error("Project name not found in URL");
             reject(new Error("Project name not found"));
@@ -452,19 +633,39 @@ function generateProject(){
         projs.forEach(cat => {
             cat.items.forEach(proj => {p = proj.name.replaceAll(' ', '-').replaceAll('.', '_') === name.replaceAll(' ', '-').replaceAll('.', '_') ? proj : p;});
         });
-        console.log(p)
+        let is404 = false;
         if(p == null){
             console.error("Project not found: " + name);
-            reject(new Error("Project not found"));
-            alert("Project not found: " + name);
-            return;
+            // reject(new Error("Project not found"));
+            // alert("Project not found: " + name);
+            // return;
+            p = {"name": "404", "url": "404.html", "image": "/assets/img/img.png", "directURL": false, "desc": "404"};
+            name = "404";
+            is404 = true;
         }
-        const img_src = ".."+p.image;
-        const content = await fetchProjectContent(p.url);
+        let img_src = ".."+p?.image;
+        let content = "";
+        try {
+            content = await fetchProjectContent(p.url);
+        } catch (e) {
+            // Graceful fallback if 404 content file is missing or failed
+            if (is404) {
+                content = "<div class=\"page404-placeholder\" style=\"position:absolute;inset:0;opacity:0\">404</div>";
+            } else {
+                content = "";
+            }
+        }
 
         $(".s1 h4 span").text(name);
+        // If an existing 404 simulation is running, clean it up
+        try {
+            const existing404 = document.querySelector("section.content.page404");
+            if (existing404 && existing404._cleanup404) existing404._cleanup404();
+        } catch {}
+
         $("main").html("");
         //create section
+        if(!is404)
         $("main").append(`
             <section class="project hero">
                 <h1>${name}</h1>
@@ -472,7 +673,7 @@ function generateProject(){
             </section>
         `);
         $("main").append(`
-            <section class="content grid-item">
+            <section class="content grid-item${is404 ? " page404" : ""}">
                 ${parseContent(content)}
             </section>
         `);
@@ -506,6 +707,7 @@ function generateProject(){
             y: -50,
             // x: "-50%"
         });
+    if(is404) init404();
         hookAllVideos();
         hookAllReaders();
         initAutoFitText();

@@ -64,10 +64,10 @@ function autoFitText(element, maxWidth, padding = 40) {
 
 function initAutoFitText() {
     // Find all project h1 elements
-    const projectH1s = document.querySelectorAll('section.project h1');
+    const projectH1s = document.querySelectorAll('section.project h1, section.page404 h1');
 
     projectH1s.forEach(h1 => {
-        const container = h1.closest('section.project');
+        const container = h1.closest('section.project, section.page404');
         if (container) {
             const containerWidth = container.clientWidth;
             autoFitText(h1, containerWidth);
@@ -80,7 +80,7 @@ function initAutoFitText() {
         clearTimeout(resizeTimeout);
         resizeTimeout = setTimeout(() => {
             projectH1s.forEach(h1 => {
-                const container = h1.closest('section.project');
+                const container = h1.closest('section.project, section.page404');
                 if (container) {
                     const containerWidth = container.clientWidth;
                     autoFitText(h1, containerWidth);
