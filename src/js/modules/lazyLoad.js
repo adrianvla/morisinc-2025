@@ -50,7 +50,7 @@ export default function initLazyLoad() {
             const rect = img.getBoundingClientRect();
             if (!rect.width || !rect.height) return null;
             const cssW = Math.round(rect.width);
-            const cssH = Math.round(rect.height);
+            const cssH = Math.round(img.naturalHeight * (rect.width / img.naturalWidth));
             if (cssW !== lastW || cssH !== lastH) {
                 lastW = cssW; lastH = cssH;
                 canvas.width = cssW * dpr;
