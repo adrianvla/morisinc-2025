@@ -827,3 +827,34 @@ section.page404 > div{
     height:100%;
     width:100%;
 }
+pre, pre span{
+    color:#fff;
+}
+
+.carousel{
+    display:grid;
+    grid-auto-flow: column;
+    width:100%;
+    border:1px solid var(--black);
+    box-sizing: border-box;
+    overflow-x:auto;
+    overflow-y:hidden;
+    gap:40px;
+    height:calc(var(--main-height) - 2px);
+    padding:10px;
+    background:var(--primary);
+    user-select: none;
+}
+.carousel .carousel-item{
+    box-shadow: var(--black) 0px 0px 0px 2px;
+    box-sizing: border-box;
+    height:calc(100% - 25px);
+}
+.carousel img, .carousel canvas{
+    margin: 0;
+    height:100% !important;
+    width:unset !important;
+    max-height:calc(var(--main-height) - 2px);
+    -webkit-user-drag: none;
+    user-select:none;
+}

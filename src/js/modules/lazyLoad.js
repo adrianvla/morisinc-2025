@@ -1,3 +1,4 @@
+import $ from "jquery";
 export default function initLazyLoad() {
     // Inject styles (idempotent) for canvas overlay
     if (!document.getElementById('pixelate-style')) {
@@ -31,6 +32,7 @@ export default function initLazyLoad() {
             img.parentNode && img.parentNode.insertBefore(wrapper, img);
             wrapper.appendChild(img);
         }
+        let isInCarousel = $(img).is(".carousel .pixelation-wrapper img");
 
         // Prepare canvas overlay immediately for initial pixelated low-res
         let canvas = wrapper.querySelector('canvas.pixelation-canvas');
@@ -102,7 +104,6 @@ export default function initLazyLoad() {
                 const t = Math.min(1, elapsed / DURATION);
                 const eased = 1 - Math.pow(1 - t, 3);
                 const block = Math.max(1, Math.round(MAX_BLOCK_SIZE - (MAX_BLOCK_SIZE - 1) * eased));
-                console.log(`Depixelating: ${elapsed}ms elapsed`, block);
                 drawPixelated(source, block);
                 if (t >= 0.5) {
                     clearInterval(interval);
@@ -122,6 +123,12 @@ export default function initLazyLoad() {
                 animateDepixelation();
                 img.src = highResSrc; // swap
                 img.removeAttribute('data-src');
+                if(isInCarousel){
+                    setTimeout(()=>{
+                        wrapper.style.width = img.getBoundingClientRect().width + 'px';
+                        console.log("in carousel");
+                    },100);
+                }
             };
             hi.onerror = () => { img.removeAttribute('data-src'); canvas.remove(); };
             hi.src = highResSrc;

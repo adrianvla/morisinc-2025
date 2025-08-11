@@ -10,6 +10,7 @@ import yeast from "yeast";
 import {turnOnNeon, turnOffNeon, destroyAllNeonsExceptSign} from "./neons";
 import initLazyLoad from "./lazyLoad";
 import Matter from "matter-js";
+import {isMobileDevice} from "../utils/isMobileDevice";
 
 gsap.registerPlugin(ScrollTrigger, ScrambleTextPlugin);
 
@@ -421,6 +422,8 @@ function parseContent(content) {
     return parsed;
 }
 function init404(){
+    $(".sign-c").trigger("click");
+    $(".sign-c").css("opacity",0);
     const section = document.querySelector("section.content.page404");
     if (!section) return;
 
@@ -490,6 +493,11 @@ function init404(){
     }
     buildBounds();
 
+
+    function rndColour(){
+        let o = ["var(--green)","var(--blue)","var(--red)"];
+        return o[Math.floor(Math.random() * o.length)];
+    }
     // Create a DOM letter + Matter body
     function spawnLetter(text) {
         const { w } = bounds();
@@ -510,7 +518,8 @@ function init404(){
             fontWeight: "800",
             lineHeight: "1",
             whiteSpace: "pre",
-            color: "var(--black)",
+            color: rndColour(),
+            textShadow: "-1px -1px 0 var(--black), 1px -1px 0 var(--black), -1px 1px 0 var(--black), 1px 1px 0 var(--black)",
             willChange: "transform",
             userSelect: "none",
             fontSize: basePx + "px"
@@ -545,10 +554,11 @@ function init404(){
     }
 
     let spawnTimer = null;
+    const maxAmount = isMobileDevice() ? 25 : 100;
 
     function isFilled() {
         const { h } = bounds();
-        if (letterBodies.size < 100) return false; // need some bodies first
+        if (letterBodies.size < maxAmount) return false; // need some bodies first
         let minTop = Infinity;
         letterBodies.forEach(b => {
             minTop = Math.min(minTop, b.bounds.min.y);
@@ -558,7 +568,7 @@ function init404(){
     }
 
     function rndText(){
-        let o = ["404","Oops","Inexistent","Missing","Lost"];
+        let o = ["404","404","404","404","404","404","Not","Found","Oops","Inexistent","Missing","Lost"];
         return o[Math.floor(Math.random() * o.length)];
     }
 
@@ -603,6 +613,92 @@ function init404(){
     section._cleanup404 = cleanup;
 }
 
+function initCarousel() {
+    $(".carousel").attr("data-pointer", "");
+    document.querySelectorAll(".carousel").forEach(carousel => {
+        const items = carousel.querySelectorAll(":scope > .carousel-item");
+        if (!items || items.length === 0) return;
+
+        // Ensure horizontal scrolling is enabled
+        if (!carousel.style.overflowX) carousel.style.overflowX = "auto";
+
+        // Axis-lock drag state
+        let isDown = false;
+        let startX = 0;
+        let startY = 0;
+        let startLeft = 0;
+        let axis = null; // 'x' | 'y'
+        const AXIS_SLOP = 6; // px
+
+        function maxScrollLeft() {
+            return Math.max(0, carousel.scrollWidth - carousel.clientWidth);
+        }
+
+        function clamp(n, min, max) { return Math.min(max, Math.max(min, n)); }
+
+        function onPointerDown(e) {
+            isDown = true;
+            startX = e.clientX;
+            startY = e.clientY;
+            startLeft = carousel.scrollLeft;
+            axis = null;
+        }
+
+        function onPointerMove(e) {
+            if (!isDown) return;
+            const dx = e.clientX - startX;
+            const dy = e.clientY - startY;
+            if (!axis) {
+                if (Math.abs(dx) > Math.abs(dy) + AXIS_SLOP) axis = 'x';
+                else if (Math.abs(dy) > Math.abs(dx) + AXIS_SLOP) axis = 'y';
+            }
+            if (axis === 'x') {
+                e.preventDefault();
+                const next = clamp(startLeft - dx, 0, maxScrollLeft());
+                // Use scrollTo so it's explicit horizontal scroll
+                carousel.scrollTo({ left: next, top: 0, behavior: 'auto' });
+            }
+        }
+
+        function onPointerUp() {
+            if (!isDown) return;
+            isDown = false;
+            axis = null;
+        }
+
+        // Attach listeners
+        carousel.addEventListener("pointerdown", onPointerDown, { passive: true });
+        carousel.addEventListener("pointermove", onPointerMove, { passive: false });
+        window.addEventListener("pointerup", onPointerUp, { passive: true });
+        carousel.addEventListener("pointerleave", onPointerUp, { passive: true });
+
+        // Keep scroll position in range on size/content changes
+        const ro = new ResizeObserver(() => {
+            const clamped = clamp(carousel.scrollLeft, 0, maxScrollLeft());
+            if (clamped !== carousel.scrollLeft) carousel.scrollLeft = clamped;
+        });
+        ro.observe(carousel);
+
+        items.forEach(item => item.querySelectorAll("img").forEach(img => {
+            if (img.complete) return;
+            img.addEventListener("load", () => {
+                const clamped = clamp(carousel.scrollLeft, 0, maxScrollLeft());
+                if (clamped !== carousel.scrollLeft) carousel.scrollLeft = clamped;
+            }, { once: true });
+        }));
+
+        // Cleanup handle if re-initialized
+        if (carousel._carouselCleanup) carousel._carouselCleanup();
+        carousel._carouselCleanup = () => {
+            try { ro.disconnect(); } catch {}
+            carousel.removeEventListener("pointerdown", onPointerDown);
+            carousel.removeEventListener("pointermove", onPointerMove);
+            window.removeEventListener("pointerup", onPointerUp);
+            carousel.removeEventListener("pointerleave", onPointerUp);
+        };
+    });
+}
+
 
 function generateProject(){
     $("[data-barba-namespace='home']").remove();
@@ -642,6 +738,7 @@ function generateProject(){
             p = {"name": "404", "url": "404.html", "image": "/assets/img/img.png", "directURL": false, "desc": "404"};
             name = "404";
             is404 = true;
+            $("title").text("404 Page not Found");
         }
         let img_src = ".."+p?.image;
         let content = "";
@@ -707,12 +804,28 @@ function generateProject(){
             y: -50,
             // x: "-50%"
         });
-    if(is404) init404();
+
+        //prep carousel
+        //wrap each .carousel img in a div
+        document.querySelectorAll(".carousel img").forEach(l=>{
+            const wrapper = document.createElement("div");
+            wrapper.className = "carousel-item";
+            wrapper.appendChild(l);
+            l.style.width = "100%";
+            l.style.height = "100%";
+            l.style.objectFit = "cover";
+            l.style.objectPosition = "center";
+            l.style.pointerEvents = "none"; // Disable pointer events for carousel images
+            $(".carousel").append(wrapper);
+        });
+
+        if(is404) init404();
         hookAllVideos();
         hookAllReaders();
         initAutoFitText();
         makeAllHeaders();
         initLazyLoad();
+        initCarousel();
 
         const els = document.querySelectorAll("section.content h2, section.content h3, section.content h4, section.content h5, section.content h6");
         els.forEach(p => {
