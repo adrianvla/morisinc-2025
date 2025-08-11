@@ -300,7 +300,9 @@ function generateProject(){
             duration:1
         },"<");
 
-        gsap.to("section.project.hero h1", {
+        gsap.fromTo("section.project.hero h1",{
+            x: "-50%"
+        }, {
             scrollTrigger: {
                 trigger: "section.project.hero",
                 start: "top 0%",
@@ -309,7 +311,8 @@ function generateProject(){
                 scrub: 1,
                 toggleActions: "play none none reverse",
             },
-            y: -50
+            y: -50,
+            x: "-50%"
         });
         initAutoFitText();
         makeAllHeaders();

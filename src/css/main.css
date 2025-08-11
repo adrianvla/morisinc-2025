@@ -513,7 +513,7 @@ section.project{
     overflow:hidden;
     box-sizing: border-box;
     border:5px solid var(--border);
-    padding: 12px;
+    /*padding: 12px;*/
     box-shadow: inset 0 0 0 2px var(--black);
 }
 section.project.hero{

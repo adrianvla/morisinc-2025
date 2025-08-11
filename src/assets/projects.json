@@ -15,6 +15,7 @@
 
   ]},
   {"category": "Hardware", "items": [
+    {"name":"Clock","url": "clock.html", "image": "/assets/img/clock.png", "directURL": false, "desc":  "A Matrix clock built on Raspberry Pi Zero"},
     {"name":"IoT","url": "iot.html", "image": "/assets/img/iot.webp", "directURL": false, "desc":  "Like Apple Home Kit, but free and for raspberry-pi."}
   ]},
   {"category": "Design", "items": [
@@ -27,6 +28,7 @@
     {"name":"M5 Geiger Counter","url": "m5geiger.html", "image": "/assets/img/m5gs.webp", "directURL": false, "desc":  "A Geiger counter based on M5Stack"},
     {"name": "old morisinc.net", "url": "https://old.morisinc.net", "image": "/assets/img/old-morisinc-net.png", "directURL": true, "desc": "The older version of this website"},
     {"name":"DynWeb","url": "dynweb.html", "image": "/assets/img/dynweb.webp", "directURL": false, "desc": "Dynamic Website Content: A very simple CMS, using a template or none. Use LibreOffice to write the content."},
+    {"name": "Tetris", "url": "tetris.html", "image": "/assets/img/tetris.png", "directURL": false, "desc": "Original Tetris on the Soviet DVK2M computer. This is a recreation of it."},
     {"name": "mc website", "url": "https://keke.morisinc.net", "image": "/assets/img/keke-morisinc-net.png", "directURL": true, "desc": "A website dedicated to my Minecraft creations when I was youger"},
     {"name": "Backdoor.js", "url": "https://github.com/adrianvla/website-backdoor.js", "image": "/assets/img/bdjs.png", "directURL": true, "desc": "Make a loader that puts a script into the website's code. Has a keylogger and a live screen view"}
   ]},
