@@ -395,7 +395,7 @@ function parseContent(content) {
 <div class="controls">
 <button class="left" data-pointer>${chevronLeftIcon()}</button>
 <button class="right" data-pointer>${chevronRightIcon()}</button>
-<span>Page: <input type="number" value="1">
+<span><span>Page:</span> <input type="number" value="1">
 </span></div>
 <div class="controls"><button class="zoom-in" data-pointer>${zoomInIcon()}</button><button class="zoom-out" data-pointer>${zoomOutIcon()}</button><span>${text || "reader.pdf"}</span></div></div>
 <div class="content"></div>

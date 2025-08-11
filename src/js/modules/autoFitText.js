@@ -2,6 +2,7 @@
  * Auto-fit text module - dynamically scales font size to fit container width
  */
 import $ from 'jquery';
+import {isMobileDevice} from "../utils/isMobileDevice";
 
 function measureTextWidth(text, font) {
     // Create a canvas element for text measurement
@@ -26,7 +27,11 @@ function adjustElIfTitleOfSection(element){
     }
     if (next && next.tagName === 'H2') {
         // console.log("Element is directly succeeded by a h2 tag", element);
-        $(element).css("bottom", `${$(next).height()/2}px`);
+        if(isMobileDevice() && $(next).height() > $(element).height()){
+            $(element).css("bottom", `${$(next).height()}px`);
+        }
+        else
+            $(element).css("bottom", `${$(next).height()/2}px`);
     }
 }
 

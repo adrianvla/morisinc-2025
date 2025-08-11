@@ -149,7 +149,13 @@
     .nav-item{
         white-space: nowrap;
     }
-    .video .controls button{
+    .video .controls button, .reader .controls button{
         opacity:1 !important;
+    }
+    .reader .header .controls:nth-child(1) span > span{
+        display:none !important;
+    }
+    .reader .header .controls:nth-child(2) span{
+        display:none !important;
     }
 }
