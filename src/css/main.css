@@ -691,6 +691,7 @@ video{
     width:2em;
     transition:opacity 0.2s ease;
     opacity:1;
+    color:var(--black);
 }
 .video .controls button:hover{
     opacity:0.5;
@@ -726,4 +727,8 @@ video{
 
     background-size: 25px 15px, 100% 100%, 100% 100%;
 
+}
+ul li {
+    list-style-type: square;
+    padding-left: 0.5em;
 }
