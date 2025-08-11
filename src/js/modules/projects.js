@@ -302,6 +302,77 @@ function muteIcon(){
 function unmutedIcon(){
     return "<svg fill=\"none\" xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 24 24\"> <path d=\"M11 2H9v2H7v2H5v2H1v8h4v2h2v2h2v2h2V2zM7 18v-2H5v-2H3v-4h2V8h2V6h2v12H7zm6-8h2v4h-2v-4zm8-6h-2V2h-6v2h6v2h2v12h-2v2h-6v2h6v-2h2v-2h2V6h-2V4zm-2 4h-2V6h-4v2h4v8h-4v2h4v-2h2V8z\" fill=\"currentColor\"/> </svg>";
 }
+function chevronLeftIcon(){
+    return "<svg fill=\"none\" xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 24 24\"> <path d=\"M16 5v2h-2V5h2zm-4 4V7h2v2h-2zm-2 2V9h2v2h-2zm0 2H8v-2h2v2zm2 2v-2h-2v2h2zm0 0h2v2h-2v-2zm4 4v-2h-2v2h2z\" fill=\"currentColor\"/> </svg>";
+}
+function chevronRightIcon(){
+    return "<svg fill=\"none\" xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 24 24\"> <path d=\"M8 5v2h2V5H8zm4 4V7h-2v2h2zm2 2V9h-2v2h2zm0 2h2v-2h-2v2zm-2 2v-2h2v2h-2zm0 0h-2v2h2v-2zm-4 4v-2h2v2H8z\" fill=\"currentColor\"/> </svg>";
+}
+
+function zoomInIcon(){
+    return "<svg fill=\"none\" xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 24 24\"> <path d=\"M14 2H6v2H4v2H2v8h2v2h2v2h8v-2h2v2h2v2h2v2h2v-2h-2v-2h-2v-2h-2v-2h2V6h-2V4h-2V2zm0 2v2h2v8h-2v2H6v-2H4V6h2V4h8zM9 6h2v3h3v2h-3v3H9v-3H6V9h3V6z\" fill=\"currentColor\"/> </svg>";
+}
+function zoomOutIcon(){
+    return "<svg fill=\"none\" xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 24 24\"> <path d=\"M14 2H6v2H4v2H2v8h2v2h2v2h8v-2h2v2h2v2h2v2h2v-2h-2v-2h-2v-2h-2v-2h2V6h-2V4h-2V2zm0 2v2h2v8h-2v2H6v-2H4V6h2V4h8zm0 5v2H6V9h8z\" fill=\"currentColor\"/> </svg>";
+}
+
+function hookAllReaders(){
+    document.querySelectorAll(".reader[data-loaded='false']").forEach(reader_container => {
+        let currentZoom = 1;
+        let currentPage = 1;
+        let data = [];
+        $.ajax({
+            url: $(reader_container).attr("data-src"),
+            method: 'GET',
+            dataType: 'json',
+            success: function(d) {
+                data = d;
+                let s = "";
+                const w = $(reader_container).width();
+                data.forEach((page,i) => {
+                    s += `<div class="page page-${i+1}" style="width:${w}px"><img src="${page}" alt="Page ${i}"></div>`;
+                });
+                reader_container.querySelector(".content").innerHTML = s;
+            },
+            error: function(xhr, status, error) {
+                console.error('Error fetching booklet:', error);
+            }
+        });
+        function goToPage(){
+            reader_container.querySelectorAll(`.content .page:not(.page-${currentPage})`).forEach(page => {
+                page.style.display = "none";
+            });
+            reader_container.querySelector(`.content .page-${currentPage}`).style.display = "flex";
+        }
+        reader_container.querySelector(".zoom-in").addEventListener("click", () => {
+            currentZoom += 0.1;
+            reader_container.querySelector(".content").style.setProperty("--height",`calc(calc(var(--main-height) - 20px) * ${currentZoom})`);
+        });
+        reader_container.querySelector(".zoom-out").addEventListener("click", () => {
+            currentZoom -= 0.1;
+            reader_container.querySelector(".content").style.setProperty("--height",`calc(calc(var(--main-height) - 20px) * ${currentZoom})`);
+        });
+        reader_container.querySelector(".left").addEventListener("click", () => {
+            currentPage--;
+            if (currentPage < 1) currentPage = 1;
+            reader_container.querySelector(".header input").value = currentPage;
+            goToPage();
+        });
+        reader_container.querySelector(".right").addEventListener("click", () => {
+            currentPage++;
+            if (currentPage > data.length) currentPage = data.length;
+            reader_container.querySelector(".header input").value = currentPage;
+            goToPage();
+        });
+        reader_container.querySelector(".header input").addEventListener("change", () => {
+            currentPage = parseInt(reader_container.querySelector(".header input").value);
+            if (currentPage < 1) currentPage = 1;
+            if (currentPage > data.length) currentPage = data.length;
+            reader_container.querySelector(".header input").value = currentPage;
+            goToPage();
+        });
+    });
+}
 
 function parseContent(content) {
     // Transform [btn link="..."]text[/btn] into a clickable span
@@ -318,9 +389,21 @@ function parseContent(content) {
     parsed = parsed.replace(/\[a href="([^"]+)"\](.*?)\[\/a\]/g, function(match, href, text) {
         return `<a target="_blank" href="${href}" data-pointer>${text}</a>`;
     });
+    parsed = parsed.replace(/\[reader src="([^"]+)"\](.*?)\[\/reader\]/g, function(match, src, text) {
+        return `<div class="reader" data-src="${src}" data-loaded="false">
+<div class="header">
+<div class="controls">
+<button class="left" data-pointer>${chevronLeftIcon()}</button>
+<button class="right" data-pointer>${chevronRightIcon()}</button>
+<span>Page: <input type="number" value="1">
+</span></div>
+<div class="controls"><button class="zoom-in" data-pointer>${zoomInIcon()}</button><button class="zoom-out" data-pointer>${zoomOutIcon()}</button><span>${text || "reader.pdf"}</span></div></div>
+<div class="content"></div>
+</div>`;
+    });
     parsed = parsed.replace(/\[video src="([^"]+)"\](.*?)\[\/video\]/g, function(match, img_src, text) {
         return `<div class="video">
-<div class="header">video.mp4</div>
+<div class="header">${text || "video.mp4"}</div>
 <video><source src="${img_src}">Your browser does not support the video tag.</video>
 <div id="video-controls" class="controls" data-state="hidden">
   <button id="play-pause" type="button" data-state="play" data-pointer>${playIcon()}</button>
@@ -424,6 +507,7 @@ function generateProject(){
             // x: "-50%"
         });
         hookAllVideos();
+        hookAllReaders();
         initAutoFitText();
         makeAllHeaders();
         initLazyLoad();

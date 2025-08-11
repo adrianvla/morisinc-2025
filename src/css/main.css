@@ -643,17 +643,27 @@ span.brd + .pixelation-wrapper {
     padding:15px;
     box-sizing: border-box;
     border:1px solid var(--black);
+    width:max-content;
+    display:flex;
+    max-width:100%;
+    margin: 15px auto auto;
 }
 span.brd + .pixelation-wrapper img, span.brd + .pixelation-wrapper canvas{
     margin: 0;
     border-radius:10px;
+    max-height:calc(var(--main-height) - 30px);
+    width:auto;
+    max-width:100%;
+}
+span.brd + .pixelation-wrapper canvas{
+    padding:15px;
 }
 
 video{
     max-height:var(--main-height);
     width:100%;
 }
-.video{
+.video,.reader{
     display:flex;
     flex-direction: column;
     border:1px solid var(--black);
@@ -661,10 +671,63 @@ video{
     background:var(--primary);
     width:100%;
 }
-.video .header{
+.video .header,.reader .header{
     padding:10px;
     font-family:'OffBit Trial Bold', sans-serif;
     font-size:1.5em;
+    border-bottom:1px solid var(--black);
+    box-sizing: border-box;
+    user-select: none;
+}
+.reader .content{
+    display:grid;
+    /*max-height:calc(var(--main-height) - 20px);*/
+    overflow-y: scroll;
+    background:var(--black);
+    grid-auto-flow: column;
+    --height:calc(var(--main-height) - 20px);
+}
+.reader .content .page{
+    overflow: scroll;
+}
+.reader .content img{
+    margin:auto;
+    height:var(--height);
+    width:auto;
+}
+.reader .header .controls span{
+    display:flex;
+    align-items: center;
+    justify-content: center;
+    gap:15px;
+}
+.reader button{
+    color:var(--black);
+    opacity:1;
+}
+.reader .header .controls input{
+    background:none;
+    border:none;
+    border-bottom:2px solid var(--black);
+    box-sizing: border-box;
+    padding:5px;
+    width:3em;
+    border-radius:0;
+}
+.reader .header .controls input:focus{
+    outline:2px solid var(--black);
+    border-bottom:2px solid transparent;
+}
+.reader .header{
+    display:flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-right:20px;
+}
+.reader .header .controls{
+    display:flex;
+    height:100%;
+    gap:10px;
 }
 .video .controls{
     display:flex;
@@ -677,7 +740,7 @@ video{
     justify-content: center;
     align-items: center;
 }
-.video .controls button{
+.video .controls button, .reader .header .controls button{
     cursor:none;
     background:none;
     border:none;
@@ -693,7 +756,7 @@ video{
     opacity:1;
     color:var(--black);
 }
-.video .controls button:hover{
+.video .controls button:hover, .reader .header .controls button:hover{
     opacity:0.5;
 }
 .video .controls button#stop{
