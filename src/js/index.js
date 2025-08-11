@@ -1,9 +1,7 @@
 import 'normalize.css';
 import $ from 'jquery';
-import gsap from 'gsap';
 import barba from '@barba/core';
 import '../css/imports.js';
-import yeast from 'yeast';
 import inject from "./modules/inject";
 import './modules/signature'
 import {initLenises, initProjects, lenis} from "./modules/smoothScrolling";
@@ -17,7 +15,7 @@ import './modules/languageSelector';
 import leave from "./transitions/leave";
 import enter from "./transitions/enter";
 import './modules/neons';
-import {destroyAllNeons, destroyAllNeonsExceptSign, turnOnNeon} from "./modules/neons";
+import {destroyAllNeonsExceptSign, turnOnNeon} from "./modules/neons";
 import {initSign, initSignFalloff} from "./modules/sign";
 import initScrollZoom from "./modules/scrollZoom";
 import './modules/clock';
@@ -26,9 +24,7 @@ import { initSterionHyphenFix } from './modules/sterionHyphenFix.js';
 import {getProjectName, isOtherPage, isProjectPage} from "./modules/pathDetector";
 import {fetchProjects} from "./modules/fetchProjects";
 import {generateProject, setupTextRevealEffects} from "./modules/projects";
-import homeToProject from "./transitions/leave/homeToProject";
 import {testForMobile} from "./utils/isMobileDevice";
-import initLazyLoad from "./modules/lazyLoad";
 import leaveBecauseOfLang from "./transitions/leave/lang";
 
 // Initialize BarbaJS with enhanced transitions
@@ -79,6 +75,7 @@ barba.init({
                 $(".projects").html("");
 
                 return enter(new Promise(r=>{generateProject().then(()=> {
+                    $(".transition-overlay").remove();
                     setupTextRevealEffects();
                     initSignFalloff();
                     r();
@@ -95,7 +92,8 @@ barba.init({
                     return new Promise(r=>r());
                 // Custom transition for leaving home
                 destroyAllNeonsExceptSign();
-                return homeToProject(data.current.container);
+                window.redirectType = 'home-to-project';
+                return leave(data.current.container);
             },
             enter(data) {
                 if(window.redirectType==="lang-button")
@@ -115,6 +113,7 @@ barba.init({
                     initSterionHyphenFix();
                     initScrollZoom();
                     initSignFalloff();
+                    $(".transition-overlay").remove();
                     r();
                 })}));
             }
@@ -129,7 +128,8 @@ barba.init({
                     return new Promise(r=>r());
 
                 destroyAllNeonsExceptSign();
-                return homeToProject(data.current.container);
+                window.redirectType = 'home-to-project';
+                return leave(data.current.container);
             },
             enter(data) {
                 if(window.redirectType==="lang-button")
@@ -143,6 +143,7 @@ barba.init({
 
                 lenis.scrollTo(0);
                 $(".projects").html("");
+                $(".transition-overlay").remove();
 
                 return enter(new Promise(r=>{generateProject().then(()=> {
                     setupTextRevealEffects();

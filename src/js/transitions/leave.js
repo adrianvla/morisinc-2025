@@ -2,6 +2,7 @@ import leaveBecauseOfLang from "./leave/lang";
 import leaveHomeToProject from "./leave/homeToProject";
 import defaultLeave from "./leave/default";
 import {lenis, lenis2} from "../modules/smoothScrolling";
+import $ from "jquery";
 
 export default function leave(){
     try{
@@ -13,8 +14,28 @@ export default function leave(){
     if(window.redirectType === 'lang-button') {
         return leaveBecauseOfLang();
     }
+    let returnable = null;
     if(window.redirectType === 'home-to-project') {
-        return leaveHomeToProject();
+        returnable = leaveHomeToProject();
+    }else{
+        returnable = defaultLeave();
     }
-    return defaultLeave();
+
+    $("body").append("<div class='transition-overlay'></div>");
+    let bounds = $("main").get(0).getBoundingClientRect();
+    $(".transition-overlay").css("opacity",0)
+        .css("background","var(--background)")
+        .css("pointer-events","none")
+        .css("z-index","1000")
+        .css("position","fixed")
+        .css("top",bounds.top)
+        .css("left",bounds.left)
+        .css("width",bounds.width)
+        .css("height",bounds.height);
+
+    returnable.eventCallback("onComplete",()=>{
+        $(".transition-overlay").css("opacity",1);
+    });
+
+    return returnable;
 };

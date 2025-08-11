@@ -319,7 +319,7 @@ function zoomOutIcon(){
 function hookAllReaders(){
     document.querySelectorAll(".reader[data-loaded='false']").forEach(reader_container => {
         let currentZoom = 1;
-        let currentPage = 1;
+        let currentPage = 0;
         let data = [];
         $.ajax({
             url: $(reader_container).attr("data-src"),
@@ -330,7 +330,7 @@ function hookAllReaders(){
                 let s = "";
                 const w = $(reader_container).width();
                 data.forEach((page,i) => {
-                    s += `<div class="page page-${i+1}" style="width:${w}px"><img src="${page}" alt="Page ${i}"></div>`;
+                    s += `<div class="page page-${i}" style="width:${w}px"><img src="${page}" alt="Page ${i}"></div>`;
                 });
                 reader_container.querySelector(".content").innerHTML = s;
             },
@@ -354,20 +354,20 @@ function hookAllReaders(){
         });
         reader_container.querySelector(".left").addEventListener("click", () => {
             currentPage--;
-            if (currentPage < 1) currentPage = 1;
+            if (currentPage < 0) currentPage = 0;
             reader_container.querySelector(".header input").value = currentPage;
             goToPage();
         });
         reader_container.querySelector(".right").addEventListener("click", () => {
             currentPage++;
-            if (currentPage > data.length) currentPage = data.length;
+            if (currentPage > data.length-1) currentPage = data.length-1;
             reader_container.querySelector(".header input").value = currentPage;
             goToPage();
         });
         reader_container.querySelector(".header input").addEventListener("change", () => {
             currentPage = parseInt(reader_container.querySelector(".header input").value);
-            if (currentPage < 1) currentPage = 1;
-            if (currentPage > data.length) currentPage = data.length;
+            if (currentPage < 0) currentPage = 0;
+            if (currentPage > data.length-1) currentPage = data.length-1;
             reader_container.querySelector(".header input").value = currentPage;
             goToPage();
         });
@@ -395,7 +395,7 @@ function parseContent(content) {
 <div class="controls">
 <button class="left" data-pointer>${chevronLeftIcon()}</button>
 <button class="right" data-pointer>${chevronRightIcon()}</button>
-<span><span>Page:</span> <input type="number" value="1">
+<span><span>Page:</span> <input type="number" value="0">
 </span></div>
 <div class="controls"><button class="zoom-in" data-pointer>${zoomInIcon()}</button><button class="zoom-out" data-pointer>${zoomOutIcon()}</button><span>${text || "reader.pdf"}</span></div></div>
 <div class="content"></div>
