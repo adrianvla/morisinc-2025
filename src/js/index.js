@@ -29,6 +29,7 @@ import {generateProject, setupTextRevealEffects} from "./modules/projects";
 import homeToProject from "./transitions/leave/homeToProject";
 import {testForMobile} from "./utils/isMobileDevice";
 import initLazyLoad from "./modules/lazyLoad";
+import leaveBecauseOfLang from "./transitions/leave/lang";
 
 // Initialize BarbaJS with enhanced transitions
 barba.init({
@@ -37,15 +38,43 @@ barba.init({
 
     transitions: [
         {
+            name: 'default-transition',
+            leave() {
+                if(window.redirectType==="lang-button")
+                    return new Promise(r=>r());
+            },
+            enter() {
+                if(window.redirectType==="lang-button")
+                    return new Promise(r=>{
+                        $(".sign-c").trigger("click");
+                        leaveBecauseOfLang().call(()=>{
+                            r();
+                            window.location.reload();
+                        });
+                    });
+                window.location.reload();
+            }
+        },
+        {
             name: 'from-home-to-project',
             from: { namespace: 'home' },
             to: { namespace: 'project' },
             leave(data) {
+                if(window.redirectType==="lang-button")
+                    return new Promise(r=>r());
                 // Custom transition for leaving home
                 destroyAllNeonsExceptSign();
                 return leave(data.current.container);
             },
             enter(data) {
+                if(window.redirectType==="lang-button")
+                    return new Promise(r=>{
+                        $(".sign-c").trigger("click");
+                        leaveBecauseOfLang().call(()=>{
+                            r();
+                            window.location.reload();
+                        });
+                    });
                 lenis.scrollTo(0);
                 $(".projects").html("");
 
@@ -62,11 +91,21 @@ barba.init({
             from: { namespace: 'project' },
             to: { namespace: 'home' },
             leave(data) {
+                if(window.redirectType==="lang-button")
+                    return new Promise(r=>r());
                 // Custom transition for leaving home
                 destroyAllNeonsExceptSign();
                 return homeToProject(data.current.container);
             },
             enter(data) {
+                if(window.redirectType==="lang-button")
+                    return new Promise(r=>{
+                        $(".sign-c").trigger("click");
+                        leaveBecauseOfLang().call(()=>{
+                            r();
+                            window.location.reload();
+                        });
+                    });
                 lenis.scrollTo(0);
 
                 return enter(new Promise(r=>{fetchProjects().then(()=>{
@@ -86,10 +125,22 @@ barba.init({
             to: { namespace: 'project' },
             leave(data) {
                 // Custom transition for leaving home
+                if(window.redirectType==="lang-button")
+                    return new Promise(r=>r());
+
                 destroyAllNeonsExceptSign();
                 return homeToProject(data.current.container);
             },
             enter(data) {
+                if(window.redirectType==="lang-button")
+                    return new Promise(r=>{
+                        $(".sign-c").trigger("click");
+                        leaveBecauseOfLang().call(()=>{
+                            r();
+                            window.location.reload();
+                        });
+                    });
+
                 lenis.scrollTo(0);
                 $(".projects").html("");
 

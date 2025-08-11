@@ -602,4 +602,37 @@ section.content{
 .pixelation-wrapper{
     width:100%;
     min-height:100%;
+    mask: linear-gradient(to bottom,
+    rgba(0, 0, 0, 1) 0%,
+    rgba(0, 0, 0, 1) 80%,
+    rgba(0, 0, 0, 0) 100%);
+    -webkit-mask: linear-gradient(to bottom,
+    rgba(0, 0, 0, 1) 0%,
+    rgba(0, 0, 0, 1) 80%,
+    rgba(0, 0, 0, 0) 100%);
+}
+::-moz-selection{
+    color: var(--background);
+    background: var(--black);
+}
+
+::selection {
+    color: var(--background);
+    background: var(--black);
+}
+section a{
+    cursor:none;
+    text-decoration:underline;
+    color:var(--secondary);
+    text-shadow: -1px -1px 0 var(--black), 1px -1px 0 var(--black), -1px 1px 0 var(--black), 1px 1px 0 var(--black);
+    transition: color 0.2s ease;
+}
+section a *{
+    text-decoration:underline;
+    color:var(--secondary);
+    text-shadow: -1px -1px 0 var(--black), 1px -1px 0 var(--black), -1px 1px 0 var(--black), 1px 1px 0 var(--black);
+    transition: color 0.2s ease;
+}
+section a:hover, section a:hover *{
+    color:var(--primary);
 }

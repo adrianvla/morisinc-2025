@@ -27,6 +27,10 @@ export default function leave() {
         background: "rgb(150, 150, 150)",
         duration: 1
     }, "<");
+    tl.to('.color-change *',{
+        opacity:0,
+        duration: 1
+    }, "<");
     tl.to('.nav4-1-1',{
         opacity:0
     },'<');

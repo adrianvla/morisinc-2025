@@ -226,6 +226,12 @@ function parseContent(content) {
     parsed = parsed.replace(/(<pre[\s\S]*?<\/pre>)/g, function(match) {
         return `<div class=\"pre-parent\">${match}</div>`;
     });
+    parsed = parsed.replace(/\[img src="([^"]+)"\](.*?)\[\/img\]/g, function(match, img_src, text) {
+        return `<img data-src="${img_src}" src="${img_src.replace('img','img-low-res')}"/>`;
+    });
+    parsed = parsed.replace(/\[a href="([^"]+)"\](.*?)\[\/a\]/g, function(match, href, text) {
+        return `<a target="_blank" href="${href}" data-pointer>${text}</a>`;
+    });
     return parsed;
 }
 
@@ -301,7 +307,7 @@ function generateProject(){
         },"<");
 
         gsap.fromTo("section.project.hero h1",{
-            x: "-50%"
+            // x: "-50%"
         }, {
             scrollTrigger: {
                 trigger: "section.project.hero",
@@ -312,7 +318,7 @@ function generateProject(){
                 toggleActions: "play none none reverse",
             },
             y: -50,
-            x: "-50%"
+            // x: "-50%"
         });
         initAutoFitText();
         makeAllHeaders();
