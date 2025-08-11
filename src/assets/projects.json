@@ -1,17 +1,17 @@
 [
   {"category": "Software", "items": [
-    {"name":"mLearn","url": "mlearn.html", "image": "/assets/img/mlearn.webp", "directURL": false, "desc": "An intelligent language learning app that adapts to what you already know"},
-    {"name":"Decks","url": "decks.html", "image": "/assets/img/decks.webp", "directURL": false, "desc": "A LaTeX spaced-repetition online flashcard app."},
-    {"name":"Geo Game","url": "geo-game.html", "image": "/assets/img/geo-game.webp", "directURL": false, "desc": "A mobile friendly multiplayer geography game"},
-    {"name":"mCall","url": "mcall.html", "image": "/assets/img/mcall.webp", "directURL": false, "desc": "Like Google Meet, but you can choose who you want to speak & connect to in a meeting, end-to-end encrypted."}
+    {"name": "mLearn","url": "mlearn.html", "image": "/assets/img/mlearn.webp", "directURL": false, "desc": "An intelligent language learning app that adapts to what you already know"},
+    {"name": "Decks","url": "decks.html", "image": "/assets/img/decks.webp", "directURL": false, "desc": "A LaTeX spaced-repetition online flashcard app."},
+    {"name": "Geo Game","url": "geo-game.html", "image": "/assets/img/geo-game.webp", "directURL": false, "desc": "A mobile friendly multiplayer geography game"},
+    {"name": "mCall","url": "mcall.html", "image": "/assets/img/mcall.webp", "directURL": false, "desc": "Like Google Meet, but you can choose who you want to speak & connect to in a meeting, end-to-end encrypted."}
   ]},
   {"category": "Research", "items": [
-    {"name":"HS Diploma Project","url": "tm2024.html", "image": "/assets/img/tm2024.jpg", "directURL": false, "desc": "My High School Diploma Project: Designing and implementing a novel CPU architecture, a platform using it and porting a game to it."}
+    {"name": "HS Diploma Project","url": "tm2024.html", "image": "/assets/img/tm2024.jpg", "directURL": false, "desc": "My High School Diploma Project: Designing and implementing a novel CPU architecture, a platform using it and porting a game to it."}
 
   ]},
   {"category": "Hardware", "items": [
-    {"name":"Clock","url": "clock.html", "image": "/assets/img/clock.png", "directURL": false, "desc":  "A Matrix clock built on Raspberry Pi Zero"},
-    {"name":"IoT","url": "iot.html", "image": "/assets/img/iot.webp", "directURL": false, "desc":  "Like Apple Home Kit, but free and for raspberry-pi."}
+    {"name": "Clock","url": "clock.html", "image": "/assets/img/clock.png", "directURL": false, "desc":  "A Matrix clock built on Raspberry Pi Zero"},
+    {"name": "IoT","url": "iot.html", "image": "/assets/img/iot.webp", "directURL": false, "desc":  "Like Apple Home Kit, but free and for raspberry-pi."}
   ]},
   {"category": "Design", "items": [
     {"name": "mlearn.morisinc.net", "url": "https://mlearn.morisinc.net", "image": "/assets/img/mlearn-morisinc-net.png", "directURL": true, "desc": "The website for the mLearn app"},
@@ -20,9 +20,9 @@
   ]},
   {"category": "Misc", "items": [
     {"name": "old morisinc.net", "url": "https://old.morisinc.net", "image": "/assets/img/old-morisinc-net.png", "directURL": true, "desc": "The older version of this website"},
-    {"name":"8BIT.js","url": "8bit-js.html", "image": "/assets/img/8bitjs.png", "directURL": false, "desc": "A Simple JavaScript Sprite Library for creating retro 8 bit games"},
-    {"name":"M5 Geiger Counter","url": "m5geiger.html", "image": "/assets/img/m5gs.webp", "directURL": false, "desc":  "A Geiger counter based on M5Stack"},
-    {"name":"DynWeb","url": "dynweb.html", "image": "/assets/img/dynweb.webp", "directURL": false, "desc": "Dynamic Website Content: A very simple CMS, using a template or none. Use LibreOffice to write the content."},
+    {"name": "8BIT.js","url": "8bit-js.html", "image": "/assets/img/8bitjs.png", "directURL": false, "desc": "A Simple JavaScript Sprite Library for creating retro 8 bit games"},
+    {"name": "M5 Geiger Counter","url": "m5geiger.html", "image": "/assets/img/m5gs.webp", "directURL": false, "desc":  "A Geiger counter based on M5Stack"},
+    {"name": "DynWeb","url": "dynweb.html", "image": "/assets/img/dynweb.webp", "directURL": false, "desc": "Dynamic Website Content: A very simple CMS, using a template or none. Use LibreOffice to write the content."},
     {"name": "Tetris", "url": "tetris.html", "image": "/assets/img/tetris.png", "directURL": false, "desc": "Original Tetris on the Soviet DVK2M computer. This is a recreation of it."},
     {"name": "mc website", "url": "https://keke.morisinc.net", "image": "/assets/img/keke-morisinc-net.png", "directURL": true, "desc": "A website dedicated to my Minecraft creations when I was youger"},
     {"name": "Backdoor.js", "url": "https://github.com/adrianvla/website-backdoor.js", "image": "/assets/img/bdjs.png", "directURL": true, "desc": "Make a loader that puts a script into the website's code. Has a keylogger and a live screen view"}

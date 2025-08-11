@@ -13,7 +13,10 @@ export default function initLazyLoad() {
 
     // Config
     const MAX_BLOCK_SIZE = 32; // starting pixel block dimension in CSS pixels (bigger -> chunkier)
-    const DURATION = 900; // ms for depixelation
+        const DURATION = 900; // ms for depixelation
+        const FPS = 3; // throttle animation to ~3 fps
+        const FRAME_MS = Math.round(1000 / FPS);
+        const INTERSECT_DELAY_MS = 750; // must be in view this long before loading
 
     const images = document.querySelectorAll('img[data-src]:not([data-lazy-loaded])');
     images.forEach(img => {
@@ -91,17 +94,31 @@ export default function initLazyLoad() {
         // Depixelation animation using high-res source
         function animateDepixelation(){
             const source = img; // high-res swapped already
+            // Draw initial state at max block size to match overlay
+            drawPixelated(source, MAX_BLOCK_SIZE);
+            let elapsed = 0;
+            const interval = setInterval(() => {
+                elapsed += FRAME_MS;
+                const t = Math.min(1, elapsed / DURATION);
+                const eased = 1 - Math.pow(1 - t, 3);
+                const block = Math.max(1, Math.round(MAX_BLOCK_SIZE - (MAX_BLOCK_SIZE - 1) * eased));
+                drawPixelated(source, block);
+                if (t >= 1) {
+                    clearInterval(interval);
+                    drawPixelated(source, 1);
+                    canvas.remove();
+                }
+            }, FRAME_MS);
             const start = performance.now();
-        function step(now){
+            function step(now){
                 const t = Math.min(1, (now - start)/DURATION);
                 const eased = 1 - Math.pow(1 - t, 3);
                 const block = Math.max(1, Math.round(MAX_BLOCK_SIZE - (MAX_BLOCK_SIZE - 1) * eased));
                 drawPixelated(source, block);
-                if (t < 1) requestAnimationFrame(step); else {
-                    // Final crisp draw then remove canvas
-            // Ensure final crisp (block=1)
-            drawPixelated(source, 1);
-            canvas.remove();
+                if (t < 1) requestAnimationFrame(step);
+                else {
+                    drawPixelated(source, 1);
+                    canvas.remove();
                 }
             }
             requestAnimationFrame(step);
@@ -121,11 +138,19 @@ export default function initLazyLoad() {
         }
 
         if ('IntersectionObserver' in window) {
+            let dwellTimer = null;
             const observer = new IntersectionObserver((entries, obs) => {
                 entries.forEach(entry => {
                     if (entry.isIntersecting) {
-                        loadHighRes();
-                        obs.unobserve(img);
+                        if (!dwellTimer) {
+                            dwellTimer = setTimeout(() => {
+                                loadHighRes();
+                                obs.unobserve(img);
+                                dwellTimer = null;
+                            }, INTERSECT_DELAY_MS);
+                        }
+                    } else {
+                        if (dwellTimer) { clearTimeout(dwellTimer); dwellTimer = null; }
                     }
                 });
             });
