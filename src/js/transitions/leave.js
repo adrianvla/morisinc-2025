@@ -22,11 +22,11 @@ export default function leave(){
     }
 
     $("body").append("<div class='transition-overlay'></div>");
-    let bounds = $("main").get(0).getBoundingClientRect();
+    let bounds = $(".main").get(0).getBoundingClientRect();
     $(".transition-overlay").css("opacity",0)
         .css("background","var(--background)")
         .css("pointer-events","none")
-        .css("z-index","1000")
+        .css("z-index","99")
         .css("position","fixed")
         .css("top",bounds.top)
         .css("left",bounds.left)
