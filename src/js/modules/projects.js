@@ -215,7 +215,93 @@ function deactivateHeader(header) {
     // This prevents flickering between closely spaced headers
 }
 let splitTextPairs = [];
+function hookAllVideos(){
+    document.querySelectorAll(".video").forEach(video_container => {
+        const video = video_container.querySelector("video");
+        const playPauseBtn = video_container.querySelector("#play-pause");
+        const stopBtn = video_container.querySelector("#stop");
+        const muteBtn = video_container.querySelector("#mute");
+        const fsBtn = video_container.querySelector("#fs");
+        const progress = video_container.querySelector("#progress");
 
+        if (!video) return;
+
+        // Play/Pause
+        if (playPauseBtn) {
+            playPauseBtn.addEventListener("click", () => {
+                if (video.paused || video.ended) {
+                    video.play();
+                    playPauseBtn.innerHTML = pauseIcon();
+                    playPauseBtn.setAttribute("data-state", "pause");
+                } else {
+                    video.pause();
+                    playPauseBtn.innerHTML = playIcon();
+                    playPauseBtn.setAttribute("data-state", "play");
+                }
+            });
+        }
+
+        // Stop
+        if (stopBtn) {
+            stopBtn.addEventListener("click", () => {
+                video.pause();
+                playPauseBtn.innerHTML = playIcon();
+                video.currentTime = 0;
+                playPauseBtn && playPauseBtn.setAttribute("data-state", "play");
+            });
+        }
+
+        // Mute/Unmute
+        if (muteBtn) {
+            muteBtn.addEventListener("click", () => {
+                video.muted = !video.muted;
+                muteBtn.innerHTML = video.muted ? muteIcon() : unmutedIcon();
+                muteBtn.setAttribute("data-state", video.muted ? "unmute" : "mute");
+            });
+        }
+
+        // Fullscreen
+        if (fsBtn) {
+            fsBtn.addEventListener("click", () => {
+                if (video.requestFullscreen) {
+                    video.requestFullscreen();
+                } else if (video.webkitRequestFullscreen) {
+                    video.webkitRequestFullscreen();
+                } else if (video.msRequestFullscreen) {
+                    video.msRequestFullscreen();
+                }
+            });
+        }
+
+        // Progress bar update
+        if (progress) {
+            video.addEventListener("timeupdate", () => {
+                progress.value = video.currentTime;
+                progress.max = video.duration;
+            });
+            progress.addEventListener("input", () => {
+                video.currentTime = progress.value;
+            });
+        }
+    });
+}
+
+function playIcon(){
+    return "<svg fill=\"none\" xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 24 24\"> <path d=\"M10 20H8V4h2v2h2v3h2v2h2v2h-2v2h-2v3h-2v2z\" fill=\"currentColor\"/> </svg>";
+}
+
+function pauseIcon(){
+    return "<svg fill=\"none\" xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 24 24\"> <path d=\"M10 4H5v16h5V4zm9 0h-5v16h5V4z\" fill=\"currentColor\"/> </svg>";
+}
+function fullScreenIcon(){
+    return "<svg fill=\"none\" xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 24 24\"> <path d=\"M21 3h-8v2h4v2h2v4h2V3zm-4 4h-2v2h-2v2h2V9h2V7zm-8 8h2v-2H9v2H7v2h2v-2zm-4-2v4h2v2H5h6v2H3v-8h2z\" fill=\"currentColor\"/> </svg>";
+}
+function muteIcon(){
+    return "<svg fill=\"none\" xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 24 24\"> <path d=\"M13 2h-2v2H9v2H7v2H3v8h4v2h2v2h2v2h2V2zM9 18v-2H7v-2H5v-4h2V8h2V6h2v12H9zm10-6.777h-2v-2h-2v2h2v2h-2v2h2v-2h2v2h2v-2h-2v-2zm0 0h2v-2h-2v2z\" fill=\"currentColor\"/> </svg>";
+}
+function unmutedIcon(){
+    return "<svg fill=\"none\" xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 24 24\"> <path d=\"M11 2H9v2H7v2H5v2H1v8h4v2h2v2h2v2h2V2zM7 18v-2H5v-2H3v-4h2V8h2V6h2v12H7zm6-8h2v4h-2v-4zm8-6h-2V2h-6v2h6v2h2v12h-2v2h-6v2h6v-2h2v-2h2V6h-2V4zm-2 4h-2V6h-4v2h4v8h-4v2h4v-2h2V8z\" fill=\"currentColor\"/> </svg>";
+}
 
 function parseContent(content) {
     // Transform [btn link="..."]text[/btn] into a clickable span
@@ -231,6 +317,23 @@ function parseContent(content) {
     });
     parsed = parsed.replace(/\[a href="([^"]+)"\](.*?)\[\/a\]/g, function(match, href, text) {
         return `<a target="_blank" href="${href}" data-pointer>${text}</a>`;
+    });
+    parsed = parsed.replace(/\[video src="([^"]+)"\](.*?)\[\/video\]/g, function(match, img_src, text) {
+        return `<div class="video">
+<div class="header">video.mp4</div>
+<video><source src="${img_src}">Your browser does not support the video tag.</video>
+<div id="video-controls" class="controls" data-state="hidden">
+  <button id="play-pause" type="button" data-state="play" data-pointer>${playIcon()}</button>
+  <button id="stop" type="button" data-state="stop" data-pointer>&nbsp;</button>
+  <div class="progress">
+    <progress id="progress" value="0" min="0">
+      <span id="progress-bar"></span>
+    </progress>
+  </div>
+  <button id="mute" type="button" data-state="mute" data-pointer>${unmutedIcon()}</button>
+  <button id="fs" type="button" data-state="go-fullscreen" data-pointer>${fullScreenIcon()}</button>
+</div></div>
+`;
     });
     return parsed;
 }
@@ -320,6 +423,7 @@ function generateProject(){
             y: -50,
             // x: "-50%"
         });
+        hookAllVideos();
         initAutoFitText();
         makeAllHeaders();
         initLazyLoad();

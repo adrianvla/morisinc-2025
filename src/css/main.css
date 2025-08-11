@@ -636,3 +636,94 @@ section a *{
 section a:hover, section a:hover *{
     color:var(--primary);
 }
+span.brd{
+    display:none;
+}
+span.brd + .pixelation-wrapper {
+    padding:15px;
+    box-sizing: border-box;
+    border:1px solid var(--black);
+}
+span.brd + .pixelation-wrapper img, span.brd + .pixelation-wrapper canvas{
+    margin: 0;
+    border-radius:10px;
+}
+
+video{
+    max-height:var(--main-height);
+    width:100%;
+}
+.video{
+    display:flex;
+    flex-direction: column;
+    border:1px solid var(--black);
+    box-sizing: border-box;
+    background:var(--primary);
+    width:100%;
+}
+.video .header{
+    padding:10px;
+    font-family:'OffBit Trial Bold', sans-serif;
+    font-size:1.5em;
+}
+.video .controls{
+    display:flex;
+    gap:10px;
+    padding:10px;
+}
+.video .controls .progress{
+    width:100%;
+    display:flex;
+    justify-content: center;
+    align-items: center;
+}
+.video .controls button{
+    cursor:none;
+    background:none;
+    border:none;
+    box-sizing: border-box;
+    padding:0;
+    aspect-ratio: 1;
+    display:flex;
+    align-items: center;
+    justify-content: center;
+    height:2em;
+    width:2em;
+    transition:opacity 0.2s ease;
+    opacity:1;
+}
+.video .controls button:hover{
+    opacity:0.5;
+}
+.video .controls button#stop{
+    background:var(--black);
+    aspect-ratio: 1;
+    height:2em;
+    width:2em;
+}
+.video .controls button svg{
+    height:100%;
+    width:100%;
+    max-height:2em;
+}
+.video .controls .progress progress{
+    width:100%;
+    -webkit-appearance: none;
+    appearance: none;
+}
+.video .controls .progress progress::-webkit-progress-bar {
+    background-color: var(--primary);
+    box-sizing:border-box;
+    border:1px solid var(--black);
+}
+.video .controls .progress progress::-webkit-progress-value {
+    background-image:
+            -webkit-linear-gradient(-45deg,
+            transparent 33%, var(--black) 33%,
+            var(--black) 66%, transparent 66%),
+            -webkit-linear-gradient(left, var(--primary), var(--primary));
+    border-right:1px solid var(--black);
+
+    background-size: 25px 15px, 100% 100%, 100% 100%;
+
+}
