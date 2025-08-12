@@ -24,7 +24,7 @@ import { initSterionHyphenFix } from './modules/sterionHyphenFix.js';
 import {getProjectName, isOtherPage, isProjectPage} from "./modules/pathDetector";
 import {fetchProjects} from "./modules/fetchProjects";
 import {generateProject, setupTextRevealEffects} from "./modules/projects";
-import {testForMobile} from "./utils/isMobileDevice";
+import {isMobileDevice, testForMobile} from "./utils/isMobileDevice";
 import leaveBecauseOfLang from "./transitions/leave/lang";
 
 // Initialize BarbaJS with enhanced transitions
@@ -73,6 +73,7 @@ barba.init({
                     });
                 lenis.scrollTo(0);
                 $(".projects").html("");
+                $(data.current.container).remove();
 
                 return enter(new Promise(r=>{generateProject().then(()=> {
                     $(".transition-overlay").remove();
@@ -105,6 +106,7 @@ barba.init({
                         });
                     });
                 lenis.scrollTo(0);
+                $(data.current.container).remove();
 
                 return enter(new Promise(r=>{fetchProjects().then(()=>{
                     initProjects();
@@ -126,6 +128,7 @@ barba.init({
                 // Custom transition for leaving home
                 if(window.redirectType==="lang-button")
                     return new Promise(r=>r());
+                lenis.scrollTo(0);
 
                 destroyAllNeonsExceptSign();
                 window.redirectType = 'home-to-project';
@@ -140,14 +143,14 @@ barba.init({
                             window.location.reload();
                         });
                     });
-
+                $(data.current.container).remove();
                 lenis.scrollTo(0);
                 $(".projects").html("");
-                $(".transition-overlay").remove();
 
                 return enter(new Promise(r=>{generateProject().then(()=> {
                     setupTextRevealEffects();
                     initSignFalloff();
+                    $(".transition-overlay").remove();
                     r();
                 })}));
             }
@@ -162,9 +165,6 @@ barba.init({
         afterEnter(data) {
             // Additional cleanup and initialization after page enter
             console.log(`Entered ${data.next.namespace} page`);
-            setTimeout(() => {
-                // initPage();
-            },100);
         }
     },
 
@@ -222,4 +222,5 @@ document.addEventListener('DOMContentLoaded', () => {
     setHeightValueOfMain();
     initAutoFitText();
     initSterionHyphenFix();
+    if(document.cookie.includes("sign-seen") && isMobileDevice()) $(".sign-c").css("opacity",0);
 });

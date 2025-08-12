@@ -1,8 +1,20 @@
 import {turnOffNeon, turnOnNeon, makeSpark} from "./neons";
 import {lenis} from "./smoothScrolling";
 import gsap from 'gsap';
+import {isMobileDevice} from "../utils/isMobileDevice";
 
 function initSign(){
+    //check cookies
+    if(isMobileDevice()){
+        if(document.cookie.includes("sign-seen")) {
+            document.querySelector(".sign-c").remove();
+            return;
+        }
+        document.cookie = "sign-seen=true; expires=Fri, 31 Dec 9999 23:59:59 GMT";
+    }
+
+
+
     turnOnNeon(document.querySelector(".sign-c .sign > span"));
 
     // Add click event to trigger the falling animation
@@ -26,6 +38,7 @@ function initSignFalloff(){
         once = false;
         fallOffSign();
     });
+    if(isMobileDevice()) fallOffSign();
 }
 
 function fallOffSign() {

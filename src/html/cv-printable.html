@@ -1,0 +1,406 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Curriculum Vitae</title>
+    <style>
+        html, body{
+            background:#ccc;
+            font-family: "Helvetica Neue", "Helvetica", Arial, sans-serif;
+        }
+        @media screen {
+            body {
+                background: #e0e0e0;
+                margin:auto;
+                display:flex;
+                justify-content:center;
+                align-items:center;
+            }
+
+            .page {
+                background: white;
+                box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+                border: 1px solid #000;
+                box-sizing: border-box;
+            }
+            .sheet-outer{
+                display:flex;
+                flex-direction: column;
+                gap:50px;
+                margin-top:50px;
+            }
+        }
+
+        @media print {
+            .page{
+                margin: 0;
+                /* border: 1px solid #000; */
+                /* padding:0 !important;
+                padding-top:20px !important; */
+                /* padding:20px; */
+            }
+            body{
+                margin:0;
+                background:#fff;
+                padding:0;
+            }
+            html{
+                background:#fff;
+            }
+            .end{
+                display:none;
+            }
+        }
+        .page{
+            page-break-after: always;
+            margin: 0;
+            padding: 0;
+        }
+        .A4.landscape .page{
+            width: 297mm;
+            height: 210mm;
+        }
+        .A4 .page{
+            box-sizing: border-box;
+            width: 210mm;
+            height: 297mm;
+        }
+    </style>
+    <style>
+        @font-face {
+            font-family: "RoundedBold";
+            src: url(/assets/site-content/pgpg/PPPangramSansRounded-Bold.otf);
+        }
+        @font-face {
+            font-family: "WatchBold";
+            src: url(/assets/site-content/pgpg/PPWatch-Bold.otf);
+        }
+        @font-face {
+            font-family: "WatchMedium";
+            src: url(/assets/site-content/pgpg/PPWatch-Medium.otf);
+        }
+        @font-face {
+            font-family: "WatchLight";
+            src: url(/assets/site-content/pgpg/PPWatch-Extralight.otf);
+        }
+        .page{
+            padding:1cm;
+        }
+        .line{
+            width:100%;
+            height:2px;
+            background:#ccc;
+        }
+        .b, h1{
+            margin: 0;
+        }
+        .b{
+            font-size:18px;
+        }
+        h1{
+            font-size:27px;
+            font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+        }
+        .b{
+            font-family:"RoundedBold";
+        }
+        .g{
+            display: grid;
+            grid-template-columns: 0.35fr 1fr;
+            grid-template-rows: 1fr;
+            gap: 0px 0px;
+            grid-template-areas: 
+                ". .";
+            width:100%;
+            height:max-content;
+        }
+        .border{
+            border: 1px solid #000;
+            box-sizing: border-box;
+            width:100%;
+
+        }
+        .label{
+            border-right:#203a9a 2px solid;
+            width:100%;
+            box-sizing: border-box;
+            padding:0.3cm;
+            font-family:"RoundedBold";
+            font-size: 1.5em;
+        }
+        .content{
+            padding:0.3cm;
+            width:100%;
+            box-sizing: border-box;
+            font-size: 1.5em;
+            font-size: 15px;
+            display:flex;
+            flex-direction: column;
+            position: relative;
+        }
+        h2{
+            margin:0;
+            font-size: 1.5em;
+            font-family:"RoundedBold";
+        }
+        .v-sep{
+            margin-top:0.2cm
+        }
+        .desc{
+            font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif
+        }
+        ul {
+            list-style-type: none;
+            margin: 0;
+            padding-left: 0em;
+        }
+
+        ul li {
+            margin: 0;
+            font-size: 15px;
+            font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif
+        }
+        .circle{
+            width: 3mm;
+            height: 3mm;
+            background: #203a9a;
+            position:absolute;
+            top:-1px;
+            left:-1px;
+            border-radius: 50%;
+            box-sizing: border-box;
+            border: 2px solid #203a9a;
+            transform:translate(-50%,-50%);
+        }
+        .languages {
+            display: grid;
+            grid-template-columns: 0.5fr 1fr;
+            grid-template-rows: 1fr;
+            gap: 0px 0px;
+            grid-auto-flow: row;
+            grid-template-areas:
+                ". .";
+        }
+        .prizes{
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            grid-template-rows: 1fr;
+            gap: 15px;
+            grid-template-areas: 
+                ". .";
+        }
+    </style>
+</head>
+<body>
+<div class="sheet-outer A4">
+    <section class="page">
+        <h1>Adrian Vlasov</h1>
+        <div class="desc">23.04.2007, Nationalité Suisse, <i><a href="mailto:admin@morisinc.net">admin@morisinc.net</a></i></div>
+        <div class="v-sep"></div>
+        <div class="line"></div>
+        <div class="g">
+            <div class="label">
+                Education
+            </div>
+            <div class="content">
+                <div class="circle"></div>
+                <h2>Gymnase de Nyon</h2>
+                <div class="desc">2023-2025 - 3ème année - OS Maths Physique</div>
+                <!-- <div class="features">
+                    <ul>
+                        <li>OS Maths Physique</li>
+                        <li></li>
+                    </ul>
+                </div> -->
+                <div class="v-sep"></div>
+                <h2>Cours Euler - EPFL</h2>
+                <div class="desc">2020-présent - 5ème année</div>
+                <div class="v-sep"></div>
+                <h2>Cours Turing - EPFL</h2>
+                <div class="desc">2023-2025 - 2 années</div>
+                <div class="v-sep"></div>
+                <h2>Conservatoire de Musique de Genève</h2>
+                <div class="desc">2014-présent (piano, orgue) - Filière Préprofessionnelle depuis 2024</div>
+                <div class="v-sep"></div>
+            </div>
+        </div>
+        <div class="line"></div>
+        <div class="g">
+            <div class="label">Expérience</div>
+            <div class="content">
+                <div class="circle"></div>
+                <h2>Stage Logitech</h2>
+                <div class="desc">Création de logiciel pour AI (2022)</div>
+            </div>
+        </div>
+        <div class="line"></div>
+        <div class="g">
+            <div class="label">Projets</div>
+            <div class="content">
+                <div class="circle"></div>
+                <h2>Travail de Maturité</h2>
+                <div class="desc">2024, <i>Comment créer et optimiser un système à
+                    base d'un microprocesseur pour un jeu
+                    vidéo comme Tetris</i> - (note 6.0)</div>
+                <div class="v-sep"></div>
+                <h2>Projects de Hobby</h2>
+                <div class="desc">Logiciels d'éducation, systèmes embarqués, outils de vidéoconférence, IoT, sites internet, logiciels pour traitement de signal, jeux vidéos... <br>Plus d'infos sur <i><a href="https://www.morisinc.net">www.morisinc.net</a></i> et <i><a href="https://github.com/adrianvla">github.com/adrianvla</a></i></div>
+            </div>
+        </div>
+        <div class="line"></div>
+        <div class="g">
+            <div class="label">Compétences</div>
+            <div class="content">
+                <div class="circle"></div>
+                <div class="languages">
+                    <div class="_1">
+                        <h2>Langues</h2>
+                        <div class="features">
+                            <ul>
+                                <li>Français</li>
+                                <li>Anglais</li>
+                                <li>Russe</li>
+                                <li>Allemand</li>
+                                <li>Japonais</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="_2">
+                        <h2>Langages de Programmation</h2>
+                        <div class="features">
+                            <ul>
+                                <li>C, C++</li>
+                                <li>Java</li>
+                                <li>Python</li>
+                                <li>JavaScript, HTML, CSS (FullStack)</li>
+                                <li>Verilog</li>
+                                <li>Assembly (CPU de mon TM)</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="line"></div>
+        <div class="g">
+            <div class="label">Concours & <br> Compétitions</div>
+            <div class="content">
+                <div class="circle"></div>
+                <!-- [Piano, Orgue], Composition, Programmation, Sport -->
+                <div class="prizes">
+                    <div class="_1">
+                        <span class="b">Piano, Orgue</span>
+                        <div class="features">
+                            <ul>
+                                <li>1er Prix Orgue (CMG) - 2025, 2024</li>
+                                <li>1er Prix Piano (CMG) - 2021-2023</li>
+                                <li></li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="_2">
+                        <span class="b">Composition</span>
+                        <div class="features">
+                            <ul>
+                                <li>SJMW (tout Suisse) 3e prix - 2025</li>
+                                <li>SJMW 3e prix entrada - 2024</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <div class="v-sep"></div>
+                <div class="prizes">
+                    <div class="_1">
+                        <span class="b">Programmation</span>
+                        <div class="features">
+                            <ul>
+                                <li>Gagné 2x concours annuel du Cours Turing</li>
+                                <li></li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="_2">
+                        <span class="b">Sport</span>
+                        <div class="features">
+                            <ul>
+                                <li>Natation (NSG) médailles de Bronze et d'Argent par catégorie</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="line"></div>
+        <div class="g">
+            <div class="label">Hobbys</div>
+            <div class="content">
+                <div class="circle"></div>
+                <!-- <h2>Programmation & Recherche</h2>
+                <div class="desc">Recherche AI, neuroscience - Plus d'infos sur <i><a href="https://github.com/adrianvla">github.com/adrianvla</a></i></div>
+                <div class="v-sep"></div>
+                <h2>Musique</h2>
+                <div class="desc">Piano, Orgue, Composition</div>
+                <div class="v-sep"></div>
+                <h2>Apprentissage de langues</h2>
+                <div class="desc">Japonais,... avec <i><a href="https://mlearn.morisinc.net">mlearn.morisinc.net</a></i> </div>
+                <div class="v-sep"></div>
+                <h2>Sport</h2>
+                <div class="desc">Natation - NSG Genève</div> -->
+                <div class="features">
+                    <ul>
+                        <li><span class="b">Programmation & Recherche</span> - AI, neuroscience...</li>
+                        <div class="v-sep"></div>
+                        <li><span class="b">Musique</span> - Piano, Orgue, Composition</li>
+                        <div class="v-sep"></div>
+                        <li><span class="b">Apprentissage de langues</span> - Japonais...</li>
+                        <div class="v-sep"></div>
+                        <li><span class="b">Sport</span> - Natation, Aikido</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="line"></div>
+        <div class="g">
+            <div class="label" style="padding:0"></div>
+            <div class="content" style="padding:0">
+                <div class="circle"></div>
+            </div>
+        </div>
+        <span style="display:none">
+                Education: Euler, Turing (2x, won twice in a row), Gymnase de Nyon, CMG Precollege
+
+                experience: 2x internship at Logitech
+
+                Projects: TM, (Important: mLearn, decks, geo-game, Tetris, mCall, mWatch (https://old.morisinc.net/public_html/mwatch/)), (misc: 8BIT-JS, IoT, MCRAT)
+
+                Skills: 
+                    - C,C++, Python, Javascript HTML CSS (Fullstack), Java, Assembly (CPU TM2024), Verilog, Latex, Batch
+                    - Linux, Windows, MacOS
+                    - Git, Docker
+                    - Blender, Logic Pro
+                Languages:
+                    - French
+                    - English
+                    - Russian
+                    - German
+                    - Japanese
+    
+                Hobbies:
+                    - Programming (https://github.com/adrianvla), Web Design
+                    - Music
+                        - Piano
+                        - Organ
+                        - Composition
+                    - Language learning (https://mlearn.morisinc.net/)
+                        - Japanese
+                    - Sport
+            </span>
+
+    </section>
+
+    <section class="page end"></section>
+</div>
+</body>
+</html>

@@ -101,7 +101,7 @@ function initAnimations(p){
         tl.to('.loader', {
             top: '134px',
             left: '264px',
-            duration:1,
+            duration:isMobileDevice() ? 0.01 : 1,
             ease: "power1.inOut",
             onComplete: () => {
                 if(!isMobileDevice())
@@ -115,7 +115,7 @@ function initAnimations(p){
                     if(!hasLoadedImages)
                         tl.pause();
             }
-        },"<1");
+        },isMobileDevice() ? "<0.01" : "<1");
         tl.to('.nav4',{
             gap:"2px"
         },"<");

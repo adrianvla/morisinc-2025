@@ -49,78 +49,81 @@ function fetchProjectContent(projectName) {
     });
 
 }
-function makeAllHeaders(){
-    // Clear existing table of contents items (except the "Contents" pill)
-    $(".s1 .projects .project.neon").remove();
+async function makeAllHeaders(){
+    return new Promise((resolve, reject) => {
+        // Clear existing table of contents items (except the "Contents" pill)
+        $(".s1 .projects .project.neon").remove();
 
-    // Find all header tags (h1-h6) in the content section
-    const headers = $("section.content h1, section.content h2, section.content h3, section.content h4, section.content h5, section.content h6");
+        // Find all header tags (h1-h6) in the content section
+        const headers = $("section.content h1, section.content h2, section.content h3, section.content h4, section.content h5, section.content h6");
 
-    headers.each(function(index) {
-        const $header = $(this);
-        const tagName = this.tagName.toLowerCase();
-        const headerLevel = parseInt(tagName.charAt(1)); // Extract number from h1, h2, etc.
-        const headerText = $header.text().trim();
+        headers.each(function(index) {
+            const $header = $(this);
+            const tagName = this.tagName.toLowerCase();
+            const headerLevel = parseInt(tagName.charAt(1)); // Extract number from h1, h2, etc.
+            const headerText = $header.text().trim();
 
-        if (headerText) {
-            // Create a unique ID for the header if it doesn't have one
-            let headerId = $header.attr('id');
-            if (!headerId) {
-                // Use yeast to generate a unique ID with a readable prefix
-                const baseId = headerText.toLowerCase()
-                    .replace(/[^a-z0-9]/g, '-')
-                    .replace(/-+/g, '-')
-                    .replace(/^-|-$/g, '');
+            if (headerText) {
+                // Create a unique ID for the header if it doesn't have one
+                let headerId = $header.attr('id');
+                if (!headerId) {
+                    // Use yeast to generate a unique ID with a readable prefix
+                    const baseId = headerText.toLowerCase()
+                        .replace(/[^a-z0-9]/g, '-')
+                        .replace(/-+/g, '-')
+                        .replace(/^-|-$/g, '');
 
-                // Generate a unique ID using yeast and replace dots with dashes
-                const yeastId = yeast().replace(/\./g, '-');
-                headerId = `header-${yeastId}-${baseId}`;
+                    // Generate a unique ID using yeast and replace dots with dashes
+                    const yeastId = yeast().replace(/\./g, '-');
+                    headerId = `header-${yeastId}-${baseId}`;
 
-                $header.attr('id', headerId);
-            }
+                    $header.attr('id', headerId);
+                }
 
-            // Calculate indentation based on header level (h1=0, h2=1, h3=2, etc.)
-            const indentLevel = headerLevel - 1;
+                // Calculate indentation based on header level (h1=0, h2=1, h3=2, etc.)
+                const indentLevel = headerLevel - 1;
 
-            // Create the table of contents entry
-            const tocEntry = $(`
+                // Create the table of contents entry
+                const tocEntry = $(`
                 <div class="project neon toc-item" data-indent="${indentLevel}" data-target="${headerId}" data-header-level="${headerLevel}">${headerText}</div>
             `);
 
-            // Add click handler to scroll to the header
-            tocEntry.on('click', function(e) {
-                e.preventDefault();
-                e.stopPropagation();
+                // Add click handler to scroll to the header
+                tocEntry.on('click', function(e) {
+                    e.preventDefault();
+                    e.stopPropagation();
 
-                const targetId = $(this).data('target');
-                const targetElement = $(`#${targetId}`);
+                    const targetId = $(this).data('target');
+                    const targetElement = $(`#${targetId}`);
 
-                if (targetElement.length) {
-                    // Use Lenis scrollTo method instead of jQuery animate
-                    if (window.lenis) {
-                        window.lenis.scrollTo(targetElement[0], {
-                            offset: -20,
-                            duration: 1.2,
-                            easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t))
-                        });
-                    } else {
-                        // Fallback to native scrollIntoView if Lenis is not available
-                        targetElement[0].scrollIntoView({
-                            behavior: 'smooth',
-                            block: 'start'
-                        });
+                    if (targetElement.length) {
+                        // Use Lenis scrollTo method instead of jQuery animate
+                        if (window.lenis) {
+                            window.lenis.scrollTo(targetElement[0], {
+                                offset: -20,
+                                duration: 1.2,
+                                easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t))
+                            });
+                        } else {
+                            // Fallback to native scrollIntoView if Lenis is not available
+                            targetElement[0].scrollIntoView({
+                                behavior: 'smooth',
+                                block: 'start'
+                            });
+                        }
                     }
-                }
-            });
+                });
 
-            $(".s1 .projects").append(tocEntry);
-        }
+                $(".s1 .projects").append(tocEntry);
+            }
+        });
+
+        // Set up ScrollTrigger for headers after DOM is updated
+        setTimeout(() => {
+            setupHeaderScrollTriggers();
+            resolve();
+        }, 100);
     });
-
-    // Set up ScrollTrigger for headers after DOM is updated
-    setTimeout(() => {
-        setupHeaderScrollTriggers();
-    }, 100);
 }
 
 function setupHeaderScrollTriggers() {
@@ -615,6 +618,7 @@ function init404(){
 
 function initCarousel() {
     $(".carousel").attr("data-pointer", "");
+    $(".carousel").append(`<div class="header">Carousel</div>`);
     document.querySelectorAll(".carousel").forEach(carousel => {
         const items = carousel.querySelectorAll(":scope > .carousel-item");
         if (!items || items.length === 0) return;
@@ -701,7 +705,6 @@ function initCarousel() {
 
 
 function generateProject(){
-    $("[data-barba-namespace='home']").remove();
     return new Promise(async (resolve, reject) => {
         // Clean up existing neon effects (except sign) before generating new project
         destroyAllNeonsExceptSign();
@@ -721,8 +724,6 @@ function generateProject(){
             window.location.href = "/";
             return;
         }
-        const nameOfTitle = name.charAt(0).toUpperCase() + name.slice(1);
-        $("title").text(nameOfTitle);
         let projs = await fetchProjFile();
         let p = null;
         //find project in the list
@@ -740,6 +741,8 @@ function generateProject(){
             is404 = true;
             $("title").text("404 Page not Found");
         }
+        const nameOfTitle = p.name.charAt(0).toUpperCase() + p.name.slice(1);
+        $("title").text(nameOfTitle);
         let img_src = ".."+p?.image;
         let content = "";
         try {
@@ -762,13 +765,21 @@ function generateProject(){
 
         $("main").html("");
         //create section
-        if(!is404)
-        $("main").append(`
-            <section class="project hero">
-                <h1>${name}</h1>
-                <img data-src="${img_src}" src="${img_src.replace('img','img-low-res')}" alt="${name}">
-            </section>
-        `);
+        if(!is404){
+            if(p?.image)
+                $("main").append(`
+                    <section class="project hero">
+                        <h1>${name}</h1>
+                        <img data-src="${img_src}" src="${img_src.replace('img','img-low-res')}" alt="${name}">
+                    </section>
+                `);
+            else
+                $("main").append(`
+                    <section class="project hero">
+                        <h1>${name}</h1>
+                    </section>
+                `);
+        }
         $("main").append(`
             <section class="content grid-item${is404 ? " page404" : ""}">
                 ${parseContent(content)}
@@ -823,7 +834,7 @@ function generateProject(){
         hookAllVideos();
         hookAllReaders();
         initAutoFitText();
-        makeAllHeaders();
+        await makeAllHeaders();
         initLazyLoad();
         initCarousel();
 
