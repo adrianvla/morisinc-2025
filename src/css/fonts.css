@@ -17,10 +17,22 @@
   font-style: italic;
 }
 @font-face {
-  font-family: 'Teknaf';
-  src: url('../assets/fonts/teknaf-regular-font/TeknafRegular-rv0aB.otf') format('opentype');
-  font-weight: normal;
-  font-style: normal;
+    font-family: 'Teknaf';
+    src: url('../assets/fonts/teknaf-regular-font/TeknafRegular-rv0aB.otf') format('opentype');
+    font-weight: normal;
+    font-style: normal;
+}
+@font-face {
+    font-family: 'Y224';
+    src: url('../assets/fonts/y224/Y224-pgj1O.woff') format('opentype');
+    font-weight: normal;
+    font-style: normal;
+}
+@font-face {
+    font-family: 'LogoPixies';
+    src: url('../assets/fonts/logopixies/Logopixies-owwBB.ttf') format('opentype');
+    font-weight: normal;
+    font-style: normal;
 }
 
 /* PTF OffBit - 101 */

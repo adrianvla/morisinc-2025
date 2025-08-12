@@ -5,7 +5,7 @@ import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import {SplitText} from "gsap/SplitText";
 import { ScrambleTextPlugin } from "gsap/ScrambleTextPlugin";
-import {getTranslation} from "./translator";
+import {getTranslation, translateEverything} from "./translator";
 import yeast from "yeast";
 import {turnOnNeon, turnOffNeon, destroyAllNeonsExceptSign} from "./neons";
 import initLazyLoad from "./lazyLoad";

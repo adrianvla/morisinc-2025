@@ -57,7 +57,7 @@ body{
 }
 
 .nav4 h1{
-    font-family: 'Sterion', sans-serif;
+    font-family: 'Sterion','Y224', sans-serif;
     font-style: italic;
     margin: 5px 0 0 25px;
 }
@@ -130,19 +130,40 @@ body{
     padding-top:2px;
 }
 h4{
-    font-family: 'Teknaf', sans-serif;
+    font-family: 'Teknaf','Y224', sans-serif;
     font-size:0.75rem;
     margin: 0;
 }
 h5{
-    font-family: 'Teknaf', sans-serif;
+    font-family: 'Teknaf','PP Neue Montreal Mono', sans-serif;
+    font-weight:300;
     font-size:0.5rem;
     margin: -1px 0 0;
 }
 h3{
-    font-family: 'Teknaf', sans-serif;
+    font-family: 'Teknaf','Y224', sans-serif;
     font-weight: bold;
     margin: 0;
+}
+body.lang-jp h4, body.lang-jp h5, body.lang-jp h3{
+    font-family: 'Teknaf', 'LogoPixies', 'Y224', sans-serif;
+}
+body.lang-jp .sign-c .sign span, body.lang-jp .marquee .word{
+    font-family: 'LogoPixies', sans-serif !important;
+}
+body:not(.lang-jp) .name-furigana{
+    display:none;
+}
+body.lang-jp .name-furigana{
+    color:var(--background);
+    white-space: nowrap;
+    display:flex;
+    justify-content: center;
+    align-items: center;
+    height:100%;
+}
+body.lang-jp .nav0 .flex h1{
+    margin-right:0;
 }
 h5 + h3{
     margin-top:-2px;
@@ -164,7 +185,7 @@ h5 + h3{
     margin: 10px 0 0 25px;
 }
 .nav0 h1{
-    font-family: 'Sterion', sans-serif;
+    font-family: 'Sterion','Y224', sans-serif;
     color:var(--background);
     margin: 0 10px 0 10px;
 }
@@ -183,6 +204,9 @@ h5 + h3{
     text-align:right;
     color:var(--background);
     margin-right:10px;
+}
+.s0 h4{
+    font-family:'Y224', 'Teknaf', sans-serif;
 }
 .nav0 > div:nth-child(5){
     width:calc(100% - 20px);
@@ -327,6 +351,7 @@ h5 + h3{
     display: flex;
     align-items: center;
     justify-content: center;
+    font-family:'Y224', 'Teknaf', sans-serif;
 }
 .sidebar .s1 h4:nth-child(1) span{
     height:1em;
@@ -342,7 +367,7 @@ h5 + h3{
     height:100%;
 }
 .sidebar .s1 .projects .project{
-    font-family: 'Sterion', sans-serif;
+    font-family: 'Sterion','Y224', sans-serif;
     white-space: nowrap;
 }
 
@@ -394,9 +419,17 @@ h5 + h3{
     justify-content: center;
     align-items: center;
     padding:5px;
-    font-family: 'Teknaf', sans-serif;
+    font-family: 'Y224', sans-serif;
     letter-spacing: 0.1em;
+    font-size:0.05em;
+    white-space: nowrap;
 }
+@-moz-document url-prefix() {
+    .sidebar .s2{
+        font-size:0.5em;
+    }
+}
+
 .sidebar .s3{
     flex: 2;
     background:var(--black);
@@ -430,14 +463,14 @@ h6{
     background:var(--black);
     padding: 2px 10px;
     color: var(--background);
-    font-family: 'Sterion', sans-serif;
+    font-family: 'Sterion','Y224', sans-serif;
 }
 
 .pill{
     color:var(--background);
     background:var(--black);
     padding: 5px 15px;
-    font-family: 'Sterion', sans-serif;
+    font-family: 'Y224', sans-serif;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -487,7 +520,7 @@ main.main-content {
     display: flex;
     align-items: center;
     justify-content: center;
-    font-family: 'Sterion', sans-serif;
+    font-family: 'Sterion','Y224', sans-serif;
     font-size: 1.5rem;
 }
 .nav-item a{
@@ -577,7 +610,7 @@ section.project.hero img{
     margin: 0px;
 }
 section.project h1{
-    font-family: 'Sterion', sans-serif;
+    font-family: 'Sterion','Y224', sans-serif;
     position:absolute;
     margin: 0;
     z-index:1;

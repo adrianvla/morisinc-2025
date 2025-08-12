@@ -1,4 +1,5 @@
 import yeast from 'yeast';
+import $ from 'jquery';
 
 function setLanguageCookie(lang) {
     document.cookie = `lang=${lang}; path=/; max-age=31536000`; // 1 year
@@ -27,15 +28,27 @@ function getCurrentLanguage() {
 
 const translationStrings = {
     jp: {
-        "About": "私について",
+        "About": "僕について",
         "Home": "ホーム",
         "Lang": "言語",
         "Socials":"SNS",
         "Language Selection":"言語選択",
+        "LANGUAGE SELECTION":"言語選択",
         "Projects":"プロジェクト",
+        "PROJECTS":"プロジェクト",
         "Your Experience":"体験が",
         "Is Loading":"読み込んでいます",
         "CV": "略歴",
+        "SCROLL DOWN": "スクロ-ル →",
+        "Software": "ソフト",
+        "Research": "研究",
+        "Hardware": "ハード",
+        "Design": "デザイン",
+        "Misc": "その他",
+        "MANUFACTURE DATE": "製造日",
+        "CHANGE":"テームを",
+        "THEME":"変わる",
+        "PORTFOLIO": "ポートフォリオ",
     },
     de:{
         "About": "Uber Mich",
@@ -43,7 +56,19 @@ const translationStrings = {
         "Lang": "Sprache",
         "LANGUAGE SELECTION": "SPRACHAUSWAHL",
         "Projects":"Projekte",
+        "PROJECTS":"PROJEKTE",
+        "Your Experience":"Ihre Erfahrung",
+        "Is Loading": "Ist am Laden",
         "CV": "Lebenslauf",
+        "SCROLL DOWN": "SCROLLEN →",
+        "Software": "Software",
+        "Research": "Forschung",
+        "Hardware": "Hardware",
+        "Design": "Design",
+        "Misc": "Sonstiges",
+        "MANUFACTURE DATE": "HERSTELLDATUM",
+        "CHANGE":"THEMA",
+        "THEME":"TEILNEHMEN"
     },
     ru:{
         "About": "Обо мне",
@@ -53,16 +78,40 @@ const translationStrings = {
         "Adrian":"Адриан",
         "Vlasov":"Власов",
         "LANGUAGE SELECTION": "ВЫБОР ЯЗЫКА",
+        "Your Experience": "Ваша страница",
+        "Is Loading": "Загружается",
         "Projects":"Проекты",
+        "PROJECTS":"ПРОЕКТЫ",
         "CV": "Резюме",
+        "SCROLL DOWN": "ПРОКРУТИТЬ →",
+        "Software": "ПО",
+        "Research": "НИРОКР",
+        "Hardware": "Железо",
+        "Design": "Дизайн",
+        "Misc": "Прочее",
+        "MANUFACTURE DATE": "ДАТА ПУБЛИКАЦИИ",
+        "CHANGE":"ПОМЕНЯТЬ",
+        "THEME": "ЦВЕТ"
     },
     fr:{
         "About": "À Propos",
         "Home": "Accueil",
         "Lang": "Langue",
         "Socials":"Contact",
-        "LANGUAGE SELECTION": "SÉLECTION DE LA LANGUE",
+        "LANGUAGE SELECTION": "LANGUE",
+        "Your Experience": "Votre expérience",
+        "Is Loading": "Est en cours de chargement",
         "Projects":"Projets",
+        "PROJECTS":"PROJETS",
+        "SCROLL DOWN": "SCROLLEZ →",
+        "Software": "Logiciels",
+        "Research": "Recherche",
+        "Hardware": "Projet Elec.",
+        "Design": "Design",
+        "Misc": "Autre",
+        "MANUFACTURE DATE": "DATE DE FABRICATION",
+        "CHANGE":"CHANGER",
+        "THEME": "LA COULEUR"
     }
 }
 
@@ -82,6 +131,7 @@ function getTranslation(key) {
 
 function translateEverything(){
     const lang = getCurrentLanguage();
+    $("body").addClass("lang-"+lang);
     console.log("Language set to:", lang);
     if(lang === 'en') {
         console.log("No translation needed for English");
@@ -102,6 +152,8 @@ function translateEverything(){
 
     elements = document.querySelectorAll('[data-translation]');
     elements.forEach(element => {
+        if($(element).attr("already-translated")) return;
+        $(element).attr("already-translated", true);
         const key = element.getAttribute('data-translation');
         if (translationStrings[lang] && translationStrings[lang][key]) {
             if(translationStrings[lang][key] === "&EMPTY&") {

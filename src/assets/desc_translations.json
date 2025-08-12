@@ -1,0 +1,104 @@
+{
+  "mLearn": {
+    "fr": "Une application intelligente d'apprentissage des langues qui s'adapte à ce que vous connaissez déjà",
+    "de": "Eine intelligente Sprachlern‑App, die sich an das anpasst, was Sie bereits wissen.",
+    "ru": "Умное приложение для изучения языков, которое подстраивается под то, что вы уже знаете.",
+    "jp": "既に知っている語彙に合わせて学習を最適化するスマートな語学学習アプリ"
+  },
+  "Decks": {
+    "fr": "Application de fiches en ligne avec répétition espacée, basée sur LaTeX.",
+    "de": "Eine Online‑Karteikarten‑App mit Spaced Repetition auf LaTeX‑Basis.",
+    "ru": "Онлайн‑приложение карточек с интервальным повторением на базе LaTeX.",
+    "jp": "LaTeX ベースの間隔反復対応オンライン暗記カードアプリ"
+  },
+  "Geo Game": {
+    "fr": "Un jeu de géographie multijoueur adapté au mobile",
+    "de": "Ein mobiltaugliches, Mehrspieler‑Geographiespiel",
+    "ru": "Мультиплеерная географическая игра, удобная для мобильных устройств",
+    "jp": "モバイルに優しいマルチプレイヤー地理クイズゲーム"
+  },
+  "mCall": {
+    "fr": "Comme Google Meet, mais vous choisissez à qui vous connecter dans un meeting, avec chiffrement de bout en bout.",
+    "de": "Wie Google Meet, aber Sie wählen, mit wem Sie in einem Meeting sich verbinden möchten, Ende‑zu‑Ende verschlüsselt.",
+    "ru": "Как Google Meet, но можно выбирать, с кем соединяться на видео звонке; полное сквозное шифрование.",
+    "jp": "Google Meet のように使えますが、会議で接続する相手を自分で選べます。エンドツーエンド暗号化。"
+  },
+  "HS Diploma Project": {
+    "fr": "Mon projet de diplôme de lycée : conception et implémentation d'une nouvelle architecture CPU, d'une plateforme qui l'utilise, et portage d'un jeu dessus.",
+    "de": "Mein Abiturprojekt: Entwurf und Implementierung einer neuartigen CPU‑Architektur, einer Plattform dafür und Portierung eines Spiels darauf.",
+    "ru": "Мой выпускной проект: проектирование и реализация новой архитектуры ЦП, платформы на её основе и портирование на неё игры.",
+    "jp": "高校の卒業研究：新しい CPU アーキテクチャの設計と実装、その上で動くプラットフォームの構築、そしてゲームの実装。"
+  },
+  "Smart Clock": {
+    "fr": "Une horloge matricielle construite sur Raspberry Pi Zero",
+    "de": "Eine Matrix‑Uhr auf Basis eines Raspberry Pi Zero",
+    "ru": "Матричные часы на базе Raspberry Pi Zero",
+    "jp": "Raspberry Pi Zero で作ったマトリクス目覚まし時計"
+  },
+  "IoT Home Automation": {
+    "fr": "Comme Apple HomeKit, mais gratuit et pour Raspberry Pi.",
+    "de": "Wie Apple HomeKit, aber kostenlos und für den Raspberry Pi.",
+    "ru": "Как Apple HomeKit, но бесплатно и для Raspberry Pi.",
+    "jp": "Apple HomeKit のような仕組みを、無料かつ Raspberry Pi 向けに。"
+  },
+  "mlearn.morisinc.net": {
+    "fr": "Le site de l'application mLearn",
+    "de": "Die Website der mLearn‑App",
+    "ru": "Сайт приложения mLearn",
+    "jp": "mLearn アプリのウェブサイト"
+  },
+  "morisinc.net": {
+    "fr": "Ce site web",
+    "de": "Diese Website",
+    "ru": "Этот сайт",
+    "jp": "このウェブサイト"
+  },
+  "meteor-m.com": {
+    "fr": "Un autre site web que j'ai créé",
+    "de": "Eine weitere Website, die ich erstellt habe",
+    "ru": "Ещё один сайт, который я сделал",
+    "jp": "別のウェブサイト"
+  },
+  "old morisinc.net": {
+    "fr": "Version précédente de ce site",
+    "de": "Vorherige Version dieser Website",
+    "ru": "Предыдущая версия этого сайта",
+    "jp": "このサイトの前のバージョン"
+  },
+  "8BIT.js": {
+    "fr": "Une bibliothèque très simple à utiliser de manipulation graphique pour créer des jeux rétro 8‑bit en JavaScript",
+    "de": "Eine einfache JavaScript-Sprite-Bibliothek zum Erstellen von Retro-8-Bit-Spielen.",
+    "ru": "Простая графическая библиотека JavaScript для создания ретро 8-битных игр.",
+    "jp": "レトロな8-BITゲームを作るためのシンプルなJavaScriptグラフィックスライブラリ"
+  },
+  "M5 Geiger Counter": {
+    "fr": "Un compteur Geiger basé sur M5Stack",
+    "de": "Ein Geigerzähler auf M5Stack‑Basis",
+    "ru": "Счётчик Гейгера на базе M5Stack",
+    "jp": "M5Stack をベースにしたガイガーカウンター"
+  },
+  "DynWeb": {
+    "fr": "Contenu Web dynamique : un CMS très simple, avec ou sans modèle. Rédigez le contenu avec LibreOffice.",
+    "de": "Dynamische Website‑Inhalte: Ein sehr einfaches CMS, mit Vorlage oder ohne. Schreiben Sie die Inhalte in LibreOffice.",
+    "ru": "Очень простая CMS, с шаблоном или без. Пишите контент на LibreOffice.",
+    "jp": "動的ウェブコンテンツ：テンプレート有無を選べる、とてもシンプルな CMS。LibreOffice でコンテンツを作成。"
+  },
+  "Retro Tetris": {
+    "fr": "Récréation du Tetris original de l'ordinateur soviétique DVK2M.",
+    "de": "Rekonstruktion des originalen Tetris auf dem sowjetischen DVK2M-Computer.",
+    "ru": "Реконструкция оригинального Тетриса в стиле DVK2M.",
+    "jp": "ソビエトのコンピュータDVK2Mのスタイルでテトリスを再現。"
+  },
+  "mc website": {
+    "fr": "Un site dédié à mes créations Minecraft quand j'étais plus jeune",
+    "de": "Eine Website für meine Minecraft‑Kreationen aus jüngeren Jahren",
+    "ru": "Сайт, посвящённый моим датапаком в Minecraft в более юные годы",
+    "jp": "若い頃に作った Minecraft データパックを紹介するウェブサイト"
+  },
+  "Backdoor.js": {
+    "fr": "Un RAT insérant un script dans le code d'un site web, incluant un keylogger et une vue d'écran en direct.",
+    "de": "Ein Loader, der ein Skript in den Code einer Website einfügt. Enthält einen Keylogger und eine Live‑Bildschirmansicht.",
+    "ru": "Загрузчик, который вставляет скрипт в код сайта. Включает кейлоггер и просмотр экрана в реальном времени.",
+    "jp": "ウェブサイトのコードにスクリプトを挿入するローダー。キーロガーとライブ画面表示機能を含みます。"
+  }
+}

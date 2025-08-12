@@ -3,7 +3,7 @@ import yeast from "yeast";
 import {turnOffNeon, turnOnNeon} from "./neons";
 import barba from "@barba/core";
 import {getProjectName} from "./pathDetector";
-import {getTranslation} from "./translator";
+import {getCurrentLanguage, getTranslation} from "./translator";
 import {colors} from "./changeTheme";
 import initLazyLoad from "./lazyLoad";
 let index = 0;
@@ -41,35 +41,51 @@ function fetchProjects() {
     $("[data-barba-namespace='project']").remove();
     return new Promise((resolve, reject) => {
         $.ajax({
-            url: '/assets/projects.json',
+            url: '/assets/desc_translations.json',
             method: 'GET',
             dataType: 'json',
-            success: function(data) {
-                // console.log(data);
-                try {
-                    // Process each category
-                    data.forEach(category => {
-                        if(category.category === "HIDDEN") return;
-                        // Add category header
-                        const categoryHeader = $(`<h4 class="pill"><span>${category.category}</span></h4>`);
-                        $(".s1 .projects").append(categoryHeader);
+            success: function(translations) {
+                $.ajax({
+                    url: '/assets/projects.json',
+                    method: 'GET',
+                    dataType: 'json',
+                    success: function(data) {
+                        // console.log(data);
+                        try {
+                            // Process each category
+                            data.forEach(category => {
+                                if(category.category === "HIDDEN") return;
+                                // Add category header
+                                const categoryHeader = $(`<h4 class="pill"><span>${getTranslation(category.category)}</span></h4>`);
+                                $(".s1 .projects").append(categoryHeader);
 
-                        // Add projects for this category
-                        category.items.forEach(project => {
-                            addProject(project.name, project.desc, project.image, project.directURL, project.url);
-                        });
-                    });
-                    initLazyLoad();
+                                const currentLang = getCurrentLanguage();
+                                // Add projects for this category
+                                category.items.forEach(project => {
+                                    let desc = project.desc;
+                                    if(project.name in translations)
+                                        if(currentLang in translations[project.name])
+                                            desc = translations[project.name][currentLang];
+                                    addProject(project.name, desc, project.image, project.directURL, project.url);
+                                });
+                            });
+                            initLazyLoad();
 
-                    resolve(data);
-                } catch (error) {
-                    console.error('Error processing projects data:', error);
-                    reject(error);
-                }
+                            resolve(data);
+                        } catch (error) {
+                            console.error('Error processing projects data:', error);
+                            reject(error);
+                        }
+                    },
+                    error: function(xhr, status, error) {
+                        console.error('Error fetching projects:', error);
+                        reject(new Error(`Failed to fetch projects: ${error}`));
+                    }
+                });
             },
             error: function(xhr, status, error) {
-                console.error('Error fetching projects:', error);
-                reject(new Error(`Failed to fetch projects: ${error}`));
+                console.error('Error fetching translations:', error);
+                reject(new Error(`Failed to fetch translations: ${error}`));
             }
         });
     });
