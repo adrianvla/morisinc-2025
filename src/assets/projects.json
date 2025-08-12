@@ -19,7 +19,7 @@
     {"name": "meteor-m.com", "url": "https://meteor-m.com", "image": "/assets/img/meteor-m-com.png", "directURL": true, "desc": "Another website I made"}
   ]},
   {"category": "Misc", "items": [
-    {"name": "old morisinc.net", "url": "https://old.morisinc.net", "image": "/assets/img/old-morisinc-net.png", "directURL": true, "desc": "The older version of this website"},
+    {"name": "old morisinc.net", "url": "https://m2022.morisinc.net", "image": "/assets/img/old-morisinc-net.png", "directURL": true, "desc": "The older version of this website"},
     {"name": "8BIT.js","url": "8bit-js.html", "image": "/assets/img/8bitjs.png", "directURL": false, "desc": "A Simple JavaScript Sprite Library for creating retro 8 bit games"},
     {"name": "M5 Geiger Counter","url": "m5geiger.html", "image": "/assets/img/m5gs.webp", "directURL": false, "desc":  "A Geiger counter based on M5Stack"},
     {"name": "DynWeb","url": "dynweb.html", "image": "/assets/img/dynweb.webp", "directURL": false, "desc": "Dynamic Website Content: A very simple CMS, using a template or none. Use LibreOffice to write the content."},

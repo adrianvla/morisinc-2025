@@ -1,13 +1,13 @@
 <div class="txt-sec" data-scroll>
   <h1>A geiger counter on M5 Stack</h1>
-  <p>A smart geiger counter built on M5 Stack with a radiation map that uses OpenStreetMap, with wifi to log the radiation on the map. To build
-    your own, download the repository from [btn link="https://github.com/adrianvla/M5-Stack-Geiger-Counter"]here[/btn].</p>
+  <p>A smart Geiger counter built on M5Stack, featuring a radiation map powered by OpenStreetMap and Wi‑Fi logging. To build
+    your own, download the repository [btn link="https://github.com/adrianvla/M5-Stack-Geiger-Counter"]here[/btn].</p>
 </div>
 <div class="txt-sec" data-scroll>
     <h2>Installation</h2>
   <ul>
     <li>Download the repo</li>
-    <li>Replace M5.BtnA.isPressed() at line 112 of src/main.cpp to match your 'tube tick' for radiation counting.</li>
+    <li>Replace <code>M5.BtnA.isPressed()</code> at line 112 of <code>src/main.cpp</code> to match your tube's pulse signal for radiation counting.</li>
   </ul>
   <pre style="margin: 0; line-height: 125%"><span style="color: #66d9ef">if</span> <span style="color: #f8f8f2">(M5.BtnA.isPressed())</span> <span style="color: #f8f8f2">{</span>
     <span style="color: #66d9ef">if</span> <span style="color: #f8f8f2">(flag_tick)</span> <span style="color: #f8f8f2">{</span>
@@ -21,14 +21,14 @@
 </pre>
   <ul>
     <li>The 2nd button (button B) resets the counter</li>
-    <li>Compile the project for M5Stack core, I've used PlatformIO on Visual Studio Code instead of Arduino.</li>
+  <li>Compile the project for M5Stack Core. I used PlatformIO in Visual Studio Code instead of the Arduino IDE.</li>
     <li>Program the M5 stack with the compiled code</li>
-    <li>Turn on the M5 Stack</li>
+  <li>Turn on the M5Stack</li>
   </ul>
   <h2>How To use</h2>
   <ul>
     <li>Turn on M5Stack by pressing the red button.</li>
-    <li>Connect your device to M5Stack_setup wifi network and follow some instructions on the m5stack screen</li>
+  <li>Connect your device to the <code>M5Stack_setup</code> Wi-Fi network and follow the instructions on the M5Stack screen.</li>
     <li>Go to http://192.168.4.1 on your device</li>
     <li>You're done!</li>
   </ul>

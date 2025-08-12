@@ -478,7 +478,7 @@ function destroyNeon(element) {
         // Remove any neon-related classes
         element.classList.remove('neon-on', 'neon-off', 'neon-initialized');
 
-        console.log('Neon destroyed for element:', element);
+        // console.log('Neon destroyed for element:', element);
     } else {
         console.warn('No neon state found for element:', element);
     }
@@ -502,7 +502,7 @@ function destroyAllNeons() {
     // Also clear any orphaned states (shouldn't happen, but good safety measure)
     // Note: WeakMap doesn't have a clear() method, but destroying individual elements should handle this
 
-    console.log(`Destroyed ${destroyedCount} neon elements`);
+    // console.log(`Destroyed ${destroyedCount} neon elements`);
     return destroyedCount;
 }
 
@@ -524,7 +524,7 @@ function destroyAllNeonsExceptSign() {
     // Also clear any orphaned states (shouldn't happen, but good safety measure)
     // Note: WeakMap doesn't have a clear() method, but destroying individual elements should handle this
 
-    console.log(`Destroyed ${destroyedCount} neon elements`);
+    // console.log(`Destroyed ${destroyedCount} neon elements`);
     return destroyedCount;
 }
 

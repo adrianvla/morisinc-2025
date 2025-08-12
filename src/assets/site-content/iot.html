@@ -20,12 +20,10 @@
 </div>
 <div class="txt-sec" data-scroll>
     <h2>Security</h2>
-    <p>This system is equipped with a session-ping system. This means that it is very secure because
-        when a user logs into the dashboard, the server sends a session with a long password that'd need
-        to be pinged by the client to have connection to the server.</p>
-</div>
+        <p>An alternative to Apple HomeKit, designed for Raspberry Pi. Control devices throughout your home from your smartphone with a single tap.</p>
+        <p>Built as a cost-effective smart home solution. Runs on Raspberry Pi to integrate seamlessly with your environment.</p>
 <div class="txt-sec" data-scroll>
-    <h2>Installation</h2>
+        <p>Explore the project on [a href="https://github.com/adrianvla/IoT"]GitHub[/a].</p>
     <h3>Requirements:</h3>
     <ul>
         <li>A normal RaspberryPi with a proper OS installed on it (like Debian, Raspbian or another
@@ -39,67 +37,34 @@
         <li>Download the repository from [btn link="https://github.com/adrianvla/IoT"]here[/btn]</li>
         <li>Unpack it</li>
         <li>Download NGROK from [btn link="https://ngrok.com/"]here[/btn]</li>
-        <li>Put NGROK into the same folder as the repository you've downloaded</li>
+        <p>The system uses a session ping mechanism to verify active sessions and enhance security.</p>
         <li>Change the password by going into the code. It should look something like this:</li>
     </ul>
     <pre
             style="margin: 0; line-height: 125%"><span style="color: #008800; font-weight: bold">var</span> passwd <span style="color: #333333">=</span> <span style="background-color: #242424">&#39;YOUR PASSWORD HERE&#39;</span>;</pre>
-
-    <ul>
+        <ul>
+                <li>Raspberry Pi with network connectivity</li>
+                <li>Node.js and npm</li>
+                <li>Supported peripherals (relays, sensors, lights)</li>
+        </ul>
         <li>After that, change the function named ChangePin to control GPIO or I2C.</li>
-    </ul>
-    <pre style="margin: 0; line-height: 125%"><span style="color: #008800; font-weight: bold">function</span> ChangePin(iot, val, color) {
-	console.log(iot <span style="color: #333333">+</span> <span style="background-color: #242424">&#39; &#39;</span> <span style="color: #333333">+</span> val <span style="color: #333333">+</span> <span style="background-color: #242424">&#39; &#39;</span> <span style="color: #333333">+</span> color);
-	<span style="color: #888888">//iot is the device ID that you get in data.json</span>
-	<span style="color: #888888">//val is the brightness</span>
-	<span style="color: #888888">//color is the hex color</span>
-	<span style="color: #008800; font-weight: bold">if</span>(color){
-
-	}<span style="color: #008800; font-weight: bold">else</span>{
-
-	}
-}
-</pre>
-    <ul>
-        <li>Add users in the users.json file. It should look something like this:</li>
-    </ul>
-    <pre style="margin: 0; line-height: 125%">{
-    <span style="color: #87ceeb">&quot;LIST&quot;</span>:[ <span style="color: #00ff00">//list of users</span>
-        <span style="color: #00ff00">// &quot;USER&quot;,</span>
-        <span style="color: #87ceeb">&quot;USER2&quot;</span>
-    ],
-    <span style="color: #87ceeb">&quot;DATA&quot;</span>:{
-        <span style="color: #00ff00">/* EXAMPLE</span>
-<span style="color: #00ff00">        &quot;USER&quot;:[</span>
-<span style="color: #00ff00">            { //device</span>
-<span style="color: #00ff00">                &quot;id&quot;: &quot;5db4d113-e2da-427c-aa00-6df1abfb3a98&quot;, //device id</span>
-<span style="color: #00ff00">                &quot;icon&quot;: &quot;HTML SVG ELEMENT HERE&quot;,</span>
-<span style="color: #00ff00">                &quot;name&quot;: &quot;PC&quot;,</span>
-<span style="color: #00ff00">                &quot;status&quot;: false, //on or off</span>
-<span style="color: #00ff00">                &quot;value&quot;: 100, //brightness</span>
-<span style="color: #00ff00">                &quot;usecolor&quot;: false,</span>
-<span style="color: #00ff00">                &quot;automatic&quot;: false //toggles on or off automatically</span>
-<span style="color: #00ff00">            }</span>
-<span style="color: #00ff00">        ],</span>
-<span style="color: #00ff00">        */</span>
-        <span style="color: #87ceeb">&quot;USER2&quot;</span>:[
-            {
-                <span style="color: #87ceeb">&quot;id&quot;</span>: <span style="color: #87ceeb">&quot;7be17a1e-e764-4ffb-a460-af9b777d0240&quot;</span>, <span style="color: #00ff00">//device id</span>
-                <span style="color: #87ceeb">&quot;icon&quot;</span>: <span style="color: #87ceeb">&quot;HTML SVG ELEMENT HERE&quot;</span>,
-                <span style="color: #87ceeb">&quot;name&quot;</span>: <span style="color: #87ceeb">&quot;Water&quot;</span>, <span style="color: #00ff00">// name of the device</span>
-                <span style="color: #87ceeb">&quot;status&quot;</span>: <span style="color: #ff0000">true</span>,
-                <span style="color: #87ceeb">&quot;value&quot;</span>: 70,
-                <span style="color: #87ceeb">&quot;usecolor&quot;</span>: <span style="color: #ff0000">true</span>,
-                <span style="color: #87ceeb">&quot;color&quot;</span>: <span style="color: #87ceeb">&quot;#f00&quot;</span>,
-                <span style="color: #87ceeb">&quot;automatic&quot;</span>: <span style="color: #ff0000">false</span>
-            }
-        ]
+        <ul>
+                <li>Clone the repository and install dependencies.</li>
+                <li>Configure devices and rooms in the JSON configuration.</li>
+                <li>Start the service and access the control panel from your browser.</li>
+        </ul>
+        <h3>Example</h3>
+        <pre style="margin: 0; line-height: 125%">function changePin(deviceId, value, color) {
+    // deviceId: ID from data.json
+    // value: brightness or intensity
+    // color: hex color (optional)
+    if (color) {
+        // set color and value
+    } else {
+        // set value only
     }
 }
-</pre>
-    <ul>
-        <li>Add IoT devices in the data.json file. Here's how it's supposed to look:</li>
-    </ul>
+        </pre>
     <pre style="margin: 0; line-height: 125%"><span style="color: #eeeeee; font-weight: bold">{</span>
     <span style="color: #4e9a06">&quot;ROOM1&quot;</span><span style="color: #ce5c00; font-weight: bold">:</span> <span style="color: #eeeeee; font-weight: bold">[{</span> <span style="color: #8f5902; font-style: italic">// Room / category in where this device is located </span>
         <span style="color: #4e9a06">&quot;id&quot;</span><span style="color: #ce5c00; font-weight: bold">:</span> <span style="color: #4e9a06">&quot;DEVICE_ID_1&quot;</span><span style="color: #eeeeee; font-weight: bold">,</span> <span style="color: #8f5902; font-style: italic">// Device ID (should be unique, choose whatever you want, even words)</span>

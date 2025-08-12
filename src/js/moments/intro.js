@@ -14,7 +14,6 @@ let tl = gsap.timeline({});
 function logImageLoadingProgress() {
     function loadedEverything(){
         setTimeout(()=>{
-            console.log("scrolling");
             lenis.scrollTo(0,{duration:0.1});
         },200);
         if(tl.paused()){

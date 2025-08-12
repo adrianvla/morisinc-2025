@@ -1,6 +1,7 @@
 <div>
     <h1>My CV</h1>
-    <p>To print it, go [a href="/cv-printable"]here[/a] and print from your browser.</p>
+    <p>To print it, go [a href="/cv-printable"]here[/a] and print from your browser. Chromium browsers are recommended to print.</p>
+    <p>If the layout is strange because you're using a non-supported browser, please print [a href="/assets/booklets/cv.pdf"]this PDF document[/a].</p>
 </div>
 <div class="cv">
     <style>
@@ -67,8 +68,8 @@
         }
         .cv ul {
             list-style-type: none;
-            margin: 0;
-            padding-left: 0em;
+            padding-left: 0;
+            margin: 0 0 0 -1.5px;
         }
 
         .cv ul li {
@@ -111,62 +112,56 @@
     <div class="v-sep"></div>
     <div class="line"></div>
     <div class="g">
-        <div class="label">
+        <div class="label add-header">
             Education
         </div>
         <div class="content">
             <div class="circle"></div>
-            <h2>Gymnase de Nyon</h2>
+            <h2 class="no-header">EPFL BA Maths</h2>
+            <div class="desc">2025-présent</div>
+            <div class="v-sep"></div>
+            <h2 class="no-header">Maturité Baccalauréat</h2>
             <div class="desc">2023-2025 - 3ème année - OS Maths Physique</div>
-            <!-- <div class="features">
-                <ul>
-                    <li>OS Maths Physique</li>
-                    <li></li>
-                </ul>
-            </div> -->
             <div class="v-sep"></div>
-            <h2>Cours Euler - EPFL</h2>
-            <div class="desc">2020-présent - 5ème année</div>
+            <h2 class="no-header">Cours Euler, Cours Turing - EPFL</h2>
+            <div class="desc">2020-2025</div>
             <div class="v-sep"></div>
-            <h2>Cours Turing - EPFL</h2>
-            <div class="desc">2023-2025 - 2 années</div>
-            <div class="v-sep"></div>
-            <h2>Conservatoire de Musique de Genève</h2>
+            <h2 class="no-header">Conservatoire de Musique de Genève</h2>
             <div class="desc">2014-présent (piano, orgue) - Filière Préprofessionnelle depuis 2024</div>
             <div class="v-sep"></div>
         </div>
     </div>
     <div class="line"></div>
     <div class="g">
-        <div class="label">Expérience</div>
+        <div class="label add-header">Expérience</div>
         <div class="content">
             <div class="circle"></div>
-            <h2>Stage Logitech</h2>
+            <h2 class="no-header">Stage Logitech</h2>
             <div class="desc">Création de logiciel pour AI (2022)</div>
         </div>
     </div>
     <div class="line"></div>
     <div class="g">
-        <div class="label">Projets</div>
+        <div class="label add-header">Projets</div>
         <div class="content">
             <div class="circle"></div>
-            <h2>Travail de Maturité</h2>
+            <h2 class="no-header">Travail de Maturité</h2>
             <div class="desc">2024, <i>Comment créer et optimiser un système à
                 base d'un microprocesseur pour un jeu
                 vidéo comme Tetris</i> - (note 6.0)</div>
             <div class="v-sep"></div>
-            <h2>Projects de Hobby</h2>
+            <h2 class="no-header">Projects de Hobby</h2>
             <div class="desc">Logiciels d'éducation, systèmes embarqués, outils de vidéoconférence, IoT, sites internet, logiciels pour traitement de signal, jeux vidéos... <br>Plus d'infos sur <i><a href="https://www.morisinc.net">www.morisinc.net</a></i> et <i><a href="https://github.com/adrianvla">github.com/adrianvla</a></i></div>
         </div>
     </div>
     <div class="line"></div>
     <div class="g">
-        <div class="label">Compétences</div>
+        <div class="label add-header">Compétences</div>
         <div class="content">
             <div class="circle"></div>
             <div class="languages">
                 <div class="_1">
-                    <h2>Langues</h2>
+                    <h2 class="no-header">Langues</h2>
                     <div class="features">
                         <ul>
                             <li>Français</li>
@@ -178,7 +173,7 @@
                     </div>
                 </div>
                 <div class="_2">
-                    <h2>Langages de Programmation</h2>
+                    <h2 class="no-header">Langages de Programmation</h2>
                     <div class="features">
                         <ul>
                             <li>C, C++</li>
@@ -195,7 +190,7 @@
     </div>
     <div class="line"></div>
     <div class="g">
-        <div class="label">Concours & <br> Compétitions</div>
+        <div class="label add-header">Concours & <br> Compétitions</div>
         <div class="content">
             <div class="circle"></div>
             <!-- [Piano, Orgue], Composition, Programmation, Sport -->
@@ -244,7 +239,7 @@
     </div>
     <div class="line"></div>
     <div class="g">
-        <div class="label">Hobbys</div>
+        <div class="label add-header">Hobbys</div>
         <div class="content">
             <div class="circle"></div>
             <!-- <h2>Programmation & Recherche</h2>

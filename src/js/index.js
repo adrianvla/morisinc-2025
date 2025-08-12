@@ -75,7 +75,7 @@ barba.init({
                 $(".projects").html("");
                 $(data.current.container).remove();
 
-                return enter(new Promise(r=>{generateProject().then(()=> {
+                return enter(new Promise(r=>{generateProject(data.current.container).then(()=> {
                     $(".transition-overlay").remove();
                     setupTextRevealEffects();
                     initSignFalloff();
@@ -128,7 +128,6 @@ barba.init({
                 // Custom transition for leaving home
                 if(window.redirectType==="lang-button")
                     return new Promise(r=>r());
-                lenis.scrollTo(0);
 
                 destroyAllNeonsExceptSign();
                 window.redirectType = 'home-to-project';
@@ -147,7 +146,7 @@ barba.init({
                 lenis.scrollTo(0);
                 $(".projects").html("");
 
-                return enter(new Promise(r=>{generateProject().then(()=> {
+                return enter(new Promise(r=>{generateProject(data.current.container).then(()=> {
                     setupTextRevealEffects();
                     initSignFalloff();
                     $(".transition-overlay").remove();

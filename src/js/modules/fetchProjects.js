@@ -45,7 +45,7 @@ function fetchProjects() {
             method: 'GET',
             dataType: 'json',
             success: function(data) {
-                console.log(data);
+                // console.log(data);
                 try {
                     // Process each category
                     data.forEach(category => {

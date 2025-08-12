@@ -1,5 +1,5 @@
 :root{
-    --primary: var(--yellow);
+    --primary: var(--blue);
     --secondary: var(--green);
     --green: rgb(109, 136, 103);
     --blue: rgb(103, 110, 136);

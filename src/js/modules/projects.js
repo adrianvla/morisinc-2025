@@ -21,7 +21,7 @@ function fetchProjFile(){
             method: 'GET',
             dataType: 'json',
             success: function(data) {
-                console.log(data);
+                // console.log(data);
                 resolve(data);
             },
             error: function(xhr, status, error) {
@@ -55,7 +55,7 @@ async function makeAllHeaders(){
         $(".s1 .projects .project.neon").remove();
 
         // Find all header tags (h1-h6) in the content section
-        const headers = $("section.content h1, section.content h2, section.content h3, section.content h4, section.content h5, section.content h6");
+        const headers = $("section.content h1:not(.no-header), section.content h2:not(.no-header), section.content h3:not(.no-header), section.content h4:not(.no-header), section.content h5:not(.no-header), section.content h6:not(.no-header), section.content .add-header");
 
         headers.each(function(index) {
             const $header = $(this);
@@ -704,7 +704,7 @@ function initCarousel() {
 }
 
 
-function generateProject(){
+function generateProject(current_container){
     return new Promise(async (resolve, reject) => {
         // Clean up existing neon effects (except sign) before generating new project
         destroyAllNeonsExceptSign();
@@ -756,7 +756,7 @@ function generateProject(){
             }
         }
 
-        $(".s1 h4 span").text(name);
+        $(".s1 h4 span").text(nameOfTitle);
         // If an existing 404 simulation is running, clean it up
         try {
             const existing404 = document.querySelector("section.content.page404");
@@ -769,14 +769,14 @@ function generateProject(){
             if(p?.image)
                 $("main").append(`
                     <section class="project hero">
-                        <h1>${name}</h1>
+                        <h1>${nameOfTitle}</h1>
                         <img data-src="${img_src}" src="${img_src.replace('img','img-low-res')}" alt="${name}">
                     </section>
                 `);
             else
                 $("main").append(`
                     <section class="project hero">
-                        <h1>${name}</h1>
+                        <h1>${nameOfTitle}</h1>
                     </section>
                 `);
         }
@@ -786,9 +786,9 @@ function generateProject(){
             </section>
         `);
         $(".s1 .projects").append(`<h4 class="pill"><span>${getTranslation("Contents")}</span></h4>`);
-        gsap.timeline().set("[data-barba-namespace='home']",{
+        gsap.timeline().set(current_container,{
             position:"absolute"
-        }).to("[data-barba-namespace='home']",{
+        }).to(current_container,{
             opacity:0,
             duration:0.5,
         }).fromTo("section.content",{
@@ -851,9 +851,10 @@ function generateProject(){
                 type: "words"
             });
             splitTextPairs.push([p, mySplitText]);
-            gsap.set(mySplitText.words, {
-                opacity: 0.3,
-            });
+            if(mySplitText.words.length > 0)
+                gsap.set(mySplitText.words, {
+                    opacity: 0.3,
+                });
         });
 
 
@@ -875,6 +876,7 @@ function setupTextRevealEffects() {
 }
 
 function createTextRevealEffect(element, mySplitText) {
+    if(mySplitText.words.length < 1) return;
     let tl = gsap.timeline({
         scrollTrigger: {
             trigger: element,
