@@ -4,6 +4,7 @@
 body{
     color:var(--black);
     background:var(--background);
+    overflow:hidden;
 }
 .container {
     display: grid;
