@@ -49,7 +49,8 @@ const translationStrings = {
         "CHANGE":"テームを",
         "THEME":"変わる",
         "PORTFOLIO": "ポートフォリオ",
-        "Contents": "内容"
+        "Contents": "内容",
+        "Publications": "出版物"
     },
     de:{
         "About": "Uber Mich",
@@ -70,7 +71,8 @@ const translationStrings = {
         "MANUFACTURE DATE": "HERSTELLDATUM",
         "CHANGE":"THEMA",
         "THEME":"TEILNEHMEN",
-        "Contents": "Inhalt"
+        "Contents": "Inhalt",
+        "Publications": "Publikationen"
     },
     ru:{
         "About": "Обо мне",
@@ -94,7 +96,8 @@ const translationStrings = {
         "MANUFACTURE DATE": "ДАТА ПУБЛИКАЦИИ",
         "CHANGE":"ПОМЕНЯТЬ",
         "THEME": "ЦВЕТ",
-        "Contents": "Содержание"
+        "Contents": "Содержание",
+        "Publications": "Публикации"
     },
     fr:{
         "About": "À Propos",
@@ -115,7 +118,8 @@ const translationStrings = {
         "MANUFACTURE DATE": "DATE DE FABRICATION",
         "CHANGE":"CHANGER",
         "THEME": "LA COULEUR",
-        "Contents": "Contenu"
+        "Contents": "Contenu",
+        "Publications": "Publications"
     }
 }
 
