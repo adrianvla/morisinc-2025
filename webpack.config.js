@@ -66,7 +66,7 @@ module.exports = {
         }),
         new HtmlWebpackPlugin({
             template: './src/html/project.html',
-            filename: 'cv',
+            filename: 'publications',
         }),
         new HtmlWebpackPlugin({
             template: './src/html/cv-printable.html',

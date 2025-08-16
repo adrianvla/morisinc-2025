@@ -28,7 +28,7 @@ function getCurrentLanguage() {
 
 const translationStrings = {
     jp: {
-        "About": "僕について",
+        "About": "自己紹介",
         "Home": "ホーム",
         "Lang": "言語",
         "Socials":"SNS",
@@ -36,9 +36,9 @@ const translationStrings = {
         "LANGUAGE SELECTION":"言語選択",
         "Projects":"プロジェクト",
         "PROJECTS":"プロジェクト",
-        "Your Experience":"体験が",
+        "Your Experience":"体験を",
         "Is Loading":"読み込んでいます",
-        "CV": "略歴",
+        "CV": "履歴書",
         "SCROLL DOWN": "スクロ-ル →",
         "Software": "ソフト",
         "Research": "研究",
@@ -49,6 +49,7 @@ const translationStrings = {
         "CHANGE":"テームを",
         "THEME":"変わる",
         "PORTFOLIO": "ポートフォリオ",
+        "Contents": "内容"
     },
     de:{
         "About": "Uber Mich",
@@ -68,7 +69,8 @@ const translationStrings = {
         "Misc": "Sonstiges",
         "MANUFACTURE DATE": "HERSTELLDATUM",
         "CHANGE":"THEMA",
-        "THEME":"TEILNEHMEN"
+        "THEME":"TEILNEHMEN",
+        "Contents": "Inhalt"
     },
     ru:{
         "About": "Обо мне",
@@ -91,7 +93,8 @@ const translationStrings = {
         "Misc": "Прочее",
         "MANUFACTURE DATE": "ДАТА ПУБЛИКАЦИИ",
         "CHANGE":"ПОМЕНЯТЬ",
-        "THEME": "ЦВЕТ"
+        "THEME": "ЦВЕТ",
+        "Contents": "Содержание"
     },
     fr:{
         "About": "À Propos",
@@ -111,7 +114,8 @@ const translationStrings = {
         "Misc": "Autre",
         "MANUFACTURE DATE": "DATE DE FABRICATION",
         "CHANGE":"CHANGER",
-        "THEME": "LA COULEUR"
+        "THEME": "LA COULEUR",
+        "Contents": "Contenu"
     }
 }
 

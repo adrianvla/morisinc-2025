@@ -5,7 +5,7 @@ import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import {SplitText} from "gsap/SplitText";
 import { ScrambleTextPlugin } from "gsap/ScrambleTextPlugin";
-import {getTranslation, translateEverything} from "./translator";
+import {getCurrentLanguage, getTranslation, translateEverything} from "./translator";
 import yeast from "yeast";
 import {turnOnNeon, turnOffNeon, destroyAllNeonsExceptSign} from "./neons";
 import initLazyLoad from "./lazyLoad";
@@ -32,18 +32,29 @@ function fetchProjFile(){
     });
 }
 
-function fetchProjectContent(projectName) {
+function fetchProjectContent(file) {
     return new Promise((resolve, reject) => {
         $.ajax({
-            url: `../assets/site-content/${projectName}`,
+            url: `../assets/site-content/lang-${getCurrentLanguage()}/${file}`,
             method: 'GET',
             dataType: 'html',
             success: function(data) {
                 resolve(data);
             },
-            error: function(xhr, status, error) {
-                console.error('Error fetching project content:', error);
-                reject(new Error(`Failed to fetch project content: ${error}`));
+            error: function(_xhr, _status, _error) {
+                $.ajax({
+                    url: `../assets/site-content/${file}`,
+                    method: 'GET',
+                    dataType: 'html',
+                    success: function(data) {
+                        resolve(data);
+                    },
+                    error: function(xhr, status, error) {
+                        console.error('Error fetching project content:', error);
+                        reject(new Error(`Failed to fetch project content: ${error}`));
+                    }
+                });
+                console.error('No translated page found:', _error);
             }
         });
     });
@@ -392,6 +403,9 @@ function parseContent(content) {
     });
     parsed = parsed.replace(/\[a href="([^"]+)"\](.*?)\[\/a\]/g, function(match, href, text) {
         return `<a target="_blank" href="${href}" data-pointer>${text}</a>`;
+    });
+    parsed = parsed.replace(/\[direct_a href="([^"]+)"\](.*?)\[\/direct_a\]/g, function(match, href, text) {
+        return `<a href="${href}" data-pointer>${text}</a>`;
     });
     parsed = parsed.replace(/\[reader src="([^"]+)"\](.*?)\[\/reader\]/g, function(match, src, text) {
         return `<div class="reader" data-src="${src}" data-loaded="false">
@@ -742,7 +756,7 @@ function generateProject(current_container){
             $("title").text("404 Page not Found");
         }
         const nameOfTitle = p.name.charAt(0).toUpperCase() + p.name.slice(1);
-        $("title").text(nameOfTitle);
+        $("title").text(getTranslation(nameOfTitle));
         let img_src = ".."+p?.image;
         let content = "";
         try {
@@ -756,7 +770,7 @@ function generateProject(current_container){
             }
         }
 
-        $(".s1 h4 span").text(nameOfTitle);
+        $(".s1 h4 span").text(getTranslation(nameOfTitle));
         // If an existing 404 simulation is running, clean it up
         try {
             const existing404 = document.querySelector("section.content.page404");
@@ -769,14 +783,14 @@ function generateProject(current_container){
             if(p?.image)
                 $("main").append(`
                     <section class="project hero">
-                        <h1>${nameOfTitle}</h1>
+                        <h1>${getTranslation(nameOfTitle)}</h1>
                         <img data-src="${img_src}" src="${img_src.replace('img','img-low-res')}" alt="${name}">
                     </section>
                 `);
             else
                 $("main").append(`
                     <section class="project hero">
-                        <h1>${nameOfTitle}</h1>
+                        <h1>${getTranslation(nameOfTitle)}</h1>
                     </section>
                 `);
         }

@@ -28,7 +28,8 @@
     {"name": "Backdoor.js", "url": "https://github.com/adrianvla/website-backdoor.js", "image": "/assets/img/bdjs.png", "directURL": true, "desc": "Make a loader that puts a script into the website's code. Has a keylogger and a live screen view"}
   ]},
   {"category": "HIDDEN", "items": [
-    {"name": "about", "url": "about.html", "image": "/assets/img/img.png", "directURL": false, "desc": "about"},
-    {"name": "cv", "url": "cv.html", "image": "", "directURL": false, "desc": "cv"}
+    {"name": "about", "url": "about.html", "image": "/assets/img/5149734.jpg", "directURL": false, "desc": "about"},
+    {"name": "cv", "url": "cv.html", "image": "", "directURL": false, "desc": "cv"},
+    {"name": "publications", "url": "publications.html", "image": "/assets/img/5149734.jpg", "directURL": false, "desc": "publications"}
   ]}
 ]
