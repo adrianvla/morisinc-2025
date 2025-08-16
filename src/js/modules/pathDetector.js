@@ -15,7 +15,8 @@ function isProjectPage() {
 
 function isOtherPage(){
     const path = window.location.pathname;
-    return ["/about","/about/","/about/index.html","/ABOUT","/ABOUT/","/ABOUT/index.html","/publications","/publications/","/publications/index.html","/Publications","/Publications/","/Publications/index.html","/404","/404/","/404/index.html"].includes(path);
+    return !(["/project","/project/","/"].includes(path));
+    // return ["/about","/about/","/about/index.html","/ABOUT","/ABOUT/","/ABOUT/index.html","/publications","/publications/","/publications/index.html","/Publications","/Publications/","/Publications/index.html","/404","/404/","/404/index.html","/404.html","404.html"].includes(path);
 }
 
 /**

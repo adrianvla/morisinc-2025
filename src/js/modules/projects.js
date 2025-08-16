@@ -730,7 +730,7 @@ function generateProject(current_container){
             }
         });
 
-        let name = getProjectName();
+        let name = getProjectName().replaceAll("/","").replaceAll(".html","");
         if(!name){
             console.error("Project name not found in URL");
             reject(new Error("Project name not found"));
