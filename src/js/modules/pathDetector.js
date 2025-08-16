@@ -9,7 +9,7 @@
  */
 function isProjectPage() {
     const path = window.location.pathname;
-    return path === '/project';
+    return path === '/project' || path === "/project/";
 }
 
 
