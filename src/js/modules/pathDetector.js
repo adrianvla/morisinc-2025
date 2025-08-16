@@ -15,7 +15,7 @@ function isProjectPage() {
 
 function isOtherPage(){
     const path = window.location.pathname;
-    return ["/about","/ABOUT","/publications","/Publications"].includes(path);
+    return ["/about","/about/","/about/index.html","/ABOUT","/ABOUT/","/ABOUT/index.html","/publications","/publications/","/publications/index.html","/Publications","/Publications/","/Publications/index.html","/404","/404/","/404/index.html"].includes(path);
 }
 
 /**

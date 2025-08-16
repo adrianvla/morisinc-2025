@@ -58,19 +58,23 @@ module.exports = {
         }),
         new HtmlWebpackPlugin({
             template: './src/html/project.html',
-            filename: 'project',
+            filename: 'project/index.html',
         }),
         new HtmlWebpackPlugin({
             template: './src/html/project.html',
-            filename: 'about',
+            filename: 'about/index.html',
         }),
         new HtmlWebpackPlugin({
             template: './src/html/project.html',
-            filename: 'publications',
+            filename: 'publications/index.html',
+        }),
+        new HtmlWebpackPlugin({
+            template: './src/html/project.html',
+            filename: '404/index.html',
         }),
         new HtmlWebpackPlugin({
             template: './src/html/cv-printable.html',
-            filename: 'cv-printable',
+            filename: 'cv-printable/index.html',
             inject: false, // Do not inject any JS or CSS
         }),
     ],
