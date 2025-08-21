@@ -5,6 +5,12 @@
     "ru": "Умное приложение для изучения языков, которое подстраивается под то, что вы уже знаете.",
     "jp": "既に知っている語彙に合わせて学習を最適化するスマートな語学学習アプリ"
   },
+  "quick!": {
+    "fr": "Planifiez à la minute près : une application intelligente de gestion des tâches pour planifier automatiquement projets et tâches avec l’algorithme PERT.",
+    "de": "Minutengenaue Planung: Eine intelligente Aufgabenverwaltungs-App, die Projekte und Aufgaben automatisch mit dem PERT-Algorithmus plant.",
+    "ru": "Планируйте по минутам: умное приложение для управления задачами, автоматически планирующее проекты и задачи с помощью алгоритма PERT.",
+    "jp": "分単位で計画：PERTアルゴリズムを使ってプロジェクトやタスクを自動で計画するスマートなタスク管理アプリ。"
+  },
   "Decks": {
     "fr": "Application de fiches en ligne avec répétition espacée, basée sur LaTeX.",
     "de": "Eine Online‑Karteikarten‑App mit Spaced Repetition auf LaTeX‑Basis.",
