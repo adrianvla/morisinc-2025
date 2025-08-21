@@ -29,7 +29,12 @@ function addProject(name, desc, img_src, directURL, url){
         }
         window.redirectType = "home-to-project";
         window.projectSectionID = `section-${myId}`;
-        barba.go(`/project?${name.replaceAll(' ', '-').replaceAll('.', '_')}`);
+        //if url is not localhost
+        if(url.includes("localhost") || url.includes("127.0.0.1")){
+            barba.go(`/project?${name.replaceAll(' ', '-').replaceAll('.', '_')}`);
+        }else{
+            barba.go(`/${name.replaceAll(' ', '-').replaceAll('.', '_')}`);
+        }
     });
     index = (index + 1) % colors.length;
 }

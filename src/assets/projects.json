@@ -1,6 +1,7 @@
 [
   {"category": "Software", "items": [
     {"name": "mLearn","url": "mlearn.html", "image": "/assets/img/mlearn.webp", "directURL": false, "desc": "An intelligent language learning app that adapts to what you already know"},
+    {"name": "quick!","url": "quick.html", "image": "/assets/img/quick.webp", "directURL": false, "desc": "Plan by the minute: an intelligent task management app to plan projects and tasks automatically using the PERT algorithm."},
     {"name": "Decks","url": "decks.html", "image": "/assets/img/decks.webp", "directURL": false, "desc": "A LaTeX spaced-repetition online flashcard app."},
     {"name": "Geo Game","url": "geo-game.html", "image": "/assets/img/geo-game.webp", "directURL": false, "desc": "A mobile friendly multiplayer geography game"},
     {"name": "mCall","url": "mcall.html", "image": "/assets/img/mcall.webp", "directURL": false, "desc": "Like Google Meet, but you can choose who you want to speak & connect to in a meeting, end-to-end encrypted."}
