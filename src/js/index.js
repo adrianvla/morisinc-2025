@@ -26,11 +26,31 @@ import {fetchProjects} from "./modules/fetchProjects";
 import {generateProject, setupTextRevealEffects} from "./modules/projects";
 import {isMobileDevice, testForMobile} from "./utils/isMobileDevice";
 import leaveBecauseOfLang from "./transitions/leave/lang";
-
+// console.log("%cLOADED index.js", "color: #0f0; font-weight: bold; font-size: 20px; text-decoration: underline;");
 // Initialize BarbaJS with enhanced transitions
 barba.init({
     debug: false,
     preventRunning: true,
+    // Treat 404s as SPA fallbacks: fetch the root page HTML so Barba can proceed
+    // even when the server returns 404 for deep links (e.g., project pages).
+    request(url, options) {
+        const stripScripts = (html) => html.replace(/<script[\s\S]*?<\/script>/gi, '');
+        return fetch(url, options).then(async (res) => {
+            if (!res.ok && res.status === 404) {
+                // Fetch the project shell explicitly for unknown routes
+                try {
+                    const fb = await fetch('/project/index.html', options);
+                    const txt = await fb.text();
+                    return stripScripts(txt);
+                } catch (e) {
+                    // Last resort: reuse current document HTML (without scripts) to avoid hard fail
+                    return stripScripts(document.documentElement.outerHTML);
+                }
+            }
+            const txt = await res.text();
+            return stripScripts(txt);
+        });
+    },
 
     transitions: [
         {
