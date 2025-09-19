@@ -34,6 +34,7 @@
     border-radius:5px;
     box-shadow:0 0 5px #0000004a;
     will-change: transform;
+    box-sizing: border-box;
 }
 .sign .a1,.sign .a2{
     position:absolute;
