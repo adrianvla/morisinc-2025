@@ -33,7 +33,7 @@
     "fr": "Mon projet de diplôme de lycée : conception et implémentation d'une nouvelle architecture CPU, d'une plateforme qui l'utilise, et portage d'un jeu dessus.",
     "de": "Mein Abiturprojekt: Entwurf und Implementierung einer neuartigen CPU‑Architektur, einer Plattform dafür und Portierung eines Spiels darauf.",
     "ru": "Мой выпускной проект: проектирование и реализация новой архитектуры ЦП, платформы на её основе и портирование на неё игры.",
-    "jp": "高校の卒業研究：新しい CPU アーキテクチャの設計と実装、その上で動くプラットフォームの構築、そしてゲームの実装。"
+    "jp": "高校の卒業論文：新しい CPU アーキテクチャの設計と実装、その上で動くプラットフォームの構築、そしてゲームの実装。"
   },
   "Smart Clock": {
     "fr": "Une horloge matricielle construite sur Raspberry Pi Zero",
@@ -87,13 +87,13 @@
     "fr": "Contenu Web dynamique : un CMS très simple, avec ou sans modèle. Rédigez le contenu avec LibreOffice.",
     "de": "Dynamische Website‑Inhalte: Ein sehr einfaches CMS, mit Vorlage oder ohne. Schreiben Sie die Inhalte in LibreOffice.",
     "ru": "Очень простая CMS, с шаблоном или без. Пишите контент на LibreOffice.",
-    "jp": "動的ウェブコンテンツ：テンプレート有無を選べる、とてもシンプルな CMS。LibreOffice でコンテンツを作成。"
+    "jp": "DynWeb：テンプレート有無を選べる、とてもシンプルな CMS。LibreOffice でコンテンツを作成。"
   },
   "Retro Tetris": {
     "fr": "Récréation du Tetris original de l'ordinateur soviétique DVK2M.",
     "de": "Rekonstruktion des originalen Tetris auf dem sowjetischen DVK2M-Computer.",
     "ru": "Реконструкция оригинального Тетриса в стиле DVK2M.",
-    "jp": "ソビエトのコンピュータDVK2Mのスタイルでテトリスを再現。"
+    "jp": "ソビエットのコンピュータDVK2Mのスタイルでテトリスを再現。"
   },
   "mc website": {
     "fr": "Un site dédié à mes créations Minecraft quand j'étais plus jeune",
