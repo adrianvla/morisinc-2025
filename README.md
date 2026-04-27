@@ -1,4 +1,5 @@
 # Overview
+<img width="1717" height="1041" alt="Screenshot 2026-04-27 at 16 54 16" src="https://github.com/user-attachments/assets/fda78a68-bf79-43e5-9f92-8712e241811e" />
 
 This is my new portfolio, built in 2025. Explore how it works.
 
