@@ -6,7 +6,9 @@ module.exports = {
     output: {
         path: path.resolve(__dirname, 'dist'),
         filename: 'bundle.js',
-        clean: true,
+        clean: {
+            keep: /(\.git|BingSiteAuth\.xml|CNAME|\.nojekyll|\.gitattributes|^assets|^lang-)/
+        },
     },
     mode: 'production',
     devServer: {
