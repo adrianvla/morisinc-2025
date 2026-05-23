@@ -54,10 +54,9 @@ function logImageLoadingProgress() {
             }
 
             images.forEach(img => {
-                // If the image has already finished (loaded or errored), count it immediately.
-                // Using only img.complete avoids missing cached images that errored
-                // before the listener was attached.
-                if (img.complete) {
+                // If the image is already loaded OR it's lazy-loaded (explicitly deferred),
+                // count it immediately and don't block the intro on it.
+                if (img.complete || img.getAttribute('loading') === 'lazy') {
                     update();
                 } else {
                     img.addEventListener('load', update, { once: true });
