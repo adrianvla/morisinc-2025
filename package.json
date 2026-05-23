@@ -10,8 +10,8 @@
   },
   "private": true,
   "keywords": [],
-  "author": "",
-  "license": "ISC",
+  "author": "Adrian Vlasov",
+  "license": "UNLICENSED",
   "dependencies": {
     "@barba/core": "^2.10.3",
     "@studio-freight/lenis": "^1.0.42",
