@@ -1,0 +1,34 @@
+<div class="txt-sec" data-scroll>
+  <h1>M5 Stackで作るガイガーカウンター</h1>
+  <p>M5Stackをベースにしたスマートなガイガーカウンターで、OpenStreetMapを使った放射線マップとWi-Fiロギング機能を搭載しています。自分で作りたい場合は、リポジトリを [btn link="https://github.com/adrianvla/M5-Stack-Geiger-Counter"]こちら[/btn] からダウンロードしてください。</p>
+</div>
+<div class="txt-sec" data-scroll>
+    <h2>インストール</h2>
+  <ul>
+    <li>リポジトリをダウンロード</li>
+    <li><code>src/main.cpp</code> の112行目にある <code>M5.BtnA.isPressed()</code> を、使用しているガイガーチューブのパルス信号に合わせて置き換える</li>
+  </ul>
+  <pre style="margin: 0; line-height: 125%"><span style="color: #66d9ef">if</span> <span style="color: #f8f8f2">(M5.BtnA.isPressed())</span> <span style="color: #f8f8f2">{</span>
+    <span style="color: #66d9ef">if</span> <span style="color: #f8f8f2">(flag_tick)</span> <span style="color: #f8f8f2">{</span>
+      <span style="color: #f8f8f2">signalHandler();</span>
+
+      <span style="color: #f8f8f2">flag_tick</span> <span style="color: #f92672">=</span> <span style="color: #f8f8f2">false;</span>
+    <span style="color: #f8f8f2">}</span>
+    <span style="color: #f8f8f2">}</span> <span style="color: #66d9ef">else</span> <span style="color: #f8f8f2">{</span>
+    <span style="color: #f8f8f2">flag_tick</span> <span style="color: #f92672">=</span> <span style="color: #f8f8f2">true;</span>
+    <span style="color: #f8f8f2">}</span>
+</pre>
+  <ul>
+    <li>2番目のボタン（ボタンB）はカウンターをリセットします</li>
+  <li>M5Stack Core用にプロジェクトをコンパイル。Arduino IDEではなく、Visual Studio CodeのPlatformIOを使用しました。</li>
+    <li>コンパイルしたコードをM5Stackに書き込む</li>
+  <li>M5Stackの電源を入れる</li>
+  </ul>
+  <h2>使い方</h2>
+  <ul>
+    <li>赤いボタンを押してM5Stackの電源を入れる</li>
+  <li>デバイスを <code>M5Stack_setup</code> Wi-Fiネットワークに接続して、M5Stackの画面に表示される指示に従う</li>
+    <li>デバイスで http://192.168.4.1 にアクセス</li>
+    <li>完了!</li>
+  </ul>
+</div>

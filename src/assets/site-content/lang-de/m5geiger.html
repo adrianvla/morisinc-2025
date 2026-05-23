@@ -1,0 +1,34 @@
+<div class="txt-sec" data-scroll>
+  <h1>Ein Geigerzähler auf M5 Stack</h1>
+  <p>Ein smarter Geigerzähler auf Basis des M5Stack, mit einer Strahlungskarte unter Verwendung von OpenStreetMap und Wi-Fi-Logging. Um deinen eigenen zu bauen, lade das Repository [btn link="https://github.com/adrianvla/M5-Stack-Geiger-Counter"]hier[/btn] herunter.</p>
+</div>
+<div class="txt-sec" data-scroll>
+    <h2>Installation</h2>
+  <ul>
+    <li>Lade das Repo herunter</li>
+    <li>Ersetze <code>M5.BtnA.isPressed()</code> in Zeile 112 von <code>src/main.cpp</code>, damit es zum Impulssignal deiner Röhre für die Strahlungszählung passt.</li>
+  </ul>
+  <pre style="margin: 0; line-height: 125%"><span style="color: #66d9ef">if</span> <span style="color: #f8f8f2">(M5.BtnA.isPressed())</span> <span style="color: #f8f8f2">{</span>
+    <span style="color: #66d9ef">if</span> <span style="color: #f8f8f2">(flag_tick)</span> <span style="color: #f8f8f2">{</span>
+      <span style="color: #f8f8f2">signalHandler();</span>
+
+      <span style="color: #f8f8f2">flag_tick</span> <span style="color: #f92672">=</span> <span style="color: #f8f8f2">false;</span>
+    <span style="color: #f8f8f2">}</span>
+    <span style="color: #f8f8f2">}</span> <span style="color: #66d9ef">else</span> <span style="color: #f8f8f2">{</span>
+    <span style="color: #f8f8f2">flag_tick</span> <span style="color: #f92672">=</span> <span style="color: #f8f8f2">true;</span>
+    <span style="color: #f8f8f2">}</span>
+</pre>
+  <ul>
+    <li>Der 2. Button (Button B) setzt den Zähler zurück</li>
+  <li>Kompiliere das Projekt für M5Stack Core. Ich habe PlatformIO in Visual Studio Code anstelle der Arduino IDE verwendet.</li>
+    <li>Programmiere den M5 Stack mit dem kompilierten Code</li>
+  <li>Schalte den M5Stack ein</li>
+  </ul>
+  <h2>Nutzung</h2>
+  <ul>
+    <li>Schalte den M5Stack ein, indem du den roten Button drückst.</li>
+  <li>Verbinde dein Gerät mit dem <code>M5Stack_setup</code> Wi-Fi-Netzwerk und folge den Anweisungen auf dem M5Stack-Bildschirm.</li>
+    <li>Gehe auf http://192.168.4.1 auf deinem Gerät</li>
+    <li>Fertig!</li>
+  </ul>
+</div>

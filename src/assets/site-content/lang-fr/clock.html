@@ -1,0 +1,54 @@
+<div>
+    <h1>Vue d'ensemble</h1>
+    <p>Une horloge matricielle construite sur Raspberry Pi Zero, dans l'esprit de la LaMetric Time.<br>Travail en cours.</p>
+    <p>Vous pouvez trouver le code source et les fichiers de construction [a href="https://github.com/adrianvla/clock"]ici[/a].</p>
+    <h1>Galerie</h1>
+    <span class="brd"></span>
+    [img src="/assets/img/clock-IMG_1060.png"][/img]
+    <span class="brd"></span>
+    [img src="/assets/img/clock-IMG_1061.png"][/img]
+    <span class="brd"></span>
+    [img src="/assets/img/clock-IMG_1062.png"][/img]
+    <h1>Fonctionnalités</h1>
+    <p>Les fonctionnalités incluent des widgets déplaçables, plusieurs environnements d'écran et des animations.<br>
+    Un panneau de contrôle permet d'éditer presque tout, y compris les positions des widgets et le code des widgets.</p>
+    <p>La dérive de l'horloge sur le Raspberry Pi Zero est atténuée par une synchronisation périodique avec un serveur de temps en ligne.</p>
+    <h2>Widgets</h2>
+    <p>Les widgets fournis par défaut :</p>
+    <ul>
+        <li>Jours de la semaine (avec des barres qui ressemblent à ça si on est samedi : ░░ ░░ ░░ ░░ ░░ ▓▓ ░░)</li>
+        <li>Calendrier (indique la date actuelle avec un joli fond de type calendrier)</li>
+        <li>Heure numérique : police 3x5, HH : MM (: SS, configurable)</li>
+        <li>Grande heure numérique : police 5x5, HH : MM</li>
+        <li>Flux RSS : défile les titres d'actualités sur l'affichage, police 8x8, supporte le latin, le cyrillique, le kana et le kanji japonais</li>
+        <li>Température : temperature°C</li>
+        <li>Météo : un joli widget 8x8 avec des icônes animées pour chaque type de temps, avec même un système de particules pour la pluie</li>
+    </ul>
+    <h2>Écrans</h2>
+    <p>Les écrans sont analogues aux bureaux sur Windows ou macOS. Les widgets sont placés sur des écrans, et en fonction du temps ou des événements (par exemple, recevoir une mise à jour RSS), les écrans tournent avec des animations fluides.</p>
+    <h2>Panneau de contrôle</h2>
+    <p>Avec le panneau de contrôle, vous pouvez :</p>
+    <ul>
+        <li>Changer le mot de passe</li>
+        <li>Voir ce qui est affiché</li>
+        <li>Changer la luminosité</li>
+        <li>Redémarrer</li>
+        <li>Éditer les widgets / En créer de nouveaux en JavaScript directement dans votre navigateur (en utilisant Monaco Editor)</li>
+        <li>Éditer les écrans / En créer de nouveaux en glissant-déposant les widgets sur un écran virtuel</li>
+    </ul>
+    [img src="/assets/img/clock-c1.png"][/img]
+    [img src="/assets/img/clock-c2.png"][/img]
+    <h1>Comment utiliser</h1>
+    <p>Obtenez une clé API de weatherapi.com.<br>
+    Collez-la dans <code>/code/src/widgets/weather/weather.js</code> (travail en cours ; sera déplacé vers le panneau de contrôle).</p>
+    <p>Configurez vos flux RSS dans <code>/code/src/widgets/rssFeed/rss.js</code> (travail en cours ; sera aussi déplacé vers le panneau de contrôle).</p>
+    <p>Créez un service systemctl pour le lancement automatique</p>
+    <pre style="color:#fff">#!/bin/bash
+cd &lt;the directory containing the contents of the code folder&gt;
+sudo node src/main.js
+</pre>
+    <p>et nommez-le <code>script-startup.service</code></p>
+    <p>Et c'est parti.</p>
+    <p>Pour connecter l'affichage WS281x, utilisez le GPIO 18, ou changez la broche dans <code>/code/src/utils/driver.js</code>.</p>
+    <p>Licence : MIT</p>
+</div>

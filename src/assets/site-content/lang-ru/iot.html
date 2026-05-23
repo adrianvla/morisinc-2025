@@ -1,0 +1,185 @@
+<div>
+    <h1>Обзор</h1>
+    <p>Как Apple HomeKit, но бесплатно и для Raspberry Pi. Управляйте всем в доме одним нажатием со смартфона</p>
+    <h2>Альтернатива HomeKit</h2>
+    <p>Сделано как более доступная альтернатива Apple HomeKit для умного дома. Для RaspberryPi, чтобы использовать с
+        собственными DIY IoT-устройствами, которыми можно управлять из приложения IoT со смартфона из любой точки
+        мира.</p>
+    <p>С помощью этого можно настроить разные комнаты с разными устройствами и устройствами для конкретных пользователей.</p>
+    <p>Смотрите на [a href="https://github.com/adrianvla/IoT"]GitHub[/a]</p>
+</div>
+<div>
+    [img src="/assets/img/iot-devices.png"][/img]
+</div>
+<div class="carousel">
+    [img src="/assets/img/iot-IMG_1729.png"][/img]
+    [img src="/assets/img/iot-IMG_1730.png"][/img]
+    [img src="/assets/img/iot-IMG_1731.png"][/img]
+    [img src="/assets/img/iot-IMG_1732.png"][/img]
+    [img src="/assets/img/iot-IMG_1738.png"][/img]
+</div>
+<div class="txt-sec" data-scroll>
+    <h2>Безопасность</h2>
+        <p>Альтернатива Apple HomeKit, разработанная для Raspberry Pi. Управляйте устройствами по всему дому со смартфона одним касанием.</p>
+        <p>Создано как экономичное решение для умного дома. Работает на Raspberry Pi для бесшовной интеграции с вашим окружением.</p>
+<div class="txt-sec" data-scroll>
+        <p>Изучите проект на [a href="https://github.com/adrianvla/IoT"]GitHub[/a].</p>
+    <h3>Требования:</h3>
+    <ul>
+        <li>Обычный RaspberryPi с установленной ОС (например, Debian, Raspbian или другой
+            Linux-дистрибутив)</li>
+        <li>Текстовый редактор, установленный на RaspberryPi</li>
+        <li>Подключение к интернету</li>
+        <li>Базовые знания JavaScript</li>
+    </ul>
+    <h3>Шаги</h3>
+    <ul>
+        <li>Скачайте репозиторий [btn link="https://github.com/adrianvla/IoT"]здесь[/btn]</li>
+        <li>Распакуйте</li>
+        <li>Скачайте NGROK [btn link="https://ngrok.com/"]здесь[/btn]</li>
+        <p>Система использует механизм сессионных пингов для проверки активных сессий и повышения безопасности.</p>
+        <li>Поменяйте пароль в коде. Должно выглядеть примерно так:</li>
+    </ul>
+    <pre
+            style="margin: 0; line-height: 125%"><span style="color: #008800; font-weight: bold">var</span> passwd <span style="color: #333333">=</span> <span style="background-color: #242424">&#39;ВАШ ПАРОЛЬ ЗДЕСЬ&#39;</span>;</pre>
+        <ul>
+                <li>Raspberry Pi с сетевым подключением</li>
+                <li>Node.js и npm</li>
+                <li>Поддерживаемые периферийные устройства (реле, датчики, свет)</li>
+        </ul>
+        <li>После этого измените функцию ChangePin для управления GPIO или I2C.</li>
+        <ul>
+                <li>Клонируйте репозиторий и установите зависимости.</li>
+                <li>Настройте устройства и комнаты в JSON-конфигурации.</li>
+                <li>Запустите сервис и откройте панель управления в браузере.</li>
+        </ul>
+        <h3>Пример</h3>
+        <pre style="margin: 0; line-height: 125%">function changePin(deviceId, value, color) {
+    // deviceId: ID из data.json
+    // value: яркость или интенсивность
+    // color: hex-цвет (опционально)
+    if (color) {
+        // установить цвет и значение
+    } else {
+        // установить только значение
+    }
+}
+        </pre>
+    <pre style="margin: 0; line-height: 125%"><span style="color: #eeeeee; font-weight: bold">{</span>
+    <span style="color: #4e9a06">&quot;ROOM1&quot;</span><span style="color: #ce5c00; font-weight: bold">:</span> <span style="color: #eeeeee; font-weight: bold">[{</span> <span style="color: #8f5902; font-style: italic">// Комната / категория, где находится устройство </span>
+        <span style="color: #4e9a06">&quot;id&quot;</span><span style="color: #ce5c00; font-weight: bold">:</span> <span style="color: #4e9a06">&quot;DEVICE_ID_1&quot;</span><span style="color: #eeeeee; font-weight: bold">,</span> <span style="color: #8f5902; font-style: italic">// ID устройства (должен быть уникальным, выбирайте что угодно, даже слова)</span>
+        <span style="color: #4e9a06">&quot;icon&quot;</span><span style="color: #ce5c00; font-weight: bold">:</span> <span style="color: #4e9a06">&quot;&lt;img src=&#39;data:image/png;base64,iVB...II=&#39;/&gt;&quot;</span><span style="color: #eeeeee; font-weight: bold">,</span> <span style="color: #8f5902; font-style: italic">//Иконка устройства</span>
+        <span style="color: #4e9a06">&quot;name&quot;</span><span style="color: #ce5c00; font-weight: bold">:</span> <span style="color: #4e9a06">&quot;Device Name&quot;</span><span style="color: #eeeeee; font-weight: bold">,</span> <span style="color: #8f5902; font-style: italic">// название IoT</span>
+        <span style="color: #4e9a06">&quot;status&quot;</span><span style="color: #ce5c00; font-weight: bold">:</span> <span style="color: #204a87; font-weight: bold">false</span><span style="color: #eeeeee; font-weight: bold">,</span> <span style="color: #8f5902; font-style: italic">// Включено, используется приложением </span>
+        <span style="color: #4e9a06">&quot;value&quot;</span><span style="color: #ce5c00; font-weight: bold">:</span> <span style="color: #0000cf; font-weight: bold">57</span><span style="color: #eeeeee; font-weight: bold">,</span> <span style="color: #8f5902; font-style: italic">// Яркость или конкретный выход</span>
+        <span style="color: #4e9a06">&quot;usecolor&quot;</span><span style="color: #ce5c00; font-weight: bold">:</span> <span style="color: #204a87; font-weight: bold">true</span><span style="color: #eeeeee; font-weight: bold">,</span> <span style="color: #8f5902; font-style: italic">// Если у устройства должен быть выбор цвета</span>
+        <span style="color: #4e9a06">&quot;color&quot;</span><span style="color: #ce5c00; font-weight: bold">:</span> <span style="color: #4e9a06">&quot;#ff00ea&quot;</span><span style="color: #eeeeee; font-weight: bold">,</span> <span style="color: #8f5902; font-style: italic">// Работает только если &quot;usecolor&quot; = true</span>
+        <span style="color: #4e9a06">&quot;automatic&quot;</span><span style="color: #ce5c00; font-weight: bold">:</span> <span style="color: #204a87; font-weight: bold">true</span><span style="color: #eeeeee; font-weight: bold">,</span> <span style="color: #8f5902; font-style: italic">// Выкл днём, вкл ночью. Требуются координаты в файле gps.position,</span>
+        <span style="color: #4e9a06">&quot;userspecific&quot;</span><span style="color: #ce5c00; font-weight: bold">:</span> <span style="color: #4e9a06">&quot;USER1&quot;</span> <span style="color: #8f5902; font-style: italic">// Только этот пользователь увидит устройство на своей панели</span>
+    <span style="color: #eeeeee; font-weight: bold">},</span> <span style="color: #eeeeee; font-weight: bold">...],</span>
+    <span style="color: #4e9a06">&quot;ROOM2&quot;</span><span style="color: #ce5c00; font-weight: bold">:</span> <span style="color: #eeeeee; font-weight: bold">[{</span>
+        <span style="color: #4e9a06">&quot;id&quot;</span><span style="color: #ce5c00; font-weight: bold">:</span> <span style="color: #4e9a06">&quot;e1f52237-6df8-4884-a201-d6021f2086b7&quot;</span><span style="color: #eeeeee; font-weight: bold">,</span>
+        <span style="color: #4e9a06">&quot;icon&quot;</span><span style="color: #ce5c00; font-weight: bold">:</span> <span style="color: #4e9a06">&quot;&lt;img src=&#39;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAEAAAABACAYAAACqaXHeAAAABHNCSVQICAgIfAhkiAAAAAlwSFlzAAABYgAAAWIBXyfQUwAAABl0RVh0U29mdHdhcmUAd3d3Lmlua3NjYXBlLm9yZ5vuPBoAAAPJSURBVHic7ZvPjwxREMc/xSzCRLBIWOuwJ8TiIBGCDBKRbPxIODhIuLlxEX+AxIHLHkTiIhZxc0AiIQQHREJiN/E7EYmfu3bYddjEzymH7o3R0z3bM/3e6x7jm7ykp6de9bfq1avuV/0aVcVWAw4BQ4DW2UaA44DY4ig+UeMQkQXAU0PqNqrqNUO6/sI4G0p9fAK+G9L1wZCeCuRsKVbVQRHZCuwFpoeILAem+Mc/gTshMiNAj6o+ssMSe1NgzAuL9AJL/Z9fVHVaGjxsToGGwH8HpE0gbfx3QNoE0kbTO8Dac0AYRGQ7sAloAeaX/TVZRHqAEnAb795fckLK5logsC7YQvw1wD5XvFxOgT2WZBPByZOgiAgwCLTG7FICWlV12B4rD64ioJP4xoPHa60lLhUXcoGCoz41o+kdYD0H+PO/CMyosWsJmKmqQ+ZZ/YGLCOikduPB47bGMJfQi9jGupT6xoILBxRS6hsLVnNAgvk/Cut5wHYELKF+48HB84BtBxQyoiMSTe8A28vhs8DFhDp+mSAShdTK4llB01eEmt4BRnKAiHQBR4C8CX0x8B04rKqnE2tKWOaaBvRQ/+vvpO0y0JbIhgTGdwHvUjR+tA0Bu505IAOjbjQaGnXUjUVDo4964mj4F0Y9UTT8S6NeVzREGd8GvM4AeZPR0BnLAcAE4F4GSJtuL4HpQXvDHoU3ACtCzjc6OoCdwZNhDphkn0tqqLAtzAFFB0TSQqVtEUnwJOnPWdPtCiFbbqMckAeOAq8yQDxp+wAcA2aH2TpmRUhE2oHxVYXC0QI8AKbW0bccJbykXM/UVOCNVtttUuvioca1wwkMhK5NjrYrQiczoiMSVh2gqveBcwlU3AIumGETDhevxycC14HVNXZ9DqzURn89rqrfgG1429/i4jHQZdt4wG4SDEmKu4D3RCe8YWA/kHPFyfmLERHJA6uAZXjfC0wA+oBe4K6qfnbKx6YDRGSWqg6mraMarOQAEZkjIjeBjyJy1d8nUI+eM8CAiDwUkYVmWfqwMM/n4mXw8rldqENPR0BHP7DIOF/DxrcBLwLERwgpRPjyG4CtwLiQ/3JUJswBYHGWHXApQPgHsCNC9kCZXHeEzHrfgeU6+zLpALx8MhzHeF++vOzWX0Uu6ITRfUNGeBtLguqtuLp9gkVgp6qer9JlUsRxUO8NYDNeaR7glKoaK9oYvw2KyDygqKpfx5Cr6btBEckB7ar6ygxTD8a3yKjqW9M6fb0/8Qo0RpHmBolnZcdP0iLh9JuhAA7j3TbzwMG0SPwGshHTUCfxBkkAAAAASUVORK5CYII=&#39;/&gt;&quot;</span><span style="color: #eeeeee; font-weight: bold">,</span>
+        <span style="color: #4e9a06">&quot;name&quot;</span><span style="color: #ce5c00; font-weight: bold">:</span> <span style="color: #4e9a06">&quot;Lamp 3&quot;</span><span style="color: #eeeeee; font-weight: bold">,</span>
+        <span style="color: #4e9a06">&quot;status&quot;</span><span style="color: #ce5c00; font-weight: bold">:</span> <span style="color: #204a87; font-weight: bold">true</span><span style="color: #eeeeee; font-weight: bold">,</span>
+        <span style="color: #4e9a06">&quot;value&quot;</span><span style="color: #ce5c00; font-weight: bold">:</span> <span style="color: #0000cf; font-weight: bold">70</span><span style="color: #eeeeee; font-weight: bold">,</span>
+        <span style="color: #4e9a06">&quot;usecolor&quot;</span><span style="color: #ce5c00; font-weight: bold">:</span> <span style="color: #204a87; font-weight: bold">true</span><span style="color: #eeeeee; font-weight: bold">,</span>
+        <span style="color: #4e9a06">&quot;color&quot;</span><span style="color: #ce5c00; font-weight: bold">:</span> <span style="color: #4e9a06">&quot;#00ff00&quot;</span><span style="color: #eeeeee; font-weight: bold">,</span>
+        <span style="color: #4e9a06">&quot;automatic&quot;</span><span style="color: #ce5c00; font-weight: bold">:</span> <span style="color: #204a87; font-weight: bold">false</span>
+    <span style="color: #eeeeee; font-weight: bold">},...],</span>
+    <span style="color: #eeeeee; font-weight: bold">...</span>
+<span style="color: #eeeeee; font-weight: bold">}</span>
+</pre>
+    <ul>
+        <li>Пример:</li>
+    </ul>
+    <pre style="margin: 0; line-height: 125%"><span style="color: #eeeeee; font-weight: bold">{</span>
+    <span style="color: #4e9a06">&quot;Living Room&quot;</span><span style="color: #ce5c00; font-weight: bold">:</span> <span style="color: #eeeeee; font-weight: bold">[{</span>
+        <span style="color: #4e9a06">&quot;id&quot;</span><span style="color: #ce5c00; font-weight: bold">:</span> <span style="color: #4e9a06">&quot;fbfac76f-57ef-4f3e-8e66-bebf9be430c8&quot;</span><span style="color: #eeeeee; font-weight: bold">,</span>
+        <span style="color: #4e9a06">&quot;icon&quot;</span><span style="color: #ce5c00; font-weight: bold">:</span> <span style="color: #4e9a06">&quot;&lt;img src=&#39;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAEAAAABACAYAAACqaXHeAAAABHNCSVQICAgIfAhkiAAAAAlwSFlzAAABYgAAAWIBXyfQUwAAABl0RVh0U29mdHdhcmUAd3d3Lmlua3NjYXBlLm9yZ5vuPBoAAAPJSURBVHic7ZvPjwxREMc/xSzCRLBIWOuwJ8TiIBGCDBKRbPxIODhIuLlxEX+AxIHLHkTiIhZxc0AiIQQHREJiN/E7EYmfu3bYddjEzymH7o3R0z3bM/3e6x7jm7ykp6de9bfq1avuV/0aVcVWAw4BQ4DW2UaA44DY4ig+UeMQkQXAU0PqNqrqNUO6/sI4G0p9fAK+G9L1wZCeCuRsKVbVQRHZCuwFpoeILAem+Mc/gTshMiNAj6o+ssMSe1NgzAuL9AJL/Z9fVHVaGjxsToGGwH8HpE0gbfx3QNoE0kbTO8Dac0AYRGQ7sAloAeaX/TVZRHqAEnAb795fckLK5logsC7YQvw1wD5XvFxOgT2WZBPByZOgiAgwCLTG7FICWlV12B4rD64ioJP4xoPHa60lLhUXcoGCoz41o+kdYD0H+PO/CMyosWsJmKmqQ+ZZ/YGLCOikduPB47bGMJfQi9jGupT6xoILBxRS6hsLVnNAgvk/Cut5wHYELKF+48HB84BtBxQyoiMSTe8A28vhs8DFhDp+mSAShdTK4llB01eEmt4BRnKAiHQBR4C8CX0x8B04rKqnE2tKWOaaBvRQ/+vvpO0y0JbIhgTGdwHvUjR+tA0Bu505IAOjbjQaGnXUjUVDo4964mj4F0Y9UTT8S6NeVzREGd8GvM4AeZPR0BnLAcAE4F4GSJtuL4HpQXvDHoU3ACtCzjc6OoCdwZNhDphkn0tqqLAtzAFFB0TSQqVtEUnwJOnPWdPtCiFbbqMckAeOAq8yQDxp+wAcA2aH2TpmRUhE2oHxVYXC0QI8AKbW0bccJbykXM/UVOCNVtttUuvioca1wwkMhK5NjrYrQiczoiMSVh2gqveBcwlU3AIumGETDhevxycC14HVNXZ9DqzURn89rqrfgG1429/i4jHQZdt4wG4SDEmKu4D3RCe8YWA/kHPFyfmLERHJA6uAZXjfC0wA+oBe4K6qfnbKx6YDRGSWqg6mraMarOQAEZkjIjeBjyJy1d8nUI+eM8CAiDwUkYVmWfqwMM/n4mXw8rldqENPR0BHP7DIOF/DxrcBLwLERwgpRPjyG4CtwLiQ/3JUJswBYHGWHXApQPgHsCNC9kCZXHeEzHrfgeU6+zLpALx8MhzHeF++vOzWX0Uu6ITRfUNGeBtLguqtuLp9gkVgp6qer9JlUsRxUO8NYDNeaR7glKoaK9oYvw2KyDygqKpfx5Cr6btBEckB7ar6ygxTD8a3yKjqW9M6fb0/8Qo0RpHmBolnZcdP0iLh9JuhAA7j3TbzwMG0SPwGshHTUCfxBkkAAAAASUVORK5CYII=&#39;/&gt;&quot;</span><span style="color: #eeeeee; font-weight: bold">,</span>
+        <span style="color: #4e9a06">&quot;name&quot;</span><span style="color: #ce5c00; font-weight: bold">:</span> <span style="color: #4e9a06">&quot;Lamp 1&quot;</span><span style="color: #eeeeee; font-weight: bold">,</span>
+        <span style="color: #4e9a06">&quot;status&quot;</span><span style="color: #ce5c00; font-weight: bold">:</span> <span style="color: #204a87; font-weight: bold">false</span><span style="color: #eeeeee; font-weight: bold">,</span>
+        <span style="color: #4e9a06">&quot;value&quot;</span><span style="color: #ce5c00; font-weight: bold">:</span> <span style="color: #0000cf; font-weight: bold">57</span><span style="color: #eeeeee; font-weight: bold">,</span>
+        <span style="color: #4e9a06">&quot;usecolor&quot;</span><span style="color: #ce5c00; font-weight: bold">:</span> <span style="color: #204a87; font-weight: bold">true</span><span style="color: #eeeeee; font-weight: bold">,</span>
+        <span style="color: #4e9a06">&quot;color&quot;</span><span style="color: #ce5c00; font-weight: bold">:</span> <span style="color: #4e9a06">&quot;#ff00ea&quot;</span><span style="color: #eeeeee; font-weight: bold">,</span>
+        <span style="color: #4e9a06">&quot;automatic&quot;</span><span style="color: #ce5c00; font-weight: bold">:</span> <span style="color: #204a87; font-weight: bold">true</span>
+    <span style="color: #eeeeee; font-weight: bold">},</span> <span style="color: #eeeeee; font-weight: bold">{</span>
+        <span style="color: #4e9a06">&quot;id&quot;</span><span style="color: #ce5c00; font-weight: bold">:</span> <span style="color: #4e9a06">&quot;d0a3f573-a62c-4981-86f8-5615824c0acb&quot;</span><span style="color: #eeeeee; font-weight: bold">,</span>
+        <span style="color: #4e9a06">&quot;icon&quot;</span><span style="color: #ce5c00; font-weight: bold">:</span> <span style="color: #4e9a06">&quot;&lt;img src=&#39;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAEAAAABACAYAAACqaXHeAAAABHNCSVQICAgIfAhkiAAAAAlwSFlzAAABYgAAAWIBXyfQUwAAABl0RVh0U29mdHdhcmUAd3d3Lmlua3NjYXBlLm9yZ5vuPBoAAAPJSURBVHic7ZvPjwxREMc/xSzCRLBIWOuwJ8TiIBGCDBKRbPxIODhIuLlxEX+AxIHLHkTiIhZxc0AiIQQHREJiN/E7EYmfu3bYddjEzymH7o3R0z3bM/3e6x7jm7ykp6de9bfq1avuV/0aVcVWAw4BQ4DW2UaA44DY4ig+UeMQkQXAU0PqNqrqNUO6/sI4G0p9fAK+G9L1wZCeCuRsKVbVQRHZCuwFpoeILAem+Mc/gTshMiNAj6o+ssMSe1NgzAuL9AJL/Z9fVHVaGjxsToGGwH8HpE0gbfx3QNoE0kbTO8Dac0AYRGQ7sAloAeaX/TVZRHqAEnAb795fckLK5logsC7YQvw1wD5XvFxOgT2WZBPByZOgiAgwCLTG7FICWlV12B4rD64ioJP4xoPHa60lLhUXcoGCoz41o+kdYD0H+PO/CMyosWsJmKmqQ+ZZ/YGLCOikduPB47bGMJfQi9jGupT6xoILBxRS6hsLVnNAgvk/Cut5wHYELKF+48HB84BtBxQyoiMSTe8A28vhs8DFhDp+mSAShdTK4llB01eEmt4BRnKAiHQBR4C8CX0x8B04rKqnE2tKWOaaBvRQ/+vvpO0y0JbIhgTGdwHvUjR+tA0Bu505IAOjbjQaGnXUjUVDo4964mj4F0Y9UTT8S6NeVzREGd8GvM4AeZPR0BnLAcAE4F4GSJtuL4HpQXvDHoU3ACtCzjc6OoCdwZNhDphkn0tqqLAtzAFFB0TSQqVtEUnwJOnPWdPtCiFbbqMckAeOAq8yQDxp+wAcA2aH2TpmRUhE2oHxVYXC0QI8AKbW0bccJbykXM/UVOCNVtttUuvioca1wwkMhK5NjrYrQiczoiMSVh2gqveBcwlU3AIumGETDhevxycC14HVNXZ9DqzURn89rqrfgG1429/i4jHQZdt4wG4SDEmKu4D3RCe8YWA/kHPFyfmLERHJA6uAZXjfC0wA+oBe4K6qfnbKx6YDRGSWqg6mraMarOQAEZkjIjeBjyJy1d8nUI+eM8CAiDwUkYVmWfqwMM/n4mXw8rldqENPR0BHP7DIOF/DxrcBLwLERwgpRPjyG4CtwLiQ/3JUJswBYHGWHXApQPgHsCNC9kCZXHeEzHrfgeU6+zLpALx8MhzHeF++vOzWX0Uu6ITRfUNGeBtLguqtuLp9gkVgp6qer9JlUsRxUO8NYDNeaR7glKoaK9oYvw2KyDygqKpfx5Cr6btBEckB7ar6ygxTD8a3yKjqW9M6fb0/8Qo0RpHmBolnZcdP0iLh9JuhAA7j3TbzwMG0SPwGshHTUCfxBkkAAAAASUVORK5CYII=&#39;/&gt;&quot;</span><span style="color: #eeeeee; font-weight: bold">,</span>
+        <span style="color: #4e9a06">&quot;name&quot;</span><span style="color: #ce5c00; font-weight: bold">:</span> <span style="color: #4e9a06">&quot;Lamp 2&quot;</span><span style="color: #eeeeee; font-weight: bold">,</span>
+        <span style="color: #4e9a06">&quot;status&quot;</span><span style="color: #ce5c00; font-weight: bold">:</span> <span style="color: #204a87; font-weight: bold">true</span><span style="color: #eeeeee; font-weight: bold">,</span>
+        <span style="color: #4e9a06">&quot;value&quot;</span><span style="color: #ce5c00; font-weight: bold">:</span> <span style="color: #0000cf; font-weight: bold">70</span><span style="color: #eeeeee; font-weight: bold">,</span>
+        <span style="color: #4e9a06">&quot;usecolor&quot;</span><span style="color: #ce5c00; font-weight: bold">:</span> <span style="color: #204a87; font-weight: bold">false</span><span style="color: #eeeeee; font-weight: bold">,</span>
+        <span style="color: #4e9a06">&quot;automatic&quot;</span><span style="color: #ce5c00; font-weight: bold">:</span> <span style="color: #204a87; font-weight: bold">true</span>
+    <span style="color: #eeeeee; font-weight: bold">},</span> <span style="color: #eeeeee; font-weight: bold">{</span>
+        <span style="color: #4e9a06">&quot;id&quot;</span><span style="color: #ce5c00; font-weight: bold">:</span> <span style="color: #4e9a06">&quot;cd63280c-3897-4f16-bf07-bc2cce769ace&quot;</span><span style="color: #eeeeee; font-weight: bold">,</span>
+        <span style="color: #4e9a06">&quot;icon&quot;</span><span style="color: #ce5c00; font-weight: bold">:</span> <span style="color: #4e9a06">&quot;&lt;img src=&#39;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAEAAAABACAYAAACqaXHeAAAABHNCSVQICAgIfAhkiAAAAAlwSFlzAAABYgAAAWIBXyfQUwAAABl0RVh0U29mdHdhcmUAd3d3Lmlua3NjYXBlLm9yZ5vuPBoAAAPJSURBVHic7ZvPjwxREMc/xSzCRLBIWOuwJ8TiIBGCDBKRbPxIODhIuLlxEX+AxIHLHkTiIhZxc0AiIQQHREJiN/E7EYmfu3bYddjEzymH7o3R0z3bM/3e6x7jm7ykp6de9bfq1avuV/0aVcVWAw4BQ4DW2UaA44DY4ig+UeMQkQXAU0PqNqrqNUO6/sI4G0p9fAK+G9L1wZCeCuRsKVbVQRHZCuwFpoeILAem+Mc/gTshMiNAj6o+ssMSe1NgzAuL9AJL/Z9fVHVaGjxsToGGwH8HpE0gbfx3QNoE0kbTO8Dac0AYRGQ7sAloAeaX/TVZRHqAEnAb795fckLK5logsC7YQvw1wD5XvFxOgT2WZBPByZOgiAgwCLTG7FICWlV12B4rD64ioJP4xoPHa60lLhUXcoGCoz41o+kdYD0H+PO/CMyosWsJmKmqQ+ZZ/YGLCOikduPB47bGMJfQi9jGupT6xoILBxRS6hsLVnNAgvk/Cut5wHYELKF+48HB84BtBxQyoiMSTe8A28vhs8DFhDp+mSAShdTK4llB01eEmt4BRnKAiHQBR4C8CX0x8B04rKqnE2tKWOaaBvRQ/+vvpO0y0JbIhgTGdwHvUjR+tA0Bu505IAOjbjQaGnXUjUVDo4964mj4F0Y9UTT8S6NeVzREGd8GvM4AeZPR0BnLAcAE4F4GSJtuL4HpQXvDHoU3ACtCzjc6OoCdwZNhDphkn0tqqLAtzAFFB0TSQqVtEUnwJOnPWdPtCiFbbqMckAeOAq8yQDxp+wAcA2aH2TpmRUhE2oHxVYXC0QI8AKbW0bccJbykXM/UVOCNVtttUuvioca1wwkMhK5NjrYrQiczoiMSVh2gqveBcwlU3AIumGETDhevxycC14HVNXZ9DqzURn89rqrfgG1429/i4jHQZdt4wG4SDEmKu4D3RCe8YWA/kHPFyfmLERHJA6uAZXjfC0wA+oBe4K6qfnbKx6YDRGSWqg6mraMarOQAEZkjIjeBjyJy1d8nUI+eM8CAiDwUkYVmWfqwMM/n4mXw8rldqENPR0BHP7DIOF/DxrcBLwLERwgpRPjyG4CtwLiQ/3JUJswBYHGWHXApQPgHsCNC9kCZXHeEzHrfgeU6+zLpALx8MhzHeF++vOzWX0Uu6ITRfUNGeBtLguqtuLp9gkVgp6qer9JlUsRxUO8NYDNeaR7glKoaK9oYvw2KyDygqKpfx5Cr6btBEckB7ar6ygxTD8a3yKjqW9M6fb0/8Qo0RpHmBolnZcdP0iLh9JuhAA7j3TbzwMG0SPwGshHTUCfxBkkAAAAASUVORK5CYII=&#39;/&gt;&quot;</span><span style="color: #eeeeee; font-weight: bold">,</span>
+        <span style="color: #4e9a06">&quot;name&quot;</span><span style="color: #ce5c00; font-weight: bold">:</span> <span style="color: #4e9a06">&quot;Adrian&#39;s Pc&quot;</span><span style="color: #eeeeee; font-weight: bold">,</span>
+        <span style="color: #4e9a06">&quot;status&quot;</span><span style="color: #ce5c00; font-weight: bold">:</span> <span style="color: #204a87; font-weight: bold">true</span><span style="color: #eeeeee; font-weight: bold">,</span>
+        <span style="color: #4e9a06">&quot;value&quot;</span><span style="color: #ce5c00; font-weight: bold">:</span> <span style="color: #0000cf; font-weight: bold">100</span><span style="color: #eeeeee; font-weight: bold">,</span>
+        <span style="color: #4e9a06">&quot;usecolor&quot;</span><span style="color: #ce5c00; font-weight: bold">:</span> <span style="color: #204a87; font-weight: bold">false</span><span style="color: #eeeeee; font-weight: bold">,</span>
+        <span style="color: #4e9a06">&quot;automatic&quot;</span><span style="color: #ce5c00; font-weight: bold">:</span> <span style="color: #204a87; font-weight: bold">false</span><span style="color: #eeeeee; font-weight: bold">,</span>
+        <span style="color: #4e9a06">&quot;userspecific&quot;</span><span style="color: #ce5c00; font-weight: bold">:</span> <span style="color: #4e9a06">&quot;Adrian&quot;</span>
+    <span style="color: #eeeeee; font-weight: bold">},</span> <span style="color: #eeeeee; font-weight: bold">{</span>
+        <span style="color: #4e9a06">&quot;id&quot;</span><span style="color: #ce5c00; font-weight: bold">:</span> <span style="color: #4e9a06">&quot;6d2cede1-dc03-413a-a9a6-7b42d82ff4bb&quot;</span><span style="color: #eeeeee; font-weight: bold">,</span>
+        <span style="color: #4e9a06">&quot;icon&quot;</span><span style="color: #ce5c00; font-weight: bold">:</span> <span style="color: #4e9a06">&quot;&lt;img src=&#39;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAEAAAABACAYAAACqaXHeAAAABHNCSVQICAgIfAhkiAAAAAlwSFlzAAABYgAAAWIBXyfQUwAAABl0RVh0U29mdHdhcmUAd3d3Lmlua3NjYXBlLm9yZ5vuPBoAAAPJSURBVHic7ZvPjwxREMc/xSzCRLBIWOuwJ8TiIBGCDBKRbPxIODhIuLlxEX+AxIHLHkTiIhZxc0AiIQQHREJiN/E7EYmfu3bYddjEzymH7o3R0z3bM/3e6x7jm7ykp6de9bfq1avuV/0aVcVWAw4BQ4DW2UaA44DY4ig+UeMQkQXAU0PqNqrqNUO6/sI4G0p9fAK+G9L1wZCeCuRsKVbVQRHZCuwFpoeILAem+Mc/gTshMiNAj6o+ssMSe1NgzAuL9AJL/Z9fVHVaGjxsToGGwH8HpE0gbfx3QNoE0kbTO8Dac0AYRGQ7sAloAeaX/TVZRHqAEnAb795fckLK5logsC7YQvw1wD5XvFxOgT2WZBPByZOgiAgwCLTG7FICWlV12B4rD64ioJP4xoPHa60lLhUXcoGCoz41o+kdYD0H+PO/CMyosWsJmKmqQ+ZZ/YGLCOikduPB47bGMJfQi9jGupT6xoILBxRS6hsLVnNAgvk/Cut5wHYELKF+48HB84BtBxQyoiMSTe8A28vhs8DFhDp+mSAShdTK4llB01eEmt4BRnKAiHQBR4C8CX0x8B04rKqnE2tKWOaaBvRQ/+vvpO0y0JbIhgTGdwHvUjR+tA0Bu505IAOjbjQaGnXUjUVDo4964mj4F0Y9UTT8S6NeVzREGd8GvM4AeZPR0BnLAcAE4F4GSJtuL4HpQXvDHoU3ACtCzjc6OoCdwZNhDphkn0tqqLAtzAFFB0TSQqVtEUnwJOnPWdPtCiFbbqMckAeOAq8yQDxp+wAcA2aH2TpmRUhE2oHxVYXC0QI8AKbW0bccJbykXM/UVOCNVtttUuvioca1wwkMhK5NjrYrQiczoiMSVh2gqveBcwlU3AIumGETDhevxycC14HVNXZ9DqzURn89rqrfgG1429/i4jHQZdt4wG4SDEmKu4D3RCe8YWA/kHPFyfmLERHJA6uAZXjfC0wA+oBe4K6qfnbKx6YDRGSWqg6mraMarOQAEZkjIjeBjyJy1d8nUI+eM8CAiDwUkYVmWfqwMM/n4mXw8rldqENPR0BHP7DIOF/DxrcBLwLERwgpRPjyG4CtwLiQ/3JUJswBYHGWHXApQPgHsCNC9kCZXHeEzHrfgeU6+zLpALx8MhzHeF++vOzWX0Uu6ITRfUNGeBtLguqtuLp9gkVgp6qer9JlUsRxUO8NYDNeaR7glKoaK9oYvw2KyDygqKpfx5Cr6btBEckB7ar6ygxTD8a3yKjqW9M6fb0/8Qo0RpHmBolnZcdP0iLh9JuhAA7j3TbzwMG0SPwGshHTUCfxBkkAAAAASUVORK5CYII=&#39;/&gt;&quot;</span><span style="color: #eeeeee; font-weight: bold">,</span>
+        <span style="color: #4e9a06">&quot;name&quot;</span><span style="color: #ce5c00; font-weight: bold">:</span> <span style="color: #4e9a06">&quot;Water&quot;</span><span style="color: #eeeeee; font-weight: bold">,</span>
+        <span style="color: #4e9a06">&quot;status&quot;</span><span style="color: #ce5c00; font-weight: bold">:</span> <span style="color: #204a87; font-weight: bold">true</span><span style="color: #eeeeee; font-weight: bold">,</span>
+        <span style="color: #4e9a06">&quot;value&quot;</span><span style="color: #ce5c00; font-weight: bold">:</span> <span style="color: #0000cf; font-weight: bold">100</span><span style="color: #eeeeee; font-weight: bold">,</span>
+        <span style="color: #4e9a06">&quot;usecolor&quot;</span><span style="color: #ce5c00; font-weight: bold">:</span> <span style="color: #204a87; font-weight: bold">false</span><span style="color: #eeeeee; font-weight: bold">,</span>
+        <span style="color: #4e9a06">&quot;automatic&quot;</span><span style="color: #ce5c00; font-weight: bold">:</span> <span style="color: #204a87; font-weight: bold">false</span><span style="color: #eeeeee; font-weight: bold">,</span>
+        <span style="color: #4e9a06">&quot;userspecific&quot;</span><span style="color: #ce5c00; font-weight: bold">:</span> <span style="color: #4e9a06">&quot;Moris&quot;</span>
+    <span style="color: #eeeeee; font-weight: bold">}],</span>
+    <span style="color: #4e9a06">&quot;Kitchen&quot;</span><span style="color: #ce5c00; font-weight: bold">:</span> <span style="color: #eeeeee; font-weight: bold">[{</span>
+        <span style="color: #4e9a06">&quot;id&quot;</span><span style="color: #ce5c00; font-weight: bold">:</span> <span style="color: #4e9a06">&quot;e1f52237-6df8-4884-a201-d6021f2086b7&quot;</span><span style="color: #eeeeee; font-weight: bold">,</span>
+        <span style="color: #4e9a06">&quot;icon&quot;</span><span style="color: #ce5c00; font-weight: bold">:</span> <span style="color: #4e9a06">&quot;&lt;img src=&#39;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAEAAAABACAYAAACqaXHeAAAABHNCSVQICAgIfAhkiAAAAAlwSFlzAAABYgAAAWIBXyfQUwAAABl0RVh0U29mdHdhcmUAd3d3Lmlua3NjYXBlLm9yZ5vuPBoAAAPJSURBVHic7ZvPjwxREMc/xSzCRLBIWOuwJ8TiIBGCDBKRbPxIODhIuLlxEX+AxIHLHkTiIhZxc0AiIQQHREJiN/E7EYmfu3bYddjEzymH7o3R0z3bM/3e6x7jm7ykp6de9bfq1avuV/0aVcVWAw4BQ4DW2UaA44DY4ig+UeMQkQXAU0PqNqrqNUO6/sI4G0p9fAK+G9L1wZCeCuRsKVbVQRHZCuwFpoeILAem+Mc/gTshMiNAj6o+ssMSe1NgzAuL9AJL/Z9fVHVaGjxsToGGwH8HpE0gbfx3QNoE0kbTO8Dac0AYRGQ7sAloAeaX/TVZRHqAEnAb795fckLK5logsC7YQvw1wD5XvFxOgT2WZBPByZOgiAgwCLTG7FICWlV12B4rD64ioJP4xoPHa60lLhUXcoGCoz41o+kdYD0H+PO/CMyosWsJmKmqQ+ZZ/YGLCOikduPB47bGMJfQi9jGupT6xoILBxRS6hsLVnNAgvk/Cut5wHYELKF+48HB84BtBxQyoiMSTe8A28vhs8DFhDp+mSAShdTK4llB01eEmt4BRnKAiHQBR4C8CX0x8B04rKqnE2tKWOaaBvRQ/+vvpO0y0JbIhgTGdwHvUjR+tA0Bu505IAOjbjQaGnXUjUVDo4964mj4F0Y9UTT8S6NeVzREGd8GvM4AeZPR0BnLAcAE4F4GSJtuL4HpQXvDHoU3ACtCzjc6OoCdwZNhDphkn0tqqLAtzAFFB0TSQqVtEUnwJOnPWdPtCiFbbqMckAeOAq8yQDxp+wAcA2aH2TpmRUhE2oHxVYXC0QI8AKbW0bccJbykXM/UVOCNVtttUuvioca1wwkMhK5NjrYrQiczoiMSVh2gqveBcwlU3AIumGETDhevxycC14HVNXZ9DqzURn89rqrfgG1429/i4jHQZdt4wG4SDEmKu4D3RCe8YWA/kHPFyfmLERHJA6uAZXjfC0wA+oBe4K6qfnbKx6YDRGSWqg6mraMarOQAEZkjIjeBjyJy1d8nUI+eM8CAiDwUkYVmWfqwMM/n4mXw8rldqENPR0BHP7DIOF/DxrcBLwLERwgpRPjyG4CtwLiQ/3JUJswBYHGWHXApQPgHsCNC9kCZXHeEzHrfgeU6+zLpALx8MhzHeF++vOzWX0Uu6ITRfUNGeBtLguqtuLp9gkVgp6qer9JlUsRxUO8NYDNeaR7glKoaK9oYvw2KyDygqKpfx5Cr6btBEckB7ar6ygxTD8a3yKjqW9M6fb0/8Qo0RpHmBolnZcdP0iLh9JuhAA7j3TbzwMG0SPwGshHTUCfxBkkAAAAASUVORK5CYII=&#39;/&gt;&quot;</span><span style="color: #eeeeee; font-weight: bold">,</span>
+        <span style="color: #4e9a06">&quot;name&quot;</span><span style="color: #ce5c00; font-weight: bold">:</span> <span style="color: #4e9a06">&quot;Lamp 3&quot;</span><span style="color: #eeeeee; font-weight: bold">,</span>
+        <span style="color: #4e9a06">&quot;status&quot;</span><span style="color: #ce5c00; font-weight: bold">:</span> <span style="color: #204a87; font-weight: bold">true</span><span style="color: #eeeeee; font-weight: bold">,</span>
+        <span style="color: #4e9a06">&quot;value&quot;</span><span style="color: #ce5c00; font-weight: bold">:</span> <span style="color: #0000cf; font-weight: bold">70</span><span style="color: #eeeeee; font-weight: bold">,</span>
+        <span style="color: #4e9a06">&quot;usecolor&quot;</span><span style="color: #ce5c00; font-weight: bold">:</span> <span style="color: #204a87; font-weight: bold">true</span><span style="color: #eeeeee; font-weight: bold">,</span>
+        <span style="color: #4e9a06">&quot;color&quot;</span><span style="color: #ce5c00; font-weight: bold">:</span> <span style="color: #4e9a06">&quot;#00ff00&quot;</span><span style="color: #eeeeee; font-weight: bold">,</span>
+        <span style="color: #4e9a06">&quot;automatic&quot;</span><span style="color: #ce5c00; font-weight: bold">:</span> <span style="color: #204a87; font-weight: bold">false</span>
+    <span style="color: #eeeeee; font-weight: bold">}]</span>
+<span style="color: #eeeeee; font-weight: bold">}</span>
+</pre>
+    <ul>
+        <li>Создайте аккаунт на NGROK.com и скопируйте auth-токен.</li>
+        <li>Измените ngrok.yml так:</li>
+    </ul>
+    <pre style="margin: 0; line-height: 125%"><span style="color: #eeeeee">authtoken</span><span style="color: #eeeeee; font-weight: bold">:</span> <span style="color: #4e9a06">&quot;ВАШ</span><span style="color: #eeeeee"> </span><span style="color: #4e9a06">AUTHTOKEN&quot;</span>
+    <span style="color: #eeeeee">tunnels</span><span style="color: #eeeeee; font-weight: bold">:</span>
+    <span style="color: #eeeeee">app</span><span style="color: #eeeeee; font-weight: bold">:</span>
+      <span style="color: #eeeeee">proto</span><span style="color: #eeeeee; font-weight: bold">:</span> <span style="color: #eeeeee">http</span>  <span style="color: #8f5902; font-style: italic"># открывает HTTP endpoint</span>
+      <span style="color: #eeeeee">addr</span><span style="color: #eeeeee; font-weight: bold">:</span> <span style="color: #eeeeee">80</span>   <span style="color: #8f5902; font-style: italic"># использует локальный порт 3000</span>
+  </pre>
+
+
+    <ul>
+        <li>Находясь в той же директории, что и файл main.js, выполните в терминале:</li>
+    </ul>
+    <pre>
+	sudo node main.js
+</pre>
+    <ul>
+
+        <li>Приложение запустится на localhost:80, а панель управления — на localhost:1337</li>
+        <li>Готово!</li>
+    </ul>
+    <h2>Как пользоваться</h2>
+    <ul>
+        <li>Узнайте внутренний LAN IP-адрес RaspberryPi</li>
+        <li>Откройте страницу на телефоне / компьютере, перейдя по этому IP-адресу</li>
+        <li>Вы увидите поле «password». Введите пароль (по умолчанию: 1234). </li>
+        <li>Нажмите Enter</li>
+        <li>Откроется меню выбора пользователя. Выберите персонажа.</li>
+        <li>Откроется панель управления. </li>
+        <li>Теперь можно переключать состояние устройств. Чтобы редактировать яркость / цвет, перейдите в режим EDIT, нажав кнопку «edit»</li>
+    </ul>
+    <h2>FAQ</h2>
+    <ul>
+        <li>В: Это будет работать со всеми устройствами?</li>
+        <li>О: Да, если вы можете подключить их к raspberry-pi.</li>
+        <li>В: Это безопасно?</li>
+        <li>О: Да. Если хотите повысить безопасность — сделайте пароль посложнее.</li>
+    </ul>
+</div>

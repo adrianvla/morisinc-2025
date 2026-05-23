@@ -1,0 +1,35 @@
+<div class="txt-sec" data-scroll>
+  <h1>Счётчик Гейгера на M5 Stack</h1>
+  <p>Умный счётчик Гейгера на базе M5Stack с картой радиации на OpenStreetMap и логированием по Wi-Fi. Чтобы собрать
+    свой, скачайте репозиторий [btn link="https://github.com/adrianvla/M5-Stack-Geiger-Counter"]здесь[/btn].</p>
+</div>
+<div class="txt-sec" data-scroll>
+    <h2>Установка</h2>
+  <ul>
+    <li>Скачайте репозиторий</li>
+    <li>Замените <code>M5.BtnA.isPressed()</code> на строке 112 файла <code>src/main.cpp</code> на сигнал импульса вашей трубки для подсчёта радиации.</li>
+  </ul>
+  <pre style="margin: 0; line-height: 125%"><span style="color: #66d9ef">if</span> <span style="color: #f8f8f2">(M5.BtnA.isPressed())</span> <span style="color: #f8f8f2">{</span>
+    <span style="color: #66d9ef">if</span> <span style="color: #f8f8f2">(flag_tick)</span> <span style="color: #f8f8f2">{</span>
+      <span style="color: #f8f8f2">signalHandler();</span>
+
+      <span style="color: #f8f8f2">flag_tick</span> <span style="color: #f92672">=</span> <span style="color: #f8f8f2">false;</span>
+    <span style="color: #f8f8f2">}</span>
+    <span style="color: #f8f8f2">}</span> <span style="color: #66d9ef">else</span> <span style="color: #f8f8f2">{</span>
+    <span style="color: #f8f8f2">flag_tick</span> <span style="color: #f92672">=</span> <span style="color: #f8f8f2">true;</span>
+    <span style="color: #f8f8f2">}</span>
+</pre>
+  <ul>
+    <li>Вторая кнопка (кнопка B) сбрасывает счётчик</li>
+  <li>Скомпилируйте проект для M5Stack Core. Я использовал PlatformIO в Visual Studio Code вместо Arduino IDE.</li>
+    <li>Запрограммируйте M5 Stack скомпилированным кодом</li>
+  <li>Включите M5Stack</li>
+  </ul>
+  <h2>Как пользоваться</h2>
+  <ul>
+    <li>Включите M5Stack, нажав красную кнопку.</li>
+  <li>Подключите устройство к Wi-Fi сети <code>M5Stack_setup</code> и следуйте инструкциям на экране M5Stack.</li>
+    <li>Перейдите на http://192.168.4.1 на вашем устройстве</li>
+    <li>Готово!</li>
+  </ul>
+</div>

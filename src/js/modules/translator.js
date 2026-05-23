@@ -53,14 +53,15 @@ const translationStrings = {
         "Publications": "出版物"
     },
     de:{
-        "About": "Uber Mich",
+        "About": "Über Mich",
         "Home": "Startseite",
         "Lang": "Sprache",
+        "Socials":"Soziale Medien",
         "LANGUAGE SELECTION": "SPRACHAUSWAHL",
         "Projects":"Projekte",
         "PROJECTS":"PROJEKTE",
         "Your Experience":"Ihre Erfahrung",
-        "Is Loading": "Ist am Laden",
+        "Is Loading": "Wird geladen",
         "CV": "Lebenslauf",
         "SCROLL DOWN": "SCROLLEN →",
         "Software": "Software",
@@ -69,10 +70,11 @@ const translationStrings = {
         "Design": "Design",
         "Misc": "Sonstiges",
         "MANUFACTURE DATE": "HERSTELLDATUM",
-        "CHANGE":"THEMA",
-        "THEME":"TEILNEHMEN",
+        "CHANGE":"ÄNDERN",
+        "THEME":"FARBE",
         "Contents": "Inhalt",
-        "Publications": "Publikationen"
+        "Publications": "Publikationen",
+        "PORTFOLIO": "PORTFOLIO"
     },
     ru:{
         "About": "Обо мне",
@@ -97,7 +99,8 @@ const translationStrings = {
         "CHANGE":"ПОМЕНЯТЬ",
         "THEME": "ЦВЕТ",
         "Contents": "Содержание",
-        "Publications": "Публикации"
+        "Publications": "Публикации",
+        "PORTFOLIO": "ПОРТФОЛИО"
     },
     fr:{
         "About": "À Propos",
@@ -119,7 +122,9 @@ const translationStrings = {
         "CHANGE":"CHANGER",
         "THEME": "LA COULEUR",
         "Contents": "Contenu",
-        "Publications": "Publications"
+        "Publications": "Publications",
+        "CV": "CV",
+        "PORTFOLIO": "PORTFOLIO"
     }
 }
 

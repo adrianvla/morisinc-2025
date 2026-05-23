@@ -1,0 +1,54 @@
+<div>
+    <h1>概要</h1>
+    <p>Raspberry Pi Zeroで動くマトリックス時計で、LaMetric Timeみたいな感じです。<br>まだ開発中。</p>
+    <p>ソースコードとビルドファイルは [a href="https://github.com/adrianvla/clock"]こちら[/a] から。</p>
+    <h1>ギャラリー</h1>
+    <span class="brd"></span>
+    [img src="/assets/img/clock-IMG_1060.png"][/img]
+    <span class="brd"></span>
+    [img src="/assets/img/clock-IMG_1061.png"][/img]
+    <span class="brd"></span>
+    [img src="/assets/img/clock-IMG_1062.png"][/img]
+    <h1>特徴</h1>
+    <p>ウィジェットの移動、複数のスクリーン環境、アニメーションに対応しています。<br>
+    コントロールパネルから、ウィジェットの位置やコードを含め、ほとんどすべてを編集できます。</p>
+    <p>Raspberry Pi Zeroの時計のズレは、定期的にオンラインの時刻サーバーと同期することで補正しています。</p>
+    <h2>ウィジェット</h2>
+    <p>標準で用意されているウィジェット:</p>
+    <ul>
+        <li>曜日（土曜日ならこんな感じのバー表示: ░░ ░░ ░░ ░░ ░░ ▓▓ ░░）</li>
+        <li>カレンダー（カレンダー風の背景で今日の日付を表示）</li>
+        <li>デジタル時計: 3x5フォント、HH : MM（: SSは設定可能）</li>
+        <li>ビッグデジタル時計: 5x5フォント、HH : MM</li>
+        <li>RSSフィード: ニュース見出しをディスプレイ上でスクロール表示、8x8フォント、ラテン文字・キリル文字・日本語のカナ＆漢字に対応</li>
+        <li>気温: temperature°C</li>
+        <li>天気: 天気タイプごとにアニメーション付きアイコンのかわいい8x8ウィジェット。雨にはパーティクルシステムまで搭載</li>
+    </ul>
+    <h2>画面</h2>
+    <p>スクリーンはWindowsやmacOSのデスクトップみたいなものです。ウィジェットはスクリーン上に配置され、時間やイベント（例えばRSSの更新受信）に応じて、スクリーンがスムーズなアニメーションで切り替わります。</p>
+    <h2>コントロールパネル</h2>
+    <p>コントロールパネルでできること:</p>
+    <ul>
+        <li>パスワードの変更</li>
+        <li>ディスプレイの表示内容を確認</li>
+        <li>輝度の調整</li>
+        <li>再起動</li>
+        <li>ウィジェットの編集 / Monaco Editorを使ってブラウザ上でJavaScriptで新規作成</li>
+        <li>スクリーンの編集 / 仮想スクリーン上でドラッグ＆ドロップして新規作成</li>
+    </ul>
+    [img src="/assets/img/clock-c1.png"][/img]
+    [img src="/assets/img/clock-c2.png"][/img]
+    <h1>使い方</h1>
+    <p>weatherapi.comからAPIキーを取得してください。<br>
+    <code>/code/src/widgets/weather/weather.js</code> に貼り付けてください（開発中；後にコントロールパネルに移動予定）。</p>
+    <p>RSSフィードは <code>/code/src/widgets/rssFeed/rss.js</code> で設定してください（開発中；こちらもコントロールパネルに移動予定）。</p>
+    <p>systemctlサービスを作成して自動起動させます</p>
+    <pre style="color:#fff">#!/bin/bash
+cd &lt;codeフォルダの中身があるディレクトリ&gt;
+sudo node src/main.js
+</pre>
+    <p>ファイル名は <code>script-startup.service</code> にしてください</p>
+    <p>これで準備完了です。</p>
+    <p>WS281xディスプレイを接続するにはGPIO 18を使用するか、<code>/code/src/utils/driver.js</code> でピンを変更してください。</p>
+    <p>License: MIT</p>
+</div>

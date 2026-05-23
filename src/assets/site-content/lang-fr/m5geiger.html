@@ -1,0 +1,35 @@
+<div class="txt-sec" data-scroll>
+  <h1>Un compteur Geiger sur M5 Stack</h1>
+  <p>Un compteur Geiger intelligent construit sur M5Stack, avec une carte de radiation propulsée par OpenStreetMap et un enregistrement Wi‑Fi. Pour construire
+    le vôtre, téléchargez le dépôt [btn link="https://github.com/adrianvla/M5-Stack-Geiger-Counter"]ici[/btn].</p>
+</div>
+<div class="txt-sec" data-scroll>
+    <h2>Installation</h2>
+  <ul>
+    <li>Téléchargez le dépôt</li>
+    <li>Remplacez <code>M5.BtnA.isPressed()</code> à la ligne 112 de <code>src/main.cpp</code> pour correspondre au signal d'impulsion de votre tube pour le comptage de la radiation.</li>
+  </ul>
+  <pre style="margin: 0; line-height: 125%"><span style="color: #66d9ef">if</span> <span style="color: #f8f8f2">(M5.BtnA.isPressed())</span> <span style="color: #f8f8f2">{</span>
+    <span style="color: #66d9ef">if</span> <span style="color: #f8f8f2">(flag_tick)</span> <span style="color: #f8f8f2">{</span>
+      <span style="color: #f8f8f2">signalHandler();</span>
+
+      <span style="color: #f8f8f2">flag_tick</span> <span style="color: #f92672">=</span> <span style="color: #f8f8f2">false;</span>
+    <span style="color: #f8f8f2">}</span>
+    <span style="color: #f8f8f2">}</span> <span style="color: #66d9ef">else</span> <span style="color: #f8f8f2">{</span>
+    <span style="color: #f8f8f2">flag_tick</span> <span style="color: #f92672">=</span> <span style="color: #f8f8f2">true;</span>
+    <span style="color: #f8f8f2">}</span>
+</pre>
+  <ul>
+    <li>Le 2ème bouton (bouton B) réinitialise le compteur</li>
+  <li>Compilez le projet pour M5Stack Core. J'ai utilisé PlatformIO dans Visual Studio Code au lieu de l'Arduino IDE.</li>
+    <li>Programmez le M5 stack avec le code compilé</li>
+  <li>Allumez le M5Stack</li>
+  </ul>
+  <h2>Comment utiliser</h2>
+  <ul>
+    <li>Allumez le M5Stack en appuyant sur le bouton rouge.</li>
+  <li>Connectez votre appareil au réseau Wi-Fi <code>M5Stack_setup</code> et suivez les instructions sur l'écran du M5Stack.</li>
+    <li>Allez sur http://192.168.4.1 sur votre appareil</li>
+    <li>C'est terminé !</li>
+  </ul>
+</div>

@@ -1,0 +1,54 @@
+<div>
+    <h1>Übersicht</h1>
+    <p>Eine Matrix-Uhr auf Basis eines Raspberry Pi Zero, ähnlich wie die LaMetric Time.<br>Work in progress.</p>
+    <p>Quellcode und Build-Dateien sind [a href="https://github.com/adrianvla/clock"]hier[/a] zu finden.</p>
+    <h1>Galerie</h1>
+    <span class="brd"></span>
+    [img src="/assets/img/clock-IMG_1060.png"][/img]
+    <span class="brd"></span>
+    [img src="/assets/img/clock-IMG_1061.png"][/img]
+    <span class="brd"></span>
+    [img src="/assets/img/clock-IMG_1062.png"][/img]
+    <h1>Features</h1>
+    <p>Dazu gehören bewegliche Widgets, mehrere Bildschirm-Umgebungen und Animationen.<br>
+    Ein Kontrollpanel ermöglicht es dir, fast alles zu bearbeiten – inklusive Widget-Positionen und Widget-Code.</p>
+    <p>Die Zeitdrift auf dem Raspberry Pi Zero wird durch regelmäßige Synchronisation mit einem Online-Zeitserver ausgeglichen.</p>
+    <h2>Widgets</h2>
+    <p>Widgets, die out-of-the-box verfügbar sind:</p>
+    <ul>
+        <li>Wochentage (mit Balken, die so aussehen, wenn du auf einen Samstag triffst: ░░ ░░ ░░ ░░ ░░ ▓▓ ░░)</li>
+        <li>Kalender (zeigt das aktuelle Datum mit einem schönen Kalender-Hintergrund an)</li>
+        <li>Digitale Zeit: 3×5-Schrift, HH : MM (: SS, konfigurierbar)</li>
+        <li>Große digitale Zeit: 5×5-Schrift, HH : MM</li>
+        <li>RSS-Feed: Scrollt Nachrichten-Headlines auf dem Display, 8×8-Schrift, unterstützt Lateinisch, Kyrillisch, japanische Kana & Kanji</li>
+        <li>Temperatur: Temperatur°C</li>
+        <li>Wetter: Ein schönes 8×8-Widget mit animierten Icons für jeden Wettertyp, sogar mit einem Partikelsystem für Regen</li>
+    </ul>
+    <h2>Bildschirme</h2>
+    <p>Bildschirme sind vergleichbar mit Desktops unter Windows oder macOS. Widgets werden auf Bildschirmen platziert, und basierend auf der Zeit oder Ereignissen (z. B. wenn ein RSS-Update eintrifft) wechseln die Bildschirme mit sanften Animationen.</p>
+    <h2>Kontrollpanel</h2>
+    <p>Mit dem Kontrollpanel kannst du:</p>
+    <ul>
+        <li>Das Passwort ändern</li>
+        <li>Anzeigen, was gerade auf dem Display zu sehen ist</li>
+        <li>Die Helligkeit ändern</li>
+        <li>Neu starten</li>
+        <li>Widgets bearbeiten / Neue erstellen, direkt im Browser mit JavaScript (mit Monaco Editor)</li>
+        <li>Bildschirme bearbeiten / Neue erstellen, per Drag-and-drop der Widgets auf einem virtuellen Bildschirm</li>
+    </ul>
+    [img src="/assets/img/clock-c1.png"][/img]
+    [img src="/assets/img/clock-c2.png"][/img]
+    <h1>Nutzung</h1>
+    <p>Besorge dir einen API-Key von weatherapi.com.<br>
+    Füge ihn in <code>/code/src/widgets/weather/weather.js</code> ein (work in progress; wird ins Kontrollpanel verschoben).</p>
+    <p>Konfiguriere deine RSS-Feeds in <code>/code/src/widgets/rssFeed/rss.js</code> (work in progress; wird ebenfalls ins Kontrollpanel verschoben).</p>
+    <p>Erstelle einen systemctl-Service für den Autostart</p>
+    <pre style="color:#fff">#!/bin/bash
+cd &lt;das Verzeichnis mit dem Inhalt des Code-Ordners&gt;
+sudo node src/main.js
+</pre>
+    <p>und nenne ihn <code>script-startup.service</code></p>
+    <p>Und los geht's.</p>
+    <p>Um das WS281x-Display anzuschließen, verwende GPIO 18 oder ändere den Pin in <code>/code/src/utils/driver.js</code>.</p>
+    <p>Lizenz: MIT</p>
+</div>
