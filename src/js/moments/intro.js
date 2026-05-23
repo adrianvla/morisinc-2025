@@ -27,18 +27,37 @@ function logImageLoadingProgress() {
     }
     function load(){
         return new Promise(resolve => {
-            // resolve();
             let loaded = 0;
+            let resolved = false;
             const images = Array.from(document.images);
             const total = images.length;
+
+            function finish() {
+                if (!resolved) {
+                    resolved = true;
+                    resolve();
+                }
+            }
+
+            setTimeout(finish, 8000);
+
+            if (total === 0) {
+                finish();
+                return;
+            }
+
             function update() {
                 loaded++;
                 const percent = Math.round((loaded / total) * 100);
-                if( percent === 100) resolve();
                 $(".loading-text").text(percent);
+                if (loaded >= total) finish();
             }
+
             images.forEach(img => {
-                if (img.complete && img.naturalWidth !== 0) {
+                // If the image has already finished (loaded or errored), count it immediately.
+                // Using only img.complete avoids missing cached images that errored
+                // before the listener was attached.
+                if (img.complete) {
                     update();
                 } else {
                     img.addEventListener('load', update, { once: true });
@@ -157,7 +176,7 @@ function initAnimations(p){
             display: "none",
             onComplete: () => {
                 resolve();
-                fns.forEach(fn => fn());
+                fns.forEach(fn => { fn(); });
             }
         },"<0.5");
 

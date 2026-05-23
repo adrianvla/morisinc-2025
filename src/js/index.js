@@ -217,6 +217,16 @@ document.addEventListener('DOMContentLoaded', () => {
     $(".wait-for-data").remove();
     testForMobile();
 
+    // Reload when crossing the mobile breakpoint to ensure correct DOM adaptation
+    let wasMobile = window.innerWidth < 600;
+    window.addEventListener('resize', () => {
+        const isMobile = window.innerWidth < 600;
+        if (isMobile !== wasMobile) {
+            wasMobile = isMobile;
+            window.location.reload();
+        }
+    });
+
     // Hide loading screen initially
     initLenises();
     translateEverything();
