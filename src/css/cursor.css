@@ -96,3 +96,12 @@ body{
     border-bottom-left-radius: 100%;
     transform: translateY(-50%);
 }
+
+@media (prefers-reduced-motion: reduce) {
+    body {
+        cursor: auto !important;
+    }
+    .cursor {
+        display: none !important;
+    }
+}

@@ -7,10 +7,10 @@ import $ from "jquery";
 export default function leave(){
     try{
         lenis.destroy();
-    }catch(e){}
+    }catch(e){} // Lenis may not be initialized yet
     try{
         lenis2.destroy();
-    }catch(e){}
+    }catch(e){} // Lenis2 may not be initialized yet
     if(window.redirectType === 'lang-button') {
         return leaveBecauseOfLang();
     }

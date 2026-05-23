@@ -183,7 +183,7 @@ barba.init({
         },
         afterEnter(data) {
             // Additional cleanup and initialization after page enter
-            console.log(`Entered ${data.next.namespace} page`);
+
         }
     },
 
@@ -191,7 +191,7 @@ barba.init({
         {
             namespace: 'home',
             afterEnter() {
-                console.log('Home page loaded');
+
                 // Any home-specific initialization
             }
         },
@@ -216,6 +216,7 @@ window.addEventListener('resize', setHeightValueOfMain);
 document.addEventListener('DOMContentLoaded', () => {
     $(".wait-for-data").remove();
     testForMobile();
+
     // Hide loading screen initially
     initLenises();
     translateEverything();
@@ -224,7 +225,7 @@ document.addEventListener('DOMContentLoaded', () => {
     initTextEffects();
     initScrollZoom();
     $(".s1").css("height",`${$(".s1").height()}px`);
-    console.log(`%cIdentified as ${isProjectPage() ? 'Project' : 'home'} page, of project "${getProjectName()}"`, `color: #0f0`);
+
     initIntro((isProjectPage() || isOtherPage()) ? generateProject() : fetchProjects()).then(r => {
         initSign();
         if(!(isProjectPage() || isOtherPage())){

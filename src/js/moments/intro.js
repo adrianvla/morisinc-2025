@@ -35,7 +35,6 @@ function logImageLoadingProgress() {
                 loaded++;
                 const percent = Math.round((loaded / total) * 100);
                 if( percent === 100) resolve();
-                console.log(percent + '% images loaded');
                 $(".loading-text").text(percent);
             }
             images.forEach(img => {

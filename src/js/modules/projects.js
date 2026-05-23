@@ -775,7 +775,7 @@ function generateProject(current_container){
         try {
             const existing404 = document.querySelector("section.content.page404");
             if (existing404 && existing404._cleanup404) existing404._cleanup404();
-        } catch {}
+        } catch { /* existing404._cleanup404 may not exist; safe to ignore */ }
 
         $("main").html("");
         //create section

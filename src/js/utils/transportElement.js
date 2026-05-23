@@ -50,12 +50,7 @@ function transportElement(element, newParent, beforeElement = null) {
             newParent.appendChild(transportedElement);
         }
 
-        console.log('Element transported successfully:', {
-            element: transportedElement,
-            from: originalParent,
-            to: newParent,
-            beforeElement: beforeElement
-        });
+
 
         return transportedElement;
 
@@ -133,7 +128,7 @@ class ElementClipboard {
         });
 
         this.isCut = true;
-        console.log(`Cut ${elementsArray.length} element(s) to clipboard`);
+
     }
 
     /**
@@ -151,7 +146,6 @@ class ElementClipboard {
         }));
 
         this.isCut = false;
-        console.log(`Copied ${elementsArray.length} element(s) to clipboard`);
         console.warn('Note: Copied elements will not have event listeners. Use cut() to preserve listeners.');
     }
 
@@ -174,7 +168,7 @@ class ElementClipboard {
         this.clipboard = [];
         this.isCut = false;
 
-        console.log(`Pasted ${pastedElements.length} element(s)`);
+
         return pastedElements;
     }
 
@@ -200,7 +194,7 @@ class ElementClipboard {
             }
         });
 
-        console.log(`Restored ${this.clipboard.length} element(s) to original positions`);
+
         this.clipboard = [];
         this.isCut = false;
         return true;

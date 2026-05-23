@@ -58,3 +58,9 @@
     background:var(--black);
     z-index:9;
 }
+
+@media (prefers-reduced-motion: reduce) {
+    .loader {
+        display: none !important;
+    }
+}

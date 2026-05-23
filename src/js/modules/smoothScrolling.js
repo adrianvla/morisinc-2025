@@ -15,7 +15,7 @@ function initLenises(){
     try{
         lenis.destroy();
         lenis2.destroy();
-    }catch(e){}
+    }catch(e){ /* Lenis may not be initialized yet; safe to ignore */ }
     lenis = new Lenis({
         duration: 1.2,
         easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
@@ -117,7 +117,7 @@ function snapToSections(){
     //set css var
     try{
         snap.destroy();
-    }catch(e){}
+    }catch(e){ /* Snap may not be initialized yet; safe to ignore */ } // Snap may not be initialized yet
 
     snap = new Snap(lenis, {
         type: 'mandatory',

@@ -12,11 +12,15 @@ function isMobileDevice() {
     // Screen size check (optional, for tablets)
     const isSmallScreen = window.innerWidth <= 1024 && window.innerHeight <= 1366;
     // Consider mobile if any of these are true
-    return isMobileUA || (hasTouch);
+    // Exclude touch-screen laptops that have a fine pointer and large screen
+    const hasFinePointer = window.matchMedia('(pointer: fine)').matches;
+    const isLargeScreen = window.innerWidth > 1024;
+    if (hasFinePointer && isLargeScreen) return false;
+    return isMobileUA || hasTouch;
 }
 
 function adaptWebsiteForMobile() {
-    console.log("%cAdapting website for mobile", "color: pink; font-weight: bold;");
+
     transportElement(document.querySelector(".nav1"), document.querySelector(".top-nav.mobile"));
     transportElement(document.querySelector(".nav2"), document.querySelector(".top-nav.mobile"));
     transportElement(document.querySelector(".nav3"), document.querySelector(".top-nav.mobile"));
@@ -30,7 +34,7 @@ function adaptWebsiteForMobile() {
     $(".top-nav .open-nav").on("click", function () {
         try{
             tl.kill();
-        }catch(e){}
+        }catch(e){ /* tl.kill() on null timeline; safe to ignore */ }
         if(isNavOpened){
             //close it
             tl = gsap.timeline({

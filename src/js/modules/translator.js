@@ -145,9 +145,8 @@ function getTranslation(key) {
 function translateEverything(){
     const lang = getCurrentLanguage();
     $("body").addClass("lang-"+lang);
-    console.log("Language set to:", lang);
+    document.documentElement.lang = lang;
     if(lang === 'en') {
-        console.log("No translation needed for English");
         return; // No translation needed for English
     }
 

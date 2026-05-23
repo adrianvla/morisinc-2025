@@ -11,13 +11,13 @@ export default function leave() {
     });
     try{
         lenis.destroy();
-    }catch(e){}
+    }catch(e){} // Lenis may not be initialized yet
     try{
         lenis2.destroy();
-    }catch(e){}
+    }catch(e){} // Lenis2 may not be initialized yet
     try{
         snap.destroy();
-    }catch(e){}
+    }catch(e){} // Snap may not be initialized yet
     //scroll to top instantly
     // setTimeout(()=>{document.querySelector(".main").scrollTo(0,0);},100);
     // tl.set(s,{

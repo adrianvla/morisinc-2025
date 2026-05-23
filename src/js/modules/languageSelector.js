@@ -54,6 +54,7 @@ document.addEventListener('DOMContentLoaded', () => {
             //replace current url's lang parameter with the new one
             const url = new URL(window.location.href);
             url.searchParams.set('lang', langChange);
+            document.documentElement.lang = langChange;
             //go to the new url
             window.redirectType = 'lang-button';
             barba.go(url.toString());

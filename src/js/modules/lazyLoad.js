@@ -23,6 +23,7 @@ export default function initLazyLoad() {
     images.forEach(img => {
         if (img.hasAttribute('data-lazy-loaded')) return;
         img.setAttribute('data-lazy-loaded', '');
+        img.setAttribute('loading', 'lazy');
 
         // Wrap image (idempotent)
         let wrapper = img.closest('.pixelation-wrapper');
@@ -83,7 +84,7 @@ export default function initLazyLoad() {
             offCtx.setTransform(1,0,0,1,0,0);
             offCtx.imageSmoothingEnabled = false;
             offCtx.clearRect(0,0,sampleW,sampleH);
-            try { offCtx.drawImage(source, 0, 0, sampleW, sampleH); } catch(e) {}
+            try { offCtx.drawImage(source, 0, 0, sampleW, sampleH); } catch(e) { /* drawImage failed on incomplete image; safe to ignore */ }
             ctx.clearRect(0,0,cssW,cssH);
             ctx.imageSmoothingEnabled = false;
             ctx.drawImage(off, 0,0,sampleW,sampleH, 0,0,cssW,cssH);
@@ -126,7 +127,7 @@ export default function initLazyLoad() {
                 if(isInCarousel){
                     setTimeout(()=>{
                         wrapper.style.width = img.getBoundingClientRect().width + 'px';
-                        console.log("in carousel");
+
                     },100);
                 }
             };
