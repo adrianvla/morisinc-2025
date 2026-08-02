@@ -1,14 +1,9 @@
 import gsap from "gsap";
 import {lenis, lenis2, snap} from "../../modules/smoothScrolling";
+import {prefersReducedMotion} from "../../utils/prefersReducedMotion";
 
 export default function leave() {
     const s = document.querySelector(`#${window.projectSectionID}`);
-    let tl = gsap.timeline({
-        defaults: {
-            ease: "power3.inOut",
-            duration: 1
-        }
-    });
     try{
         lenis.destroy();
     }catch(e){} // Lenis may not be initialized yet
@@ -18,6 +13,16 @@ export default function leave() {
     try{
         snap.destroy();
     }catch(e){} // Snap may not be initialized yet
+    if (prefersReducedMotion()) {
+        return gsap.timeline()
+            .to('.main', { opacity: 0, ease: "power2.inOut", duration: 0.3 });
+    }
+    let tl = gsap.timeline({
+        defaults: {
+            ease: "power3.inOut",
+            duration: 1
+        }
+    });
     //scroll to top instantly
     // setTimeout(()=>{document.querySelector(".main").scrollTo(0,0);},100);
     // tl.set(s,{

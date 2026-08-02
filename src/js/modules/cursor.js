@@ -62,8 +62,8 @@ function initCursor(){
 
     function animate() {
         // Lerp position
-        lastX += (mouseX - lastX) * 0.1;
-        lastY += (mouseY - lastY) * 0.1;
+        lastX += (mouseX - lastX) * 0.18;
+        lastY += (mouseY - lastY) * 0.18;
         // Calculate velocity
         const dx = mouseX - lastX;
         const dy = mouseY - lastY;
@@ -74,7 +74,7 @@ function initCursor(){
         let delta = targetAngle - lastAngle;
         // Normalize angle to [-PI, PI]
         delta = ((delta + Math.PI) % (2 * Math.PI)) - Math.PI;
-        lastAngle += delta * 0.075;
+        lastAngle += delta * 0.12;
         // X scale increases with velocity, Y scale decreases (squash/stretch)
         const baseScale = 1;
         const stretch = velocity/500; // max stretch

@@ -6,10 +6,13 @@ import {lenis} from "../modules/smoothScrolling";
 import {fetchProjects} from "../modules/fetchProjects";
 import {isProjectPage} from "../modules/pathDetector";
 import {generateProject} from "../modules/projects";
-import {isMobileDevice} from "../utils/isMobileDevice";
+import {prefersReducedMotion} from "../utils/prefersReducedMotion";
 
 let hasLoadedImages = false;
 let tl = gsap.timeline({});
+
+// Key off width, not touch: touch laptops/tablets keep the full-length intro like desktop.
+const isMobileWidth = () => window.innerWidth < 600;
 
 function logImageLoadingProgress() {
     function loadedEverything(){
@@ -77,6 +80,24 @@ function initAnimations(p){
         tl.set('.nav4',{
             gap:0
         });
+        if (prefersReducedMotion()) {
+            tl.set('.grid-item',{
+                "--grid-item-width": "0%",
+                "--grid-item-width2": "0%"
+            });
+            tl.to('.nav4 > div > *',{
+                opacity:1,
+                duration:0.3
+            });
+            tl.set('.loader',{
+                display: "none",
+                onComplete: () => {
+                    resolve();
+                    fns.forEach(fn => { fn(); });
+                }
+            });
+            return;
+        }
         tl.fromTo('.loader h3.align-left',{
             right:"50%"
         },{
@@ -117,21 +138,21 @@ function initAnimations(p){
         tl.to('.loader', {
             top: '134px',
             left: '264px',
-            duration:isMobileDevice() ? 0.01 : 1,
+            duration: 1,
             ease: "power1.inOut",
             onComplete: () => {
-                if(!isMobileDevice())
+                if(!isMobileWidth())
                     if(!hasLoadedImages)
                         tl.pause();
             },
             onStart: () => {
                 if(hasLoadedImages)
                     tl.timeScale(1);
-                if(isMobileDevice())
+                if(isMobileWidth())
                     if(!hasLoadedImages)
                         tl.pause();
             }
-        },isMobileDevice() ? "<0.01" : "<1");
+        },"<1");
         tl.to('.nav4',{
             gap:"2px"
         },"<");

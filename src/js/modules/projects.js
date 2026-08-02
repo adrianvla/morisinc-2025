@@ -444,6 +444,9 @@ function init404(){
     const section = document.querySelector("section.content.page404");
     if (!section) return;
 
+    // Reuse the site's custom-cursor pointer affordance over the sandbox
+    section.setAttribute("data-pointer", "");
+
     // Ensure section can host an absolutely positioned overlay
     section.style.position = section.style.position || "relative";
     if (!section.style.minHeight) section.style.minHeight = "60vh";
@@ -515,9 +518,9 @@ function init404(){
         let o = ["var(--green)","var(--blue)","var(--red)"];
         return o[Math.floor(Math.random() * o.length)];
     }
-    // Create a DOM letter + Matter body
-    function spawnLetter(text) {
-        const { w } = bounds();
+    // Create a DOM letter + Matter body. at = pointer position when click-spawned, otherwise rain from above.
+    function spawnLetter(text, at) {
+        const { w, h } = bounds();
 
         // Size proportional to container width
         const basePx = 24 + Math.floor(Math.random() * 40); // 24-40px base size
@@ -543,9 +546,13 @@ function init404(){
         });
         overlay.appendChild(el);
 
-        // Random X across width, start slightly above the view
-        const x = Math.max(bw / 2 + 10, Math.min(w - bw / 2 - 10, Math.random() * w));
-        const y = -Math.random() * 150 - bh; // above the top
+        // Clamp inside the walls; click-spawn at the pointer, otherwise rain from above
+        const x = at
+            ? Math.max(bw / 2 + 10, Math.min(w - bw / 2 - 10, at.x))
+            : Math.max(bw / 2 + 10, Math.min(w - bw / 2 - 10, Math.random() * w));
+        const y = at
+            ? Math.max(bh / 2 + 10, Math.min(h - bh / 2 - 10, at.y))
+            : -Math.random() * 150 - bh; // above the top
 
         const body = Matter.Bodies.rectangle(x, y, bw, bh, {
             restitution: 0.05,
@@ -608,6 +615,26 @@ function init404(){
     // After-update hook to sync DOM
     Matter.Events.on(engine, "afterUpdate", sync);
 
+    // Grab & throw letters with pointer; click empty space to spawn a letter there
+    const mouse = Matter.Mouse.create(section);
+    const mouseConstraint = Matter.MouseConstraint.create(engine, {
+        mouse,
+        constraint: { stiffness: 0.08, render: { visible: false } }
+    });
+    Matter.World.add(world, mouseConstraint);
+
+    function pointerPos(e) {
+        const r = section.getBoundingClientRect();
+        return { x: e.clientX - r.left, y: e.clientY - r.top };
+    }
+    function onPointerDown(e) {
+        // Skip compatibility mousedown synthesized after touch (Matter handles touch itself)
+        if (e.pointerType === "touch") return;
+        const p = pointerPos(e);
+        if (!Matter.Query.point(Array.from(letterBodies), p).length) spawnLetter(rndText(), p);
+    }
+    section.addEventListener("mousedown", onPointerDown);
+
     // Rebuild bounds on resize
     const resizeObserver = new ResizeObserver(() => {
         buildBounds();
@@ -621,6 +648,8 @@ function init404(){
     const cleanup = () => {
         try { resizeObserver.disconnect(); } catch {}
         if (spawnTimer) clearInterval(spawnTimer);
+        Matter.Mouse.clearSourceEvents(mouse);
+        section.removeEventListener("mousedown", onPointerDown);
         Matter.Runner.stop(runner);
         Matter.World.clear(world, false);
         Matter.Engine.clear(engine);

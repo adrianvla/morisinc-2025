@@ -130,6 +130,12 @@ body{
     padding-left: 5px;
     padding-top:2px;
 }
+button,
+[data-pointer],
+.cell{
+    user-select: none;
+    -webkit-user-select: none;
+}
 h4{
     font-family: 'Teknaf','Y224', sans-serif;
     font-size:0.75rem;
@@ -382,6 +388,16 @@ h5 + h3{
 
 .sidebar .s1 .projects .toc-item:hover {
     transform: translateX(2px);
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .sidebar .s1 .projects .toc-item {
+        transition: opacity 0.2s ease;
+    }
+    .sidebar .s1 .projects .toc-item:hover {
+        transform: none;
+        opacity: 0.6;
+    }
 }
 
 /* Indentation based on header level */

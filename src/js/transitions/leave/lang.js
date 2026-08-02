@@ -1,7 +1,13 @@
 import gsap from "gsap";
+import {prefersReducedMotion} from "../../utils/prefersReducedMotion";
 
 
 export default function leave() {
+    if (prefersReducedMotion()) {
+        return gsap.timeline({ defaults: { ease: "power2.inOut", duration: 0.3 } })
+            .to('.color-change *', { opacity: 0 })
+            .to('.nav4-1-1', { opacity: 0 }, "<");
+    }
     let tl = gsap.timeline({
         defaults: {
             ease: "power3.inOut",
