@@ -9,30 +9,39 @@
     [img src="/assets/img/mlearn-screenshot.png"][/img]
     <h1>Features</h1>
     <ul>
-        <li>Live-Übersetzung von Wörtern</li>
-        <li>Erkennt, welche Wörter du bereits kennst, und passt sich entsprechend an</li>
-    <li>Nahtlose Anki-Integration</li>
-        <li>Overlay, das auch im Browser funktioniert</li>
-        <li>Unterstützt native Youtube-Untertitel</li>
-        <li>Erweiterte Erstellung von Lernkarten (integriertes SRS-System)</li>
-        <li>Unbekannte Wörter können ausgeblendet werden</li>
-        <li>mLearn Explainer AI mit einem lokalen LLM</li>
-        <li>mLearn Reader mit Seiten-Lesezeichen, OCR-Texterkennung und automatischer grammatikalischer Tokenisierung</li>
-    <li>Energieeffizienter und Offline-Modus</li>
-        <li>Unterstützt Japanisch und Deutsch</li>
-        <li>Streamt jeden beliebigen Videotyp</li>
-        <li>Sehr anpassbar</li>
-    <li>Unterstützung für japanischen Pitch Accent</li>
-        <li>Unterstützung für benutzerdefinierte Sprachen</li>
-    <li>Wortfrequenzliste (z. B. JLPT)</li>
-        <li>Eigenes SRS-System mit automatischer Erstellung von Lernkarten</li>
-        <li>Lernmodus für Sprachprüfungen (z. B. JLPT-orientierte Vokabelauswahl), damit du deine Prüfung bestehst.</li>
-        <li>Erweiterte Statistiken zum Vokabelwissen für Prüfungen</li>
+        <li>Interaktive Untertitel für jedes Video – klicke auf ein beliebiges Wort für eine sofortige Definition</li>
+        <li>Erkennt, welche Wörter du kennst – trackt passiv jedes Wort, das du siehst, und passt sich entsprechend an</li>
+        <li>Integrierte SRS-Lernkarten, die sich selbst erstellen – mit Screenshot, Audio und Kontextsatz (Anki-ähnlicher Algorithmus)</li>
+        <li>Nahtlose Zwei-Wege-Synchronisation mit Anki (AnkiConnect), falls du das bevorzugst</li>
+        <li>Transparentes Untertitel-Overlay, das über jeder App funktioniert – Netflix, YouTube, VLC, Browser</li>
+        <li>Browser-Erweiterung (Chrome/Firefox) mit nativer YouTube-Untertitel-Unterstützung</li>
+        <li>Streamt jede Videoquelle – lokale Dateien, .mp4/.mkv, .m3u8-Streams – plus Video-Clipping</li>
+        <li>mLearn Reader: Manga, PDFs und EPUBs mit Echtzeit-OCR-Texterkennung und automatischer grammatikalischer Tokenisierung</li>
+        <li>KI-Tutor &amp; Erklärer – läuft lokal offline (Gemma 4 LLM), über Ollama oder in der Cloud; Voice-Chat inklusive</li>
+        <li>Voice Cloning + TTS – lass jeden Charakter deine Lernkarten vorlesen</li>
+        <li>Intelligente Vokabelbewertung (Word Sync) mit gewichteter Stichprobe</li>
+        <li>Lernmodi für Sprachprüfungen – JLPT-, HSK-, CEFR- &amp; ТРКИ-Level-Tracking und Vokabelauswahl</li>
+        <li>Zeichen-Wissensraster (z. B. Kanji) nach Prüfungsniveau gefiltert</li>
+        <li>Ausblenden bekannter Wörter &amp; Hardcore-Modus (Untertitel versteckt, zum Anzeigen darüberfahren)</li>
+        <li>Pitch Accent, Lesehilfen und grammatikbasierte Untertitel-Einfärbung</li>
+        <li>Watch Together – synchronisierte Wiedergabe und Untertitel mit Freunden, ohne dass die App auf deren Gerät nötig ist</li>
+        <li>Handy-Desktop-Synchronisation per QR-Code – Daten werden direkt zwischen deinen Geräten übertragen</li>
+        <li>Statistik-Dashboard mit Heatmaps, Streaks und Immersions-Tracking</li>
         <li>Zugriff auf eine interne Datenbank zur Bearbeitung von Wortdefinitionen</li>
+        <li>Energieeffizient und vollständig offline nutzbar – lokale KI, lokale OCR, alles lokal</li>
+        <li>Sehr anpassbar – 7 Themes und umfangreiche Einstellungen</li>
         <li>Und vieles mehr!!!</li>
     </ul>
+    <div class="carousel">
+        [img src="/assets/img/mlearn-video-player.webp"][/img]
+        [img src="/assets/img/mlearn-overlay.webp"][/img]
+        [img src="/assets/img/mlearn-reader-ocr.webp"][/img]
+        [img src="/assets/img/mlearn-flashcards.webp"][/img]
+        [img src="/assets/img/mlearn-ai-tutor.webp"][/img]
+        [img src="/assets/img/mlearn-kanji-grid.webp"][/img]
+    </div>
     <h2>Unterstützte Sprachen</h2>
-    <p>Derzeit Japanisch und Deutsch.</p>
+    <p>Japanisch, Deutsch, Spanisch, Russisch, Mandarin-Chinesisch und Kirchenslawisch werden sofort vollständig unterstützt – mit sprachspezifischen Frequenz- und Prüfungsniveaus (JLPT, HSK, CEFR/ТРКИ). Du kannst auch eigene Sprachen hinzufügen.</p>
     <h1>Warum ich das gebaut habe</h1>
     <p>Ich habe mLearn im Sommer/Herbst 2024 entwickelt, nachdem ich im Februar 2024 mit Japanisch angefangen hatte. Native Medien waren auf Anfängerniveau unzugänglich.</p>
     <p>Ich brauchte eine App, die Immersion mit beliebigen Inhalten ermöglicht – auch offline – mit Anki-Integration. Ich habe [a href="https://migaku.com/"]Migaku[/a] ausprobiert, aber es war nicht kostenlos und unterstützte meine Ziele für native Inhalte nicht.</p>
@@ -40,9 +49,11 @@
     <p>Da ich damals noch kaum Japanisch verstanden habe, habe ich einen Live-Wort-Übersetzer entwickelt, der Übersetzungen basierend auf den Lesungen anzeigt.</p>
     <p>Es hat enorm geholfen: Die erste Serie, die ich mit mLearn geschaut habe, war [a href="https://www.imdb.com/title/tt2098220/"]Hunter x Hunter[/a] mit japanischen Untertiteln und dem Original-Dub.</p>
     <p>mLearn hat mir geholfen, Gesprächsflüssigkeit zu erreichen. Ich habe über 1.000 Wörter gelernt, mit minimalem Aufwand, wie ich später in einer internen Datenbank festgestellt habe.</p>
+    <p>Stand Sommer 2026 hat mLearn mir geholfen, so viele Wörter passiv zu lernen, dass ich ein 6.000-Wörter-Anki-Deck fast ohne Anstrengung abgeschlossen habe. Laut mLearn kenne ich 5,8k Wörter, und weitere 8,9k Wörter sind fast gefestigt in meinem Wortschatz.</p>
     <h1>Geplante Features</h1>
     <ul>
-        <li>Unterstützung für Chinesisch und Russisch</li>
+        <li>Native iOS- &amp; Android-Apps (PWA jetzt verfügbar)</li>
+        <li>Weitere unterstützte Sprachen</li>
         <li>Und vieles mehr...</li>
     </ul>
 </div>
