@@ -152,4 +152,4 @@ function initProjects(){
 }
 
 
-export {lenis, lenis2, snap, initProjects, initLenises};
+export {lenis, lenis2, snap, initProjects, initLenises, snapToSections};

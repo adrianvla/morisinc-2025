@@ -1,3 +1,11 @@
+* {
+    scrollbar-width: none;
+}
+
+*::-webkit-scrollbar {
+    display: none !important;
+}
+
 :root{
     --primary: var(--blue);
     --secondary: var(--green);

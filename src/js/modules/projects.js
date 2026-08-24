@@ -905,6 +905,27 @@ function generateProject(current_container){
     });
 }
 
+// Re-measure the pixel-locked headers/buttons after a late webfont swap
+// changes metrics (see fontSync.js). Headers not yet scramble-revealed have
+// their stashed text restored temporarily to measure true height.
+export function refitLockedMeasurements() {
+    document.querySelectorAll("section.content h2, section.content h3, section.content h4, section.content h5, section.content h6").forEach(p => {
+        const stashed = $(p).attr("text-content");
+        if (!stashed) return;
+        const revealed = p.textContent.trim().length > 0;
+        $(p).css("height", "");
+        if (!revealed) $(p).text(stashed);
+        $(p).css("height", `${$(p).height()}px`);
+        if (!revealed) $(p).text("");
+    });
+    document.querySelectorAll("span.btn").forEach(p => {
+        $(p).css("height", "");
+        $(p).css("width", "");
+        $(p).css("height", `${$(p).height()}px`);
+        $(p).css("width", `${$(p).width()}px`);
+    });
+}
+
 function setupTextRevealEffects() {
     // Find all paragraphs in the content
     const els = document.querySelectorAll("section.content h2, section.content h3, section.content h4, section.content h5, section.content h6");

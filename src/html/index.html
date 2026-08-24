@@ -19,6 +19,44 @@
 
     <link rel="icon" type="image/svg+xml" href="/assets/img/qr-morisinc-net.svg">
 
+    <script>
+        // Preload the Japanese font only for Japanese visitors: it must not wait
+        // for bundle.js to parse (the @font-face lives inside the bundle).
+        (function () {
+            var l;
+            if (/[?&]lang=jp\b/.test(location.search) || /(?:^|;\s*)lang=jp\b/.test(document.cookie)) {
+                l = document.createElement('link');
+                l.rel = 'preload';
+                l.as = 'font';
+                l.type = 'font/woff2';
+                l.href = '/assets/fonts/logopixies/Logopixies-subset.woff2';
+                l.crossOrigin = 'anonymous';
+                document.head.appendChild(l);
+            }
+        })();
+    </script>
+    <style>
+        /* Japanese pixel font — subset: union of every character in all shipped text
+           sources + complete kana + CJK punctuation + fullwidth forms.
+           See assets/fonts/logopixies/HOW-TO-RESUBSET.md before adding new Japanese content.
+           Declared here (not fonts.css) so the URL bypasses css-loader and can be preloaded. */
+        @font-face {
+            font-family: 'LogoPixies';
+            src: url('/assets/fonts/logopixies/Logopixies-subset.woff2') format('woff2');
+            font-weight: normal;
+            font-style: normal;
+            font-display: swap;
+        }
+        /* Full-coverage Japanese face (utility class only, not used by default styles) */
+        @font-face {
+            font-family: 'DotGothic16';
+            src: url('/assets/fonts/DotGothic16/DotGothic16/DotGothic16-Regular.woff2') format('woff2');
+            font-weight: 400;
+            font-style: normal;
+            font-display: swap;
+        }
+    </style>
+
     <title>Portfolio - Adrian Vlasov</title>
     <style>
         .wait-for-data{

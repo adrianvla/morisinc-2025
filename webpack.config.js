@@ -7,7 +7,7 @@ module.exports = {
         path: path.resolve(__dirname, 'dist'),
         filename: 'bundle.js',
         clean: {
-            keep: /(\.git|BingSiteAuth\.xml|CNAME|\.nojekyll|\.gitattributes|^assets|^lang-)/
+            keep: /(\.git|BingSiteAuth\.xml|CNAME|\.nojekyll|\.gitattributes|^assets|^lang-|^adrian\.vcf)/
         },
     },
     mode: 'production',

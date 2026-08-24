@@ -1,44 +1,50 @@
+/* Fonts are WOFF2 (converted from TTF/OTF with fonttools; originals kept alongside).
+   LogoPixies + DotGothic16 use stable /assets/ paths so the Japanese face can be
+   preloaded from the document head before bundle.js parses. */
+
 @font-face {
   font-family: 'Fit';
-  src: url('../assets/fonts/fit-variable/Fit_Variable_Normal.otf') format('opentype');
+  src: url('../assets/fonts/fit-variable/Fit_Variable_Normal.woff2') format('woff2');
   font-weight: normal;
   font-style: normal;
+  font-display: swap;
 }
 @font-face {
   font-family: 'Sterion';
-  src: url('../assets/fonts/sterion-font/Sterion-BLLld.ttf') format('truetype');
+  src: url('../assets/fonts/sterion-font/Sterion-BLLld.woff2') format('woff2');
   font-weight: normal;
   font-style: normal;
+  font-display: swap;
 }
 @font-face {
   font-family: 'Sterion';
-  src: url('../assets/fonts/sterion-font/SterionItalic-R99PA.ttf') format('truetype');
+  src: url('../assets/fonts/sterion-font/SterionItalic-R99PA.woff2') format('woff2');
   font-weight: normal;
   font-style: italic;
+  font-display: swap;
 }
 @font-face {
     font-family: 'Teknaf';
-    src: url('../assets/fonts/teknaf-regular-font/TeknafRegular-rv0aB.otf') format('opentype');
+    src: url('../assets/fonts/teknaf-regular-font/TeknafRegular-rv0aB.woff2') format('woff2');
     font-weight: normal;
     font-style: normal;
+    font-display: swap;
 }
 @font-face {
     font-family: 'Y224';
-    src: url('../assets/fonts/y224/Y224-pgj1O.woff') format('opentype');
+    src: url('../assets/fonts/y224/Y224-pgj1O.woff2') format('woff2');
     font-weight: normal;
     font-style: normal;
+    font-display: swap;
 }
-@font-face {
-    font-family: 'LogoPixies';
-    src: url('../assets/fonts/logopixies/Logopixies-owwBB.ttf') format('opentype');
-    font-weight: normal;
-    font-style: normal;
-}
+/* LogoPixies + DotGothic16 are declared in the HTML <head> (src/html/*.html):
+   their stable /assets/ URLs must bypass css-loader so the Japanese face can
+   be preloaded before bundle.js parses. */
 
 /* PTF OffBit - 101 */
 @font-face {
   font-family: 'OffBit Trial 101';
-  src: url('../assets/fonts/PTF-OffBit/TTF/OffBit-101.ttf') format('truetype');
+  src: url('../assets/fonts/PTF-OffBit/TTF/OffBit-101.woff2') format('woff2');
   font-weight: 400;
   font-style: normal;
   font-display: swap;
@@ -47,7 +53,7 @@
 /* PTF OffBit - 101 Bold */
 @font-face {
   font-family: 'OffBit Trial 101 Bold';
-  src: url('../assets/fonts/PTF-OffBit/TTF/OffBit-101Bold.ttf') format('truetype');
+  src: url('../assets/fonts/PTF-OffBit/TTF/OffBit-101Bold.woff2') format('woff2');
   font-weight: 700;
   font-style: normal;
   font-display: swap;
@@ -56,7 +62,7 @@
 /* PTF OffBit - Bold */
 @font-face {
   font-family: 'OffBit Trial Bold';
-  src: url('../assets/fonts/PTF-OffBit/TTF/OffBit-Bold.ttf') format('truetype');
+  src: url('../assets/fonts/PTF-OffBit/TTF/OffBit-Bold.woff2') format('woff2');
   font-weight: 700;
   font-style: normal;
   font-display: swap;
@@ -65,7 +71,7 @@
 /* PTF OffBit - Dot */
 @font-face {
   font-family: 'OffBit Trial Dot';
-  src: url('../assets/fonts/PTF-OffBit/TTF/OffBit-Dot.ttf') format('truetype');
+  src: url('../assets/fonts/PTF-OffBit/TTF/OffBit-Dot.woff2') format('woff2');
   font-weight: 400;
   font-style: normal;
   font-display: swap;
@@ -74,7 +80,7 @@
 /* PTF OffBit - Dot Bold */
 @font-face {
   font-family: 'OffBit Trial Dot Bold';
-  src: url('../assets/fonts/PTF-OffBit/TTF/OffBit-DotBold.ttf') format('truetype');
+  src: url('../assets/fonts/PTF-OffBit/TTF/OffBit-DotBold.woff2') format('woff2');
   font-weight: 700;
   font-style: normal;
   font-display: swap;
@@ -83,15 +89,7 @@
 /* PTF OffBit - Regular */
 @font-face {
   font-family: 'OffBit Trial Regular';
-  src: url('../assets/fonts/PTF-OffBit/TTF/OffBit-Regular.ttf') format('truetype');
-  font-weight: 400;
-  font-style: normal;
-  font-display: swap;
-}
-
-@font-face {
-  font-family: 'DotGothic16';
-  src: url('../assets/fonts/DotGothic16/DotGothic16/DotGothic16-Regular.ttf') format('truetype');
+  src: url('../assets/fonts/PTF-OffBit/TTF/OffBit-Regular.woff2') format('woff2');
   font-weight: 400;
   font-style: normal;
   font-display: swap;
@@ -100,7 +98,7 @@
 /* PP Neue Montreal Mono - Thin */
 @font-face {
   font-family: 'PP Neue Montreal Mono';
-  src: url('../assets/fonts/PP Neue Montreal Mono/otf/PPNeueMontrealMono-Thin.otf') format('opentype');
+  src: url('../assets/fonts/PP Neue Montreal Mono/otf/PPNeueMontrealMono-Thin.woff2') format('woff2');
   font-weight: 100;
   font-style: normal;
   font-display: swap;
@@ -109,7 +107,7 @@
 /* PP Neue Montreal Mono - Book */
 @font-face {
   font-family: 'PP Neue Montreal Mono';
-  src: url('../assets/fonts/PP Neue Montreal Mono/otf/PPNeueMontrealMono-Book.otf') format('opentype');
+  src: url('../assets/fonts/PP Neue Montreal Mono/otf/PPNeueMontrealMono-Book.woff2') format('woff2');
   font-weight: 300;
   font-style: normal;
   font-display: swap;
@@ -118,7 +116,7 @@
 /* PP Neue Montreal Mono - Medium */
 @font-face {
   font-family: 'PP Neue Montreal Mono';
-  src: url('../assets/fonts/PP Neue Montreal Mono/otf/PPNeueMontrealMono-Medium.otf') format('opentype');
+  src: url('../assets/fonts/PP Neue Montreal Mono/otf/PPNeueMontrealMono-Medium.woff2') format('woff2');
   font-weight: 500;
   font-style: normal;
   font-display: swap;
@@ -127,7 +125,7 @@
 /* PP Neue Montreal Mono - Bold */
 @font-face {
   font-family: 'PP Neue Montreal Mono';
-  src: url('../assets/fonts/PP Neue Montreal Mono/otf/PPNeueMontrealMono-Bold.otf') format('opentype');
+  src: url('../assets/fonts/PP Neue Montreal Mono/otf/PPNeueMontrealMono-Bold.woff2') format('woff2');
   font-weight: 700;
   font-style: normal;
   font-display: swap;
@@ -136,7 +134,7 @@
 /* PP Neue Montreal Mono - Regular Italic */
 @font-face {
   font-family: 'PP Neue Montreal Mono';
-  src: url('../assets/fonts/PP Neue Montreal Mono/otf/PPNeueMontrealMono-RegularItalic.otf') format('opentype');
+  src: url('../assets/fonts/PP Neue Montreal Mono/otf/PPNeueMontrealMono-RegularItalic.woff2') format('woff2');
   font-weight: 400;
   font-style: italic;
   font-display: swap;
@@ -145,7 +143,7 @@
 /* PP Neue Montreal Mono - Bold Italic */
 @font-face {
   font-family: 'PP Neue Montreal Mono';
-  src: url('../assets/fonts/PP Neue Montreal Mono/otf/PPNeueMontrealMono-BoldItalic.otf') format('opentype');
+  src: url('../assets/fonts/PP Neue Montreal Mono/otf/PPNeueMontrealMono-BoldItalic.woff2') format('woff2');
   font-weight: 700;
   font-style: italic;
   font-display: swap;

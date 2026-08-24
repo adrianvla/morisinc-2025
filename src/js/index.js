@@ -23,7 +23,10 @@ import { initAutoFitText } from './modules/autoFitText.js';
 import { initSterionHyphenFix } from './modules/sterionHyphenFix.js';
 import {getProjectName, isOtherPage, isProjectPage} from "./modules/pathDetector";
 import {fetchProjects} from "./modules/fetchProjects";
-import {generateProject, setupTextRevealEffects} from "./modules/projects";
+import {generateProject, setupTextRevealEffects, refitLockedMeasurements} from "./modules/projects";
+import {onJapaneseFontsReady} from "./modules/fontSync";
+import {snapToSections} from "./modules/smoothScrolling";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
 import {isMobileDevice, testForMobile} from "./utils/isMobileDevice";
 import leaveBecauseOfLang from "./transitions/leave/lang";
 // console.log("%cLOADED index.js", "color: #0f0; font-weight: bold; font-size: 20px; text-decoration: underline;");
@@ -230,6 +233,18 @@ document.addEventListener('DOMContentLoaded', () => {
     // Hide loading screen initially
     initLenises();
     translateEverything();
+    onJapaneseFontsReady(() => {
+        const s1 = $(".s1");
+        if (s1.length) {
+            s1.css("height", "");
+            s1.css("height", `${s1.height()}px`);
+        }
+        refitLockedMeasurements();
+        initAutoFitText();
+        if(!(isProjectPage() || isOtherPage())) snapToSections();
+        setHeightValueOfMain();
+        ScrollTrigger.refresh();
+    });
     inject();
     initCursor();
     initTextEffects();
