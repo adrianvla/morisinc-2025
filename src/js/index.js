@@ -10,6 +10,7 @@ import {translateEverything} from "./modules/translator";
 import './modules/barcodes';
 import './modules/changeTheme';
 import {initIntro} from "./moments/intro";
+import {initCssdaBall} from "./moments/cssdaBall";
 import {initTextEffects} from "./modules/textEffects";
 import './modules/languageSelector';
 import leave from "./transitions/leave";
@@ -138,6 +139,7 @@ barba.init({
                     initSterionHyphenFix();
                     initScrollZoom();
                     initSignFalloff();
+                    initCssdaBall();
                     $(".transition-overlay").remove();
                     r();
                 })}));
@@ -256,8 +258,10 @@ document.addEventListener('DOMContentLoaded', () => {
         if(!(isProjectPage() || isOtherPage())){
             turnOnNeon(document.querySelector(".s1 .projects .project.neon"));
             initProjects();
+            initCssdaBall();
         }else{
             setupTextRevealEffects();
+            initCssdaBall();
         }
     });
     setTimeout(() => {
