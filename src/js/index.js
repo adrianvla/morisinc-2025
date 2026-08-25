@@ -20,7 +20,7 @@ import {destroyAllNeonsExceptSign, turnOnNeon} from "./modules/neons";
 import {initSign, initSignFalloff} from "./modules/sign";
 import initScrollZoom from "./modules/scrollZoom";
 import './modules/clock';
-import { initAutoFitText } from './modules/autoFitText.js';
+import { initAutoFitText, fitWhenFontsReady } from './modules/autoFitText.js';
 import { initSterionHyphenFix } from './modules/sterionHyphenFix.js';
 import {getProjectName, isOtherPage, isProjectPage} from "./modules/pathDetector";
 import {fetchProjects} from "./modules/fetchProjects";
@@ -136,6 +136,7 @@ barba.init({
                     initProjects();
                     turnOnNeon(document.querySelector(".s1 .projects .project.neon"));
                     initAutoFitText();
+                    fitWhenFontsReady();
                     initSterionHyphenFix();
                     initScrollZoom();
                     initSignFalloff();
@@ -258,6 +259,7 @@ document.addEventListener('DOMContentLoaded', () => {
         if(!(isProjectPage() || isOtherPage())){
             turnOnNeon(document.querySelector(".s1 .projects .project.neon"));
             initProjects();
+            fitWhenFontsReady();
             initCssdaBall();
         }else{
             setupTextRevealEffects();

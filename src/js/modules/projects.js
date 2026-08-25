@@ -1,6 +1,6 @@
 import $ from "jquery";
 import {getProjectName, isOtherPage} from "./pathDetector";
-import {initAutoFitText} from "./autoFitText";
+import {initAutoFitText, fitWhenFontsReady} from "./autoFitText";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import {SplitText} from "gsap/SplitText";
@@ -877,6 +877,7 @@ function generateProject(current_container){
         hookAllVideos();
         hookAllReaders();
         initAutoFitText();
+        fitWhenFontsReady();
         await makeAllHeaders();
         initLazyLoad();
         initCarousel();

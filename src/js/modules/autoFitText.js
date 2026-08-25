@@ -97,8 +97,14 @@ if (document.readyState === 'loading') {
     initAutoFitText();
 }
 
-// Re-fit once all webfonts have swapped in — canvas measureText resolves
-// synchronously against fallback metrics before that, locking wrong px sizes
-document.fonts.ready.then(() => requestAnimationFrame(initAutoFitText));
+// Sterion loads lazily (only the late-inserted project h1s use it), so
+// fonts.ready alone can resolve before its download even starts — pull the
+// face explicitly and re-fit after it lands.
+const fitWhenFontsReady = () =>
+    Promise.all([document.fonts.ready, document.fonts.load('400 100px Sterion')])
+        .then(() => requestAnimationFrame(initAutoFitText))
+        .catch(e => console.warn('autofit re-fit skipped:', e));
 
-export { autoFitText, initAutoFitText };
+fitWhenFontsReady();
+
+export { autoFitText, initAutoFitText, fitWhenFontsReady };
