@@ -1,7 +1,7 @@
 import Matter from "matter-js";
 
 // CSSDA nominee badge easter egg — Matter.js ball in the main-content cage.
-// Entrance: drops 15s after the user's first interaction, aimed so it bounces
+// Entrance: drops 15s after the entry animation finishes, aimed so it bounces
 // twice on the bottom corner-cell row (c13–c16) and is captured by the
 // bottom-right corner zone, which springs it into its rest pose (center on
 // the frame corner, 1/4 visible) with a water-entry arrest.
@@ -23,7 +23,7 @@ const SPIN_DAMP = 0.8;        // spin relaxation rate, 1/s (tau = 1.25s)
 const CAPTURE_R = 95;         // corner capture-zone radius, px
 const CAPTURE_VMAX = 650;     // px/s: faster balls fly through the zone
 const CAPTURE_DEEP = 42;      // px: deep in the wedge, always captured
-const DROP_DELAY_MS = 15000;  // after the user's first interaction, drop
+const DROP_DELAY_MS = 15000;  // after the entry animation finishes, drop
 const CHARGE_R = 150;         // settled-state pointer proximity, px
 const CHARGE_TIME = 5;        // s of hover to trigger ejection
 const REPEL_R = 190;          // free-state pointer repulsion radius, px
@@ -252,15 +252,5 @@ export function initCssdaBall() {
         if (mode === 'spin' || mode === 'sink') { x = right; y = floorY; }
     });
 
-    // Arm on the user's first real interaction; drop 15s later.
-    const arm = new AbortController();
-    let armed = false;
-    ['wheel', 'scroll', 'pointerdown', 'keydown', 'touchstart'].forEach(type => {
-        window.addEventListener(type, () => {
-            if (armed) return;
-            armed = true;
-            arm.abort();
-            setTimeout(start, DROP_DELAY_MS);
-        }, { signal: arm.signal, once: true, passive: true });
-    });
+    setTimeout(start, DROP_DELAY_MS);
 }
