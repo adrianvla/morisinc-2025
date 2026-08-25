@@ -97,7 +97,8 @@ if (document.readyState === 'loading') {
     initAutoFitText();
 }
 
-// Also initialize after a short delay to ensure all elements are rendered
-setTimeout(initAutoFitText, 500);
+// Re-fit once all webfonts have swapped in — canvas measureText resolves
+// synchronously against fallback metrics before that, locking wrong px sizes
+document.fonts.ready.then(() => requestAnimationFrame(initAutoFitText));
 
 export { autoFitText, initAutoFitText };
