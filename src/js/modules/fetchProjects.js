@@ -6,6 +6,7 @@ import {getProjectName} from "./pathDetector";
 import {getCurrentLanguage, getTranslation} from "./translator";
 import {colors} from "./changeTheme";
 import initLazyLoad from "./lazyLoad";
+import {initAutoFitText, fitWhenFontsReady} from "./autoFitText";
 let index = 0;
 function addProject(name, desc, img_src, directURL, url){
     const myId = yeast().replaceAll('-', '_').replaceAll(".", "_");
@@ -74,6 +75,11 @@ function fetchProjects() {
                                     addProject(project.name, desc, project.image, project.directURL, project.url);
                                 });
                             });
+                            // Fit in the same task as insertion: the intro
+                            // loader exposes cards mid-timeline, before the
+                            // intro-end re-fit — that gap was the size "pop".
+                            initAutoFitText();
+                            fitWhenFontsReady();
                             initLazyLoad();
 
                             resolve(data);
