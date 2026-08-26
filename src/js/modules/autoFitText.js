@@ -97,11 +97,10 @@ if (document.readyState === 'loading') {
     initAutoFitText();
 }
 
-// Sterion loads lazily (only the late-inserted project h1s use it), so
-// fonts.ready alone can resolve before its download even starts — pull the
-// face explicitly and re-fit after it lands.
+// Sterion loads lazily (only the late-inserted project h1s use it) — pull
+// that one face explicitly and re-fit the moment it lands.
 const fitWhenFontsReady = () =>
-    Promise.all([document.fonts.ready, document.fonts.load('400 100px Sterion')])
+    document.fonts.load('400 100px Sterion')
         .then(() => requestAnimationFrame(initAutoFitText))
         .catch(e => console.warn('autofit re-fit skipped:', e));
 
