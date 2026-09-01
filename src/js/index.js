@@ -10,7 +10,7 @@ import {translateEverything} from "./modules/translator";
 import './modules/barcodes';
 import './modules/changeTheme';
 import {initIntro} from "./moments/intro";
-import {initCssdaBall} from "./moments/cssdaBall";
+import {syncAwardBalls, dropAwardBalls} from "./moments/awardBalls";
 import {initTextEffects} from "./modules/textEffects";
 import './modules/languageSelector';
 import leave from "./transitions/leave";
@@ -84,6 +84,7 @@ barba.init({
                     return new Promise(r=>r());
                 // Custom transition for leaving home
                 destroyAllNeonsExceptSign();
+                dropAwardBalls();
                 return leave(data.current.container);
             },
             enter(data) {
@@ -102,6 +103,7 @@ barba.init({
                 return enter(new Promise(r=>{generateProject(data.current.container).then(()=> {
                     $(".transition-overlay").remove();
                     setupTextRevealEffects();
+                    syncAwardBalls();
                     initSignFalloff();
                     r();
                 })}));
@@ -117,6 +119,7 @@ barba.init({
                     return new Promise(r=>r());
                 // Custom transition for leaving home
                 destroyAllNeonsExceptSign();
+                dropAwardBalls();
                 window.redirectType = 'home-to-project';
                 return leave(data.current.container);
             },
@@ -140,7 +143,7 @@ barba.init({
                     initSterionHyphenFix();
                     initScrollZoom();
                     initSignFalloff();
-                    initCssdaBall();
+                    syncAwardBalls();
                     $(".transition-overlay").remove();
                     r();
                 })}));
@@ -156,6 +159,7 @@ barba.init({
                     return new Promise(r=>r());
 
                 destroyAllNeonsExceptSign();
+                dropAwardBalls();
                 window.redirectType = 'home-to-project';
                 return leave(data.current.container);
             },
@@ -174,6 +178,7 @@ barba.init({
 
                 return enter(new Promise(r=>{generateProject(data.current.container).then(()=> {
                     setupTextRevealEffects();
+                    syncAwardBalls();
                     initSignFalloff();
                     $(".transition-overlay").remove();
                     r();
@@ -260,10 +265,10 @@ document.addEventListener('DOMContentLoaded', () => {
             turnOnNeon(document.querySelector(".s1 .projects .project.neon"));
             initProjects();
             fitWhenFontsReady();
-            initCssdaBall();
+            syncAwardBalls();
         }else{
             setupTextRevealEffects();
-            initCssdaBall();
+            syncAwardBalls();
         }
     });
     setTimeout(() => {
